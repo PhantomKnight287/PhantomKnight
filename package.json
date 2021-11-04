@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./build/src/index.js",
-    "build": "tsc -p tsconfig.json --watch "
+    "build": "tsc -p tsconfig.json --watch ",
+    "build:prod":"tsc -p tsconfig.json"
   },
   "author": "PhantomKnight287",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "canvas": "^2.8.0",
     "discord-api-types": "^0.24.0",
     "discord.js": "^13.3.0",
+    "mongoose": "^6.0.12",
     "pretty-ms": "^7.0.1"
   },
   "devDependencies": {

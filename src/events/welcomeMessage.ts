@@ -1,18 +1,15 @@
+import { GuildMember, MessageAttachment } from "discord.js";
+import type { Client } from "discord.js";
 import Canvas from "canvas";
-import { MessageAttachment } from "discord.js";
-import { SlashCommandBuilder } from "@discordjs/builders";
-import type { CommandInteraction } from "discord.js";
-module.exports = {
-  command: new SlashCommandBuilder()
-    .setName("profile")
-    .setDescription("Testing Image manipulation")
-    .addUserOption((user) =>
-      user.setName("member").setDescription("Mention a user").setRequired(true)
-    ),
-  async run(interaction: CommandInteraction) {
-    const user = interaction.options.getUser("member")
-      ? interaction.options.getUser("member")
-      : interaction.user;
+import { welcomerModel } from "../models/welcomerMessage";
+async function sendWelcomeMessage(
+  newJoinedMember: GuildMember,
+  client: Client
+) {
+  const isGuildPresent = await welcomerModel.findOne({
+    guildId: newJoinedMember.guild.id,
+  });
+  if (isGuildPresent) {
     const applyText = (canvas: Canvas.Canvas, text: string) => {
       const context = canvas.getContext("2d");
 
@@ -28,7 +25,6 @@ module.exports = {
       // Return the result to use in the actual canvas
       return context.font;
     };
-    await interaction.deferReply();
     const canvas = Canvas.createCanvas(700, 250);
     const context = canvas.getContext("2d");
 
@@ -42,15 +38,15 @@ module.exports = {
 
     context.font = "28px sans-serif";
     context.fillStyle = "#ffffff";
-    // context.fillText(`Welcome ${user.username} to ${interaction.guild.name}`, canvas.width / 2.5, canvas.height / 3.5);
+    const messageContent = isGuildPresent.welcomerMessage
+      .replace("|user|", `${newJoinedMember.user.username}`)
+      .replace("|guild|", `${newJoinedMember.guild.name}`);
+    context.fillText(messageContent, canvas.width / 2.5, canvas.height / 3.5);
 
-    context.font = applyText(
-      canvas,
-      `Welcome ${user.username} to ${interaction.guild.name}`
-    );
+    context.font = applyText(canvas, messageContent);
     context.fillStyle = "#ffffff";
     context.fillText(
-      `Welcome ${user.username} to ${interaction.guild.name}`,
+      messageContent,
       canvas.width / 2.5,
       canvas.height / 1.8
     );
@@ -61,15 +57,17 @@ module.exports = {
     context.clip();
 
     const avatar = await Canvas.loadImage(
-      user.displayAvatarURL({ format: "jpg" })
+      newJoinedMember.displayAvatarURL({ format: "jpg" })
     );
     context.drawImage(avatar, 25, 25, 200, 200);
 
     const attachment = new MessageAttachment(
       canvas.toBuffer(),
-      "profile-image.png"
+      "welcomeMessage.png"
     );
-
-    await interaction.editReply({ files: [attachment] });
-  },
-};
+    client.channels.fetch(`${isGuildPresent.channelId}`).then((channel) => {
+      (channel as any).send({ files: [attachment] });
+    });
+  }
+}
+export default sendWelcomeMessage;

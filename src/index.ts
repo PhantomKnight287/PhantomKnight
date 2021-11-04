@@ -1,16 +1,22 @@
 const registerSlashCommands = require("./handler/registerCommands");
 const getJSFile = require("./handler");
-import { join } from "path";
+import { connect, connection } from "mongoose";
 require("dotenv").config();
+connect(process.env.mongodbUrl as string);
+connection.on("open", () => {
+  console.log("connected to mongodb");
+});
+import { join } from "path";
 const { Client, Intents, Collection } = require("discord.js");
 const client = new Client({
   intents: [
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_PRESENCES,
+    Intents.FLAGS.GUILD_MEMBERS,
   ],
 });
-import type { Interaction } from "discord.js";
-
+import type { Interaction, GuildMember } from "discord.js";
+import welcomerEvent from "./events/welcomeMessage";
 client.commands = new Collection();
 const commands = [];
 
@@ -48,6 +54,10 @@ client.on("interactionCreate", async (interaction: Interaction) => {
   } catch (error) {
     console.log(error.message);
   }
+});
+
+client.on("guildMemberAdd", async (userJoined: GuildMember) => {
+  await welcomerEvent(userJoined, client);
 });
 
 client.login(process.env.token as string);
