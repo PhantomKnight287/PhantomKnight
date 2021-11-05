@@ -10,21 +10,6 @@ async function sendWelcomeMessage(
     guildId: newJoinedMember.guild.id,
   });
   if (isGuildPresent) {
-    const applyText = (canvas: Canvas.Canvas, text: string) => {
-      const context = canvas.getContext("2d");
-
-      // Declare a base size of the font
-      let fontSize = 70;
-
-      do {
-        // Assign the font to the context and decrement it so it can be measured again
-        context.font = `${(fontSize -= 10)}px sans-serif`;
-        // Compare pixel width of the text to the canvas minus the approximate avatar size
-      } while (context.measureText(text).width > canvas.width - 300);
-
-      // Return the result to use in the actual canvas
-      return context.font;
-    };
     const canvas = Canvas.createCanvas(700, 250);
     const context = canvas.getContext("2d");
 
@@ -41,12 +26,10 @@ async function sendWelcomeMessage(
     const messageContent = isGuildPresent.welcomerMessage
       .replace("|user|", `${newJoinedMember.user.username}`)
       .replace("|guild|", `${newJoinedMember.guild.name}`);
-    context.fillText(messageContent, canvas.width / 2.5, canvas.height / 3.5);
-
-    context.font = applyText(canvas, messageContent);
-    context.fillStyle = "#ffffff";
     context.fillText(
-      messageContent,
+      `${newJoinedMember.user.username} Just Joined The Server\nMember #${
+        newJoinedMember.guild.members.cache.size + 1
+      }`,
       canvas.width / 2.5,
       canvas.height / 1.8
     );
@@ -66,7 +49,10 @@ async function sendWelcomeMessage(
       "welcomeMessage.png"
     );
     client.channels.fetch(`${isGuildPresent.channelId}`).then((channel) => {
-      (channel as any).send({ files: [attachment] });
+      (channel as any).send({
+        files: [attachment],
+        content: `${messageContent}`,
+      });
     });
   }
 }
