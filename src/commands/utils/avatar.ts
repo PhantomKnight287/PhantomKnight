@@ -12,16 +12,11 @@ module.exports = {
     const user = interaction.options.getUser("member")
       ? interaction.options.getUser("member")
       : interaction.user;
-    const avatarUrl = user.avatarURL()
-      ? user.avatarURL({
-          dynamic: true,
-          size: 256,
-        })
-      : "";
+    const avatarUrl = user.displayAvatarURL();
     if (avatarUrl) {
       const embed = new MessageEmbed()
         .setTitle(`Avatar of ${user.username}`)
-        .setImage(`${user.avatarURL()}`);
+        .setImage(`${avatarUrl}`);
       await interaction.reply({ embeds: [embed] });
     } else {
       await interaction.reply({

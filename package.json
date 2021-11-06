@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./build/src/index.js",
-    "build": "tsc -p tsconfig.json --watch ",
+    "build:dev": "tsc -p tsconfig.json --watch ",
     "build:prod":"tsc -p tsconfig.json"
   },
   "author": "PhantomKnight287",
