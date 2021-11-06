@@ -1,8 +1,9 @@
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 import colors from 'colors'
+require('dotenv').config()
 import type {command} from '../types'
-const rest = new REST({ version: "9" }).setToken("ODM5ODQ5MTQyOTI1NjU2MDY0.YJPodw.cSBpT9IfQsVsN9ZoqmuhCF6fNMA");
+const rest = new REST({ version: "9" }).setToken(process.env.token);
 
 module.exports = async (commands, isGlobal) => {
   try {
