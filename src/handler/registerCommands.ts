@@ -8,11 +8,11 @@ const rest = new REST({ version: "9" }).setToken(process.env.token);
 module.exports = async (commands, isGlobal) => {
   try {
     if (isGlobal == true) {
-      await rest.put(Routes.applicationCommands("839849142925656064"), {
+      await rest.put(Routes.applicationCommands(process.env.clientId), {
         body: commands,
       });
     } else {
-      await rest.put(Routes.applicationGuildCommands("839849142925656064","762220138321674240"), {
+      await rest.put(Routes.applicationGuildCommands(process.env.clientId,process.env.guildId), {
         body: commands,
       });
     }
