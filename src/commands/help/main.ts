@@ -13,7 +13,7 @@ module.exports = {
       .setTimestamp()
       .setTitle("Help Commands")
       .setDescription(
-        "Click any button to get help regarding that topic. Remember All of these are Slash Commands"
+        "Click any button to get help regarding that topic. Remember All of these are Slash Commands\n\nThis Bot is Open Source, You can take a look at the source [here](https://github.com/PhantomKnight287/discordbot)"
       )
       .addField(
         `<:herime_ujju_bhaiya:859068619765579786> Fun Command`,
@@ -28,6 +28,12 @@ module.exports = {
       .addField(
         "<:dorime:832826644993540096> Welcomer",
         "`Select Welcomer Option`",
+        true
+      )
+      .addField("Moderation", "`Select Moderation Option`", true)
+      .addField(
+        "<a:nitro:872445091111923753> Lack of Nitro",
+        "`Select Lack of Nitro Option`",
         true
       );
     const row = new MessageActionRow().addComponents(
@@ -52,6 +58,17 @@ module.exports = {
             description: "Get List of Welcomer Commands",
             value: "welcomer",
             emoji: "<:dorime:832826644993540096>",
+          },
+          {
+            label: "Moderation",
+            description: "Get List of Moderation Commands",
+            value: "mod",
+          },
+          {
+            label: "Lack of nitro",
+            description: "Get List of Lon Commands",
+            value: "nqn",
+            emoji: "<a:nitro:872445091111923753>",
           },
         ])
     );
@@ -110,6 +127,31 @@ module.exports = {
         .addField(
           `<:KEKW:833726165776334898> Meme`,
           "Use `meme` command to show memes.",
+          true
+        ),
+      mod: new MessageEmbed()
+        .setTitle("Moderation")
+        .setColor("RANDOM")
+        .addField("Ban", "Use `ban` command to  ban a user", true)
+        .addField(" Kick", "Use `kick` command to kick a user", true)
+        .addField("Unban", "Use `unban` command to unban a user", true)
+        .addField("Warn", "Use `warn` command to warn a user", true)
+        .addField(
+          "Warnings",
+          "Use `warnings` command to check warnings of a user",
+          true
+        ),
+      nqn: new MessageEmbed()
+        .setTitle("Lack of Nitro")
+        .setColor("RANDOM")
+        .addField(
+          "<a:nitro:872445091111923753> Nqn",
+          "Use `nqn` command to use an emoji",
+          true
+        )
+        .addField(
+          "<a:nitro:872445091111923753> Nall",
+          "Use `nall` command to get list of all emojis",
           true
         ),
     };
