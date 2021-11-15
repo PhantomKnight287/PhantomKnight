@@ -4,7 +4,7 @@
 
 <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
 <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
-<br/>
+
 # How to Start The Bot
 
 [Git](https://git-scm.com/downloads) and [Nodejs](https://nodejs.org) must be installed on your system
