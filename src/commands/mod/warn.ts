@@ -33,17 +33,19 @@ module.exports = {
             {
               userId: user.id,
               reason,
+              moderatorName: interaction.user.username,
             },
           ]
         : new warningModel({
-            guildId:interaction.guildId,
-            warnings:[
-                {
-                    userId:user.id,
-                    reason
-                }
-            ]
-        })
+            guildId: interaction.guildId,
+            warnings: [
+              {
+                userId: user.id,
+                reason,
+                moderatorName: interaction.user.username,
+              },
+            ],
+          });
       guildRecords
         ? await warningModel.findOneAndUpdate(
             { guildId: interaction.guildId },
