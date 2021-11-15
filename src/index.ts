@@ -13,9 +13,10 @@ const client = new Client({
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_PRESENCES,
     Intents.FLAGS.GUILD_MEMBERS,
+    Intents.FLAGS.GUILD_VOICE_STATES,
   ],
 });
-import type { Interaction, GuildMember } from "discord.js";
+import type { CommandInteraction, GuildMember } from "discord.js";
 import welcomerEvent from "./events/welcomeMessage";
 client.commands = new Collection();
 const commands = [];
@@ -39,9 +40,14 @@ commandFiles.forEach((file) => {
 registerSlashCommands(commands, false);
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag}! at ${new Date()}`);
+  await client.user.setPresence({activities:[
+    {
+      name:"Made in Typescript"
+    }
+  ]})
 });
 
-client.on("interactionCreate", async (interaction: Interaction) => {
+client.on("interactionCreate", async (interaction: CommandInteraction) => {
   if (!interaction.isCommand()) {
     return;
   }
