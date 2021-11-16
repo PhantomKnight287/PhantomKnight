@@ -9,7 +9,7 @@
     "build:prod": "tsc -p tsconfig.json"
   },
   "author": "PhantomKnight287",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "dependencies": {
     "@discordjs/builders": "^0.8.2",
     "@discordjs/opus": "^0.5.3",
