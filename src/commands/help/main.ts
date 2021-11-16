@@ -165,5 +165,11 @@ module.exports = {
         embeds: [embeds[collected.values[0]]],
       });
     });
+    collector.on("end", async () => {
+      row.components.forEach((component) => {
+        component.setDisabled(true);
+      });
+      await interaction.editReply({ components: [row] });
+    });
   },
 };
