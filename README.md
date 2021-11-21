@@ -1,9 +1,5 @@
- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Oswald&display=swap" rel="stylesheet">
-
-<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;font-family: 'Oswald', cursive;" >
+<div align="center" >
 
 # Welcome to PhantomKnight Discord bot's repo
 
@@ -13,7 +9,9 @@
 
 <img style="margin-bottom:1rem" src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
 <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
-
+<br/>
+ <br/>
+ 
 [![Discord Bots](https://top.gg/api/widget/838686966387965992.svg)](https://top.gg/bot/838686966387965992)
 
 # How to Start The Bot
