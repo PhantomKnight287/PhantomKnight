@@ -3,17 +3,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Oswald&display=swap" rel="stylesheet">
 
-<style>
-    div{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        font-family: 'Oswald', cursive;
-
-    }
-</style>
-<div>
+<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;font-family: 'Oswald', cursive;" >
 
 # Welcome to PhantomKnight Discord bot's repo
 
