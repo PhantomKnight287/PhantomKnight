@@ -35,6 +35,11 @@ module.exports = {
         "<a:nitro:872445091111923753> Lack of Nitro",
         "`Select Lack of Nitro Option`",
         true
+      )
+      .addField(
+        "<a:music:872445429877440513> Music",
+        "`Select Music Option`",
+        true
       );
     const row = new MessageActionRow().addComponents(
       new MessageSelectMenu()
@@ -69,6 +74,12 @@ module.exports = {
             description: "Get List of Lon Commands",
             value: "nqn",
             emoji: "<a:nitro:872445091111923753>",
+          },
+          {
+            emoji: "<a:music:872445429877440513>",
+            label: "Music",
+            description: "Get List of Music Commands",
+            value: "music",
           },
         ])
     );
@@ -154,6 +165,63 @@ module.exports = {
           "Use `nall` command to get list of all emojis",
           true
         ),
+      music: new MessageEmbed()
+        .setTitle("Music")
+        .setColor("RANDOM")
+        .addFields(
+          {
+            name: "Play",
+            value: "Use `play <song name>` to play music in your voice channel",
+            inline: true,
+          },
+          {
+            name: "Pause",
+            value: "Use `pause` to pause the currently playing music",
+            inline: true,
+          },
+          {
+            name: "Skip",
+            value: "Use `skip` to skip the currently playing song",
+            inline: true,
+          },
+          {
+            name: "Previous",
+            value: "Use `previous` to play the previous song",
+            inline: true,
+          },
+          {
+            name: "Resume",
+            value: "Use `resume` to resume the currently playing Song",
+            inline: true,
+          },
+          {
+            name: "Seek",
+            value: "Use `seek` to seek the song to given seconds",
+            inline: true,
+          },
+          {
+            name: "Fast Forward",
+            value: "Use `fast-forward` to fast forward the song",
+            inline: true,
+          },
+          {
+            name: "Queue",
+            value: "Use `queue` to check the queue",
+            inline: true,
+          },
+          {
+            name: "Now",
+            value: "Use `now` to get detail about the currently playing music",
+            inline: true,
+          },
+          {
+            name: "disconnect",
+            value:
+              "Use `disconnect` to stop the music and disconnect bot from voice channel",
+            inline: true,
+          }
+        )
+        .setTimestamp(),
     };
     await interaction.editReply({ embeds: [emb], components: [row] });
     const collector = await interaction.channel.createMessageComponentCollector(

@@ -3,6 +3,7 @@
     "incremental": true,
     "target": "es2016",
     "outDir": "build",
+    "removeComments": true,
     "moduleResolution": "node",
     "module": "commonjs",
     "declaration": false,
@@ -12,8 +13,9 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["src/*"]
     },
+    "allowJs": false,
     // "strict": true /* Enable all strict type-checking options. */,
 
     /* Strict Type-Checking Options */
@@ -44,7 +46,13 @@
     "types": ["node"],
     "typeRoots": ["node_modules/@types", "src/types"]
   },
-  "include": ["src/**/*.ts", "./package.json", "tests/**/*.ts","src/**/*.js","./.eslintrc.json"],
+  "include": [
+    "src/**/*.ts",
+    "./package.json",
+    "tests/**/*.ts",
+    "src/**/*.js",
+    "./.eslintrc.json"
+  ],
   "exclude": ["node_modules/**"],
   "compileOnSave": false
 }
