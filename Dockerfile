@@ -5,7 +5,7 @@ RUN \
     apt-get update &&\
     apt-get -y upgrade &&\
     apt-get install -y  curl git python3 python3-pip && \
-    pip install --upgrade pip && pip install --no-cache setuptools wheel 
+    pip install --upgrade pip
 
 RUN apt-get install -y ffmpeg
 RUN curl -fsSL https://deb.nodesource.com/setup_17.x | bash -
