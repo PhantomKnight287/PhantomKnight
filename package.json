@@ -30,7 +30,7 @@
     "discord.js": "^13.3.0",
     "ffmpeg-static": "^4.4.0",
     "libsodium-wrappers": "^0.7.9",
-    "mongoose": "^6.0.12",
+    "mongoose": "^6.0.13",
     "pretty-ms": "^7.0.1",
     "topgg-autoposter": "^2.0.0",
     "usetube": "^2.1.4",
