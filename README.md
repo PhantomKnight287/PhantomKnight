@@ -27,6 +27,12 @@
 6. npm start
 ```
 
+Run The bot Using Docker
+```
+docker-compose up --build --detach
+```
+
+
 ![separator](https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif)
 
 <details>
