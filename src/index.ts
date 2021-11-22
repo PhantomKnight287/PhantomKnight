@@ -2,11 +2,22 @@ const registerSlashCommands = require("./handler/registerCommands");
 const getJSFile = require("./handler");
 import { Player } from "discord-player";
 import { connect, connection } from "mongoose";
+import { vcCheck } from "./checks";
 require("dotenv").config();
 connect(process.env.mongodbUrl as string);
 connection.on("open", () => {
   console.log("connected to mongodb");
 });
+const MusicCommand: string[] = [
+  "disconnect",
+  "fast-forward",
+  "pause",
+  "play",
+  "previous",
+  "resume",
+  "seek",
+  "skip",
+];
 import { join } from "path";
 const { Client, Intents, Collection } = require("discord.js");
 const client: typeof Client = new Client({
@@ -68,6 +79,14 @@ client.on("ready", async () => {
 });
 
 client.on("interactionCreate", async (interaction: CommandInteraction) => {
+  if (MusicCommand.includes(interaction.commandName)) {
+    const isVoiceChannelJoined = vcCheck(interaction);
+    if (!isVoiceChannelJoined) {
+      return await interaction.reply({
+        content: "Please Connect to a voice channel!",
+      });
+    }
+  }
   if (!interaction.isCommand()) {
     return;
   }
