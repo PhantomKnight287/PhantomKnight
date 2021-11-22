@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  bot:
+    container_name: phantomknight
+    image: phantomknight/phantomknight:latest
+    restart: always
+    volumes:
+      - ./formatbotphantomknight-logs:/app/logs
+    env_file:
+      - .env
