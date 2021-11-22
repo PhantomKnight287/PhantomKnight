@@ -39,7 +39,7 @@ docker-compose up --build --detach
 <summary>Reference</summary>
 <br/>
 <a href="https://github.com/hackarmour/discord-assistant-js">Command Handler</a><br/>
-<a href="https://github.com/tatupesonen/formatbot">Idea to Use Typescript</a><br/>
+<a href="https://github.com/tatupesonen/formatbot">Idea to Use Typescript and Docker</a><br/>
 <a href="https://github.com/Androz2091/discord-music-bot">Music Commands </a>
 </details>
 </div>
