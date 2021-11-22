@@ -5,6 +5,6 @@ services:
     image: phantomknight/phantomknight:latest
     restart: always
     volumes:
-      - ./formatbotphantomknight-logs:/app/logs
+      - ./phantomknight-logs:/app/logs
     env_file:
       - .env
