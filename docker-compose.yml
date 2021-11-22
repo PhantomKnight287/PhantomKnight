@@ -3,8 +3,18 @@ services:
   bot:
     container_name: phantomknight
     image: phantomknight/phantomknight:latest
-    restart: always
+    restart: unless-stopped
     volumes:
-      - ./phantomknight-logs:/app/logs
+      - phantomknight-logs:/app/logs
     env_file:
       - .env
+    environment:
+      - token=$token
+      - mongodbUrl=$mongodbUrl
+      - clientId=$clientId
+      - guildId=$guildId
+      - topggtoken= $topggtoken
+    stdin_open: true
+    tty: true
+volumes:
+  phantomknight-logs:
