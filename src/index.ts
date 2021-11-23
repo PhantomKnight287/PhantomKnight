@@ -66,7 +66,7 @@ player.on("connectionError", (_, error) => {
   console.log(error);
 });
 
-registerSlashCommands(commands, false);
+registerSlashCommands(commands, true);
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag}! at ${new Date()}`);
   await client.user.setPresence({
