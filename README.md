@@ -24,7 +24,7 @@
 3. npm i
 4. Rename .env_example to .env and fill appropriate values
 5. npm run build:prod
-6. npm start
+6. npm run start:prod
 ```
 
 Run The bot Using Docker
