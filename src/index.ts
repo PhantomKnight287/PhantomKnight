@@ -17,6 +17,7 @@ const MusicCommand: string[] = [
   "resume",
   "seek",
   "skip",
+  "play-playlist"
 ];
 import { join } from "path";
 const { Client, Intents, Collection } = require("discord.js");
@@ -40,23 +41,14 @@ if (process.env.topggtoken) {
 client.commands = new Collection();
 const commands = [];
 
-// Get all the `.js` files in the `commands` directory
 const commandFiles = getJSFile(join(__dirname, "commands"));
 
-// Import all command files and
-// add them to the `client.commands` collection
 commandFiles.forEach((file) => {
   const command = require(file);
 
-  // Add the values to the array and `Collection`
   commands.push(command.command.toJSON());
-  // Sets the name of the command as the key
   client.commands.set(command.command.name, command);
 });
-
-// Registers the slash commands
-// NOTE: isGlobal value is set to false because the bot is still under development phase
-
 const player = new Player(client);
 
 player.on("error", (_, error) => {
@@ -66,7 +58,7 @@ player.on("connectionError", (_, error) => {
   console.log(error);
 });
 
-registerSlashCommands(commands, true);
+registerSlashCommands(commands, !process.env.development);
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag}! at ${new Date()}`);
   await client.user.setPresence({
