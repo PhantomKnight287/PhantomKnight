@@ -2,8 +2,7 @@ FROM node:alpine
 ENV TZ=Asia/Kolkata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN \
-    apk add --update git python3 py3-pip && \
-    apk add --update-cache pip
+    apk add --update git python3 py3-pip
 
 RUN apk add ffmpeg
 WORKDIR /app
