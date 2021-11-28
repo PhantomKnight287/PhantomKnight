@@ -9,6 +9,7 @@ async function sendWelcomeMessage(
   const isGuildPresent = await welcomerModel.findOne({
     guildId: newJoinedMember.guild.id,
   });
+  if (isGuildPresent.enable !== true) { return }
   if (isGuildPresent) {
     const canvas = Canvas.createCanvas(700, 250);
     const context = canvas.getContext("2d");
@@ -27,8 +28,7 @@ async function sendWelcomeMessage(
       .replace("|user|", `${newJoinedMember.user.username}`)
       .replace("|guild|", `${newJoinedMember.guild.name}`);
     context.fillText(
-      `${newJoinedMember.user.username} Just Joined The Server\nMember #${
-        newJoinedMember.guild.members.cache.size + 1
+      `${newJoinedMember.user.username} Just Joined The Server\nMember #${newJoinedMember.guild.members.cache.size + 1
       }`,
       canvas.width / 2.5,
       canvas.height / 1.8

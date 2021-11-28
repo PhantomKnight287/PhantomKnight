@@ -17,7 +17,7 @@ const MusicCommand: string[] = [
   "resume",
   "seek",
   "skip",
-  "play-playlist"
+  "play-playlist",
 ];
 import { join } from "path";
 const { Client, Intents, Collection } = require("discord.js");
@@ -99,4 +99,4 @@ client.on("guildMemberAdd", async (userJoined: GuildMember) => {
 
 client.login(process.env.token as string);
 
-export { player };
+export { player, client };

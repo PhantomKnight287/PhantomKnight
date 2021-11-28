@@ -14,8 +14,9 @@ services:
       - clientId=$clientId
       - guildId=$guildId
       - topggtoken= $topggtoken
-      - development=$development
     stdin_open: true
     tty: true
+    ports:
+      - "80:4000"
 volumes:
   phantomknight-logs:

@@ -8,9 +8,14 @@ const welcomerSchema = new Schema({
     type: String,
     required: true,
   },
-  guildId:{
-    type:String,
-    required:true
+  guildId: {
+    type: String,
+    required: true
+  },
+  enable: {
+    type: Boolean,
+    required: false,
+    default: true
   }
 });
-export const welcomerModel= models.welcomer || model("welcomer", welcomerSchema);
+export const welcomerModel = models.welcomer || model("welcomer", welcomerSchema);

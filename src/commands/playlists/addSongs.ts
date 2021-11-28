@@ -91,6 +91,7 @@ module.exports = {
           );
           embed.setFooter("Song Added to Playlist");
           await collected.editReply({ embeds: [embed], components: [] });
+          await collector.dispose(collected);
         }
       } else if (collected.customId == "next") {
         await collected.deferUpdate();
@@ -120,7 +121,7 @@ module.exports = {
       row.components.forEach((component) => {
         component.setDisabled(true);
       });
-      await interaction.editReply({ embeds: [embed], components: [row] });
+      await interaction.editReply({ embeds: [embed], components: [] });
     });
   },
 };
