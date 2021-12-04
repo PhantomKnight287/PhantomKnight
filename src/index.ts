@@ -1,5 +1,5 @@
-const registerSlashCommands = require("./handler/registerCommands");
-const getJSFile = require("./handler");
+import { registerSlashCommands } from "./handler/registerCommands";
+import { getJSFiles } from "./handler";
 import { Player } from "discord-player";
 import { connect, connection } from "mongoose";
 import { vcCheck } from "./checks";
@@ -8,6 +8,15 @@ connect(process.env.mongodbUrl as string);
 connection.on("open", () => {
   console.log("connected to mongodb");
 });
+import { join } from "path";
+import { Collection } from "discord.js";
+import { PhantomKnight } from "./construct";
+const client = new PhantomKnight();
+import { CommandInteraction, GuildMember, Message } from "discord.js";
+import welcomerEvent from "./events/welcomeMessage";
+import { AutoPoster } from "topgg-autoposter";
+import autoMod from "./events/autoMod";
+import { command } from "./types";
 const MusicCommand: string[] = [
   "disconnect",
   "fast-forward",
@@ -19,19 +28,6 @@ const MusicCommand: string[] = [
   "skip",
   "play-playlist",
 ];
-import { join } from "path";
-const { Client, Intents, Collection } = require("discord.js");
-const client: typeof Client = new Client({
-  intents: [
-    Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILD_PRESENCES,
-    Intents.FLAGS.GUILD_MEMBERS,
-    Intents.FLAGS.GUILD_VOICE_STATES,
-  ],
-});
-import { CommandInteraction, GuildMember } from "discord.js";
-import welcomerEvent from "./events/welcomeMessage";
-import { AutoPoster } from "topgg-autoposter";
 if (process.env.topggtoken) {
   const ap = AutoPoster(process.env.topggtoken as string, client);
   ap.on("posted", () => {
@@ -41,7 +37,7 @@ if (process.env.topggtoken) {
 client.commands = new Collection();
 const commands = [];
 
-const commandFiles = getJSFile(join(__dirname, "commands"));
+const commandFiles = getJSFiles(join(__dirname, "commands"));
 
 commandFiles.forEach((file) => {
   const command = require(file);
@@ -58,13 +54,13 @@ player.on("connectionError", (_, error) => {
   console.log(error);
 });
 
-registerSlashCommands(commands, true);
+registerSlashCommands(commands, false);
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag}! at ${new Date()}`);
   await client.user.setPresence({
     activities: [
       {
-        name: "Made in Typescript By PHANTOMKNIGHT#9254",
+        name: "Made By 'PHANTOM KNIGHT#9254'",
       },
     ],
   });
@@ -72,10 +68,10 @@ client.on("ready", async () => {
 
 client.on("interactionCreate", async (interaction: CommandInteraction) => {
   if (MusicCommand.includes(interaction.commandName)) {
-    const isVoiceChannelJoined = vcCheck(interaction);
-    if (!isVoiceChannelJoined) {
+    const { checkFailed, message } = vcCheck(interaction);
+    if (checkFailed) {
       return await interaction.reply({
-        content: "Please Connect to a voice channel!",
+        content: message,
       });
     }
   }
@@ -87,7 +83,7 @@ client.on("interactionCreate", async (interaction: CommandInteraction) => {
     return;
   }
   try {
-    await command.run(interaction, client);
+    await (command as command).run(interaction, client);
   } catch (error) {
     console.log(error.message);
   }
@@ -95,6 +91,10 @@ client.on("interactionCreate", async (interaction: CommandInteraction) => {
 
 client.on("guildMemberAdd", async (userJoined: GuildMember) => {
   await welcomerEvent(userJoined, client);
+});
+
+client.on("messageCreate", async (message: Message) => {
+  await autoMod(message);
 });
 
 client.login(process.env.token as string);

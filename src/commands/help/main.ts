@@ -40,7 +40,9 @@ module.exports = {
         "<a:music:872445429877440513> Music",
         "`Select Music Option`",
         true
-      );
+      )
+      .addField("AutoMod", "`Select AutoMod Option`", true)
+      .addField("Image", "`Select Image Option`", true);
     const row = new MessageActionRow().addComponents(
       new MessageSelectMenu()
         .setCustomId("select")
@@ -80,6 +82,17 @@ module.exports = {
             label: "Music",
             description: "Get List of Music Commands",
             value: "music",
+          },
+          {
+            emoji: "<:lmao:851030422719954946>",
+            label: "Image",
+            description: "GEt List of Image Manipulation Commands",
+            value: "image",
+          },
+          {
+            label: "AutoMod",
+            value: "automod",
+            description: "Get List of AutoMod Commands",
           },
         ])
     );
@@ -222,6 +235,61 @@ module.exports = {
           }
         )
         .setTimestamp(),
+      image: new MessageEmbed()
+        .setTitle("Image Manipulation")
+        .setColor("RANDOM")
+        .addFields(
+          {
+            name: "bed",
+            value: "Why do You Hate Me Brother?",
+            inline: true,
+          },
+          {
+            name: "gay",
+            value: "Show Your Gay Pride",
+            inline: true,
+          },
+          {
+            name: "greyscale",
+            value: "Greyscale someone's avatar",
+            inline: true,
+          },
+          {
+            name: "slap",
+            value: "Slap Someone",
+            inline: true,
+          },
+          {
+            name: "spank",
+            value: "Spank Someone",
+            inline: true,
+          },
+          {
+            name: "trash",
+            value: "Delete this trash",
+            inline: true,
+          },
+          {
+            name: "triggered",
+            value: "Trigger Someone",
+            inline: true,
+          }
+        ),
+      automod: new MessageEmbed()
+        .setTitle("Auto Mod")
+        .setColor("RANDOM")
+        .addFields(
+          {
+            name: "Toggle",
+            value: "Toggle AutoMod for your server",
+            inline: true,
+          },
+          {
+            name: "Add",
+            value: "Add new Words in automod",
+            inline: true,
+          }
+        ),
     };
     await interaction.editReply({ embeds: [emb], components: [row] });
     const collector = await interaction.channel.createMessageComponentCollector(

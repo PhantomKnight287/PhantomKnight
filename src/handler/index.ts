@@ -4,7 +4,7 @@ const { join } = require("path");
 // Gets all the files in the `commands` directory
 // that have the file extension `.js`
 
-const getJSFiles = (dir) => {
+export const getJSFiles = (dir) => {
   // Declare an empty array for storing the js files
   let jsFiles = [];
 
@@ -27,4 +27,3 @@ const getJSFiles = (dir) => {
   return jsFiles;
 };
 
-module.exports = getJSFiles;

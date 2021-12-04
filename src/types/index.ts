@@ -1,11 +1,14 @@
-
-export type command={
-    name:string,
-    description:string,
-    options:Array<Record<string,any>>,
-    default_permission:boolean|undefined|any,
+export interface command {
+  command: {
+    name: string;
+    description: string;
+    options: Array<Record<string, any>>;
+    default_permission: boolean | undefined;
+  };
+  run: Function;
 }
-export type warningRecords={
-    guildId:string,
-    warnings:Array<Record<string,any>>
-}
+export type warningRecords = {
+  guildId: string;
+  warnings: Array<Record<string, any>>;
+};
+export type autoModWords = Array<string>;
