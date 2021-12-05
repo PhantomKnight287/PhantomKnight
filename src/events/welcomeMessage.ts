@@ -9,7 +9,7 @@ async function sendWelcomeMessage(
   const isGuildPresent = await welcomerModel.findOne({
     guildId: newJoinedMember.guild.id,
   });
-  if (!isGuildPresent && isGuildPresent.enable !== true) {
+  if (!isGuildPresent || isGuildPresent.enable !== true) {
     return;
   }
   const canvas = Canvas.createCanvas(1024, 250);
