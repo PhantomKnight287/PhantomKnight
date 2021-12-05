@@ -12,7 +12,7 @@ async function sendWelcomeMessage(
   if (!isGuildPresent && isGuildPresent.enable !== true) {
     return;
   }
-  const canvas = Canvas.createCanvas(700, 250);
+  const canvas = Canvas.createCanvas(1024, 250);
   const context = canvas.getContext("2d");
 
   const background = await Canvas.loadImage(
@@ -23,10 +23,10 @@ async function sendWelcomeMessage(
   context.strokeStyle = "#0099ff";
   context.strokeRect(0, 0, canvas.width, canvas.height);
 
-  context.font = "28px sans-serif";
+  context.font = "30px sans-serif";
   context.fillStyle = "#ffffff";
   const messageContent = isGuildPresent.welcomerMessage
-    .replace("|user|", `${newJoinedMember.user.username}`)
+    .replace("|user|", `<@${newJoinedMember.user.id}>`)
     .replace("|guild|", `${newJoinedMember.guild.name}`);
   context.fillText(
     `${newJoinedMember.user.username} Just Joined The Server\nMember #${
