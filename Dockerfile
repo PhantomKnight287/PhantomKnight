@@ -10,9 +10,10 @@ RUN \
 RUN apt-get install -y ffmpeg
 RUN curl -fsSL https://deb.nodesource.com/setup_17.x | bash -
 RUN apt-get install -y nodejs
-EXPOSE 4000
 WORKDIR /app
 COPY . /app/
+RUN npm install npx
+RUN npx prisma generate
 RUN npm install
 RUN npm run build:prod
-CMD [ "node","./build/src/server.js"]
+CMD [ "node","./build/src/index.js"]

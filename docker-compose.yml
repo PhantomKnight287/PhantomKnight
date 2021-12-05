@@ -16,7 +16,5 @@ services:
       - topggtoken= $topggtoken
     stdin_open: true
     tty: true
-    ports:
-      - "80:4000"
 volumes:
   phantomknight-logs:
