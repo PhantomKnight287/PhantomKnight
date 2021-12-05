@@ -17,6 +17,7 @@ import welcomerEvent from "./events/welcomeMessage";
 import { AutoPoster } from "topgg-autoposter";
 import autoMod from "./events/autoMod";
 import { command } from "./types";
+import { prisma } from "./prisma";
 const MusicCommand: string[] = [
   "disconnect",
   "fast-forward",
@@ -54,7 +55,7 @@ player.on("connectionError", (_, error) => {
   console.log(error);
 });
 
-registerSlashCommands(commands, true);
+registerSlashCommands(commands, false);
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag}! at ${new Date()}`);
   await client.user.setPresence({
@@ -94,6 +95,61 @@ client.on("guildMemberAdd", async (userJoined: GuildMember) => {
 });
 
 client.on("messageCreate", async (message: Message) => {
+  if (message.author.bot) return;
+  const user = await prisma.users.findFirst({
+    where: {
+      userId: message.author.id,
+    },
+  });
+  if (!user) {
+    await prisma.users.create({
+      data: {
+        userId: message.author.id,
+        lastWorked: new Date().getTime() - 3600000,
+        bankBalance: 1000,
+        walletBalance: 1000,
+      },
+    });
+  }
+  const levelingUser = await prisma.leveling.findFirst({
+    where: {
+      userId: message.author.id,
+    },
+  });
+  if (!levelingUser) {
+    await prisma.leveling.create({
+      data: {
+        exp: 0,
+        level: 0,
+        levelUpXp: 200,
+        nextLevel: 1,
+        userId: message.author.id,
+      },
+    });
+  } else {
+    if (levelingUser.exp >= levelingUser.levelUpXp) {
+      await prisma.leveling.update({
+        where: {
+          userId: message.author.id,
+        },
+        data: {
+          level: levelingUser.level + 1,
+          levelUpXp: levelingUser.level * 100,
+          exp: 0,
+          nextLevel: levelingUser.level + 2,
+        },
+      });
+    } else {
+      await prisma.leveling.update({
+        where: {
+          userId: message.author.id,
+        },
+        data: {
+          exp: levelingUser.exp + Math.floor(Math.random() * 20),
+        },
+      });
+    }
+  }
   await autoMod(message);
 });
 
