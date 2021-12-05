@@ -1,0 +1,68 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongoDb"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("mongodbUrl")
+}
+
+model automods {
+  id        String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  v         Int      @map("__v")
+  createdAt DateTime @db.Date
+  enabled   Boolean
+  guildId   String
+  updatedAt DateTime @db.Date
+  words     String[]
+}
+
+model emojis {
+  id         String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  v          Int    @map("__v")
+  customName String
+  data       String
+}
+
+model playlists {
+  id        String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  v         Int      @map("__v")
+  createdAt DateTime @db.Date
+  playList  String[]
+  updatedAt DateTime @db.Date
+  userId    String
+}
+
+model users {
+  id            String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  userId        String @unique
+  walletBalance BigInt
+  bankBalance   BigInt
+  inventory     Json[]
+  lastWorked    BigInt
+}
+
+model warnings {
+  id       String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  v        Int    @map("__v")
+  guildId  String
+  warnings Json[]
+}
+
+model welcomers {
+  id              String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  v               Int    @map("__v")
+  channelId       String
+  guildId         String
+  welcomerMessage String
+}
+
+model leveling {
+  id        String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  exp       Int
+  level     Int
+  nextLevel Int
+  levelUpXp Int
+  userId    String @unique
+}
