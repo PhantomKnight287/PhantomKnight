@@ -41,7 +41,7 @@
     "mongoose": "^6.0.14",
     "pretty-ms": "^7.0.1",
     "socket.io": "^4.4.0",
-    "topgg-autoposter": "^2.0.0",
+    "topgg-autoposter": "^2.0.1",
     "usetube": "^2.1.4",
     "ws": "^8.3.0",
     "ytdl-core": "^4.9.1"
