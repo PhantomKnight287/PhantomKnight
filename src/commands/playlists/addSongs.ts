@@ -12,7 +12,7 @@ import {
 } from "@discordjs/builders";
 import { player } from "../..";
 import { QueryType } from "discord-player";
-import { playlistModel } from "../../models/playlist";
+import { prisma } from "../../prisma";
 module.exports = {
   command: new SlashCommandBuilder()
     .setName("add")
@@ -68,27 +68,34 @@ module.exports = {
       }
       if (collected.customId == "okay") {
         await collected.deferUpdate();
-        const user = await playlistModel.findOne({
-          userId: interaction.user.id,
+        const user = await prisma.playlists.findFirst({
+          where: {
+            userId: interaction.user.id,
+          },
         });
         if (!user) {
           console.log(song[i].title);
           const playList = [song[i].title];
           console.log(playList);
-          const newPlaylist = new playlistModel({
-            userId: interaction.user.id,
-            playList,
+          await prisma.playlists.create({
+            data: {
+              userId: interaction.user.id,
+              playList,
+            },
           });
-          await newPlaylist.save();
           embed.setFooter("Song Added to Playlist");
           await collected.editReply({ embeds: [embed], components: [] });
         } else if (user) {
           const Playlist: string[] = user.playList;
           Playlist.push(song[i].title);
-          await playlistModel.findOneAndUpdate(
-            { userId: interaction.user.id },
-            { playList: Playlist }
-          );
+          await prisma.playlists.update({
+            where: {
+              userId: interaction.user.id,
+            },
+            data: {
+              playList: Playlist,
+            },
+          });
           embed.setFooter("Song Added to Playlist");
           await collected.editReply({ embeds: [embed], components: [] });
           await collector.dispose(collected);

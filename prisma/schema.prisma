@@ -18,16 +18,16 @@ model automods {
 
 model emojis {
   id         String @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  v          Int    @map("__v")
+  v          Int    @default(0) @map("__v")
   customName String
   data       String
 }
 
 model playlists {
   id       String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  v        Int      @map("__v")
+  v        Int      @default(0) @map("__v")
   playList String[]
-  userId   String
+  userId   String   @unique
 }
 
 model users {
@@ -41,7 +41,7 @@ model users {
 
 model warnings {
   id       String @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  v        Int    @map("__v")
+  v        Int    @default(0) @map("__v")
   guildId  String
   warnings Json[]
 }
