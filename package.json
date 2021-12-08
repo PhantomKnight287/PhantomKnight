@@ -38,7 +38,7 @@
     "ffmpeg-static": "^4.4.0",
     "jimp": "^0.16.1",
     "libsodium-wrappers": "^0.7.9",
-    "mongoose": "^6.0.15",
+    "mongoose": "^6.0.14",
     "pretty-ms": "^7.0.1",
     "socket.io": "^4.4.0",
     "topgg-autoposter": "^2.0.1",
