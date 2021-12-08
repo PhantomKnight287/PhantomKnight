@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction, MessageEmbed } from "discord.js";
-import { warningModel } from "../../models/warnings";
+import { prisma } from "../../prisma";
 module.exports = {
   command: new SlashCommandBuilder()
     .setName("warnings")
@@ -11,8 +11,10 @@ module.exports = {
   async run(interaction: CommandInteraction) {
     await interaction.deferReply({ ephemeral: true });
     const user = interaction.options.getUser("user");
-    const guildRecord = await warningModel.findOne({
-      guildId: interaction.guildId,
+    const guildRecord = await prisma.warnings.findFirst({
+      where: {
+        guildId: interaction.guildId,
+      },
     });
     if (!guildRecord) {
       await interaction.editReply({
@@ -21,7 +23,7 @@ module.exports = {
       return;
     }
     const warnings = [];
-    guildRecord.warnings.map((warning, index) => {
+    guildRecord.warnings.map((warning: any, index) => {
       if (warning.userId == user.id) {
         warnings.push({ warning, id: index + 1 });
       }
