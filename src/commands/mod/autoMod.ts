@@ -1,6 +1,6 @@
 import { CommandInteraction, Permissions } from "discord.js";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { autoModModel } from "../../models/autoMod";
+import { prisma } from "../../prisma";
 module.exports = {
   command: new SlashCommandBuilder()
     .setName("automod")
@@ -22,7 +22,7 @@ module.exports = {
         .setDescription("Toggle AutoMod")
         .addBooleanOption((bool) => {
           return bool
-            .setName("enable")
+            .setName("disable")
             .setDescription("Toggle AutoMod")
             .setRequired(true);
         });
@@ -37,25 +37,33 @@ module.exports = {
           Permissions.FLAGS.MANAGE_GUILD,
         ])
       ) {
-        let autoModConfig = await (autoModModel.findOne({
-          guildId: interaction.guildId,
-        }) as any);
+        let autoModConfig = await prisma.automods.findFirst({
+          where: {
+            guildId: interaction.guildId,
+          },
+        });
 
         if (autoModConfig) {
-          let words = (autoModConfig as any).words;
+          let words = autoModConfig.words;
           words.push(interaction.options.getString("word"));
-          await autoModModel.findOneAndUpdate(
-            { guildId: interaction.guildId },
-            { words: words }
-          );
+          await prisma.automods.update({
+            where: {
+              guildId: interaction.guildId,
+            },
+            data: {
+              words,
+            },
+          });
           await interaction.editReply({ content: "Update AutoMod Config!" });
         } else {
           let words = [interaction.options.getString("word")];
-          const newAutoModConfig = new autoModModel({
-            guildId: interaction.guildId,
-            words: words,
+          await prisma.automods.create({
+            data: {
+              guildId: interaction.guildId,
+              words,
+              enabled: true,
+            },
           });
-          await newAutoModConfig.save();
           await interaction.editReply({
             content: "Enabled automod and add new word",
           });
@@ -66,9 +74,11 @@ module.exports = {
         });
       }
     } else if (interaction.options.getSubcommand() === "toggle") {
-      const autoModConfig = await (autoModModel.findOne({
-        guildId: interaction.guildId,
-      }) as any);
+      const autoModConfig = await prisma.automods.findFirst({
+        where: {
+          guildId: interaction.guildId,
+        },
+      });
       if (
         !(interaction.member.permissions as any).has([
           Permissions.FLAGS.MANAGE_MESSAGES,
@@ -81,20 +91,28 @@ module.exports = {
       }
       if (interaction.options.getBoolean("enable")) {
         if (autoModConfig) {
-          await autoModModel.findOneAndUpdate(
-            { guildId: interaction.guildId },
-            { enabled: false }
-          );
+          await prisma.automods.update({
+            data: {
+              enabled: false,
+            },
+            where: {
+              guildId: interaction.guildId,
+            },
+          });
           await interaction.editReply({
             content: "Disabled AutoMod for Your Server",
           });
         }
       } else {
         if (autoModConfig) {
-          await autoModModel.findOneAndUpdate(
-            { guildId: interaction.guildId },
-            { enabled: true }
-          );
+          await prisma.automods.update({
+            data: {
+              enabled: true,
+            },
+            where: {
+              guildId: interaction.guildId,
+            },
+          });
           await interaction.editReply({
             content: "Enabled AutoMod for Your Server",
           });
