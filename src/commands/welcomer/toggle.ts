@@ -1,7 +1,6 @@
 import { CommandInteraction } from "discord.js";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { welcomerModel } from "../../models/welcomerMessage";
-
+import { prisma } from "../../prisma";
 module.exports = {
   command: new SlashCommandBuilder()
     .setName("toggle")
@@ -14,8 +13,10 @@ module.exports = {
     }),
   async run(interaction: CommandInteraction) {
     await interaction.deferReply();
-    const welcomeConfig = await welcomerModel.findOne({
-      guildId: interaction.guildId,
+    const welcomeConfig = await prisma.welcomers.findFirst({
+      where: {
+        guildId: interaction.guildId,
+      },
     });
     if (!welcomeConfig)
       return void (await interaction.editReply({
@@ -23,10 +24,14 @@ module.exports = {
           "Welcomer is not configured for your server,Configure it first!",
       }));
     if (!welcomeConfig.enabled && interaction.options.getBoolean("enable")) {
-      await welcomerModel.findOneAndUpdate(
-        { guildId: interaction.guildId },
-        { enabled: true }
-      );
+      await prisma.welcomers.update({
+        where: {
+          guildId: interaction.guildId,
+        },
+        data: {
+          enabled: true,
+        },
+      });
       return void (await interaction.editReply({
         content: "Enabled Welcomer for your server!",
       }));
@@ -34,10 +39,14 @@ module.exports = {
       welcomeConfig.enabled &&
       !interaction.options.getBoolean("enable")
     ) {
-      await welcomerModel.findOneAndUpdate(
-        { guildId: interaction.guildId },
-        { enabled: false }
-      );
+      await prisma.welcomers.update({
+        where: {
+          guildId: interaction.guildId,
+        },
+        data: {
+          enabled: false,
+        },
+      });
       return void (await interaction.editReply({
         content: "Disabled Welcomer for your server!",
       }));
