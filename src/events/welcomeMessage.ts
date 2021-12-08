@@ -1,15 +1,17 @@
 import { GuildMember, MessageAttachment } from "discord.js";
 import type { Client } from "discord.js";
 import Canvas from "canvas";
-import { welcomerModel } from "../models/welcomerMessage";
+import { prisma } from "../prisma";
 async function sendWelcomeMessage(
   newJoinedMember: GuildMember,
   client: Client
 ) {
-  const isGuildPresent = await welcomerModel.findOne({
-    guildId: newJoinedMember.guild.id,
+  const isGuildPresent = await prisma.welcomers.findFirst({
+    where: {
+      guildId: newJoinedMember.guild.id,
+    },
   });
-  if (!isGuildPresent || isGuildPresent.enable !== true) {
+  if (!isGuildPresent || isGuildPresent.enabled !== true) {
     return;
   }
   const canvas = Canvas.createCanvas(1024, 250);
