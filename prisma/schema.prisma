@@ -9,13 +9,11 @@ datasource db {
 }
 
 model automods {
-  id        String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  v         Int      @map("__v")
-  createdAt DateTime @db.Date
-  enabled   Boolean
-  guildId   String
-  updatedAt DateTime @db.Date
-  words     String[]
+  id      String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  v       Int      @default(0) @map("__v")
+  enabled Boolean
+  guildId String   @unique
+  words   String[]
 }
 
 model emojis {
@@ -26,12 +24,10 @@ model emojis {
 }
 
 model playlists {
-  id        String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  v         Int      @map("__v")
-  createdAt DateTime @db.Date
-  playList  String[]
-  updatedAt DateTime @db.Date
-  userId    String
+  id       String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  v        Int      @map("__v")
+  playList String[]
+  userId   String
 }
 
 model users {
