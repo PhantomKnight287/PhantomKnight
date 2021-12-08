@@ -39,11 +39,7 @@ module.exports = {
       return;
     }
     warnings.forEach((warning) => {
-      embed.addField(
-        `ID:${warning.id}| Moderator:${warning.moderatorName}`,
-        `${warning.warning.reason}`,
-        false
-      );
+      embed.addField(`ID:${warning.id}`, `${warning.warning.reason}`, false);
     });
     await interaction.editReply({ embeds: [embed] });
   },
