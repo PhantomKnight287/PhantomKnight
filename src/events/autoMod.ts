@@ -1,8 +1,12 @@
 import { Message } from "discord.js";
-import { autoModModel } from "../models/autoMod";
+import { prisma } from "../prisma";
 import { autoModWords } from "../types";
 export default async function autoMod(message: Message) {
-  const autoModData = await autoModModel.findOne({ guildId: message.guildId });
+  const autoModData = await prisma.automods.findFirst({
+    where: {
+      guildId: message.guildId,
+    },
+  });
   let isMessageDeleted = false;
   if (!autoModData || !autoModData.enabled || message.author.bot) return;
   try {
