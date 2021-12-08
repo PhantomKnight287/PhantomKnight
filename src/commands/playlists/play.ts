@@ -7,14 +7,18 @@ import {
 } from "@discordjs/builders";
 const wait = require("util").promisify(setTimeout);
 import { QueryType } from "discord-player";
-import { playlistModel } from "../../models/playlist";
+import { prisma } from "../../prisma";
 module.exports = {
   command: new SlashCommandBuilder()
     .setName("play-playlist")
     .setDescription("Play Music in your Playlist"),
   async run(interaction: CommandInteraction) {
     await interaction.deferReply();
-    const user = await playlistModel.findOne({ userId: interaction.user.id });
+    const user = await prisma.playlists.findFirst({
+      where: {
+        userId: interaction.user.id,
+      },
+    });
     if (!user) {
       return await interaction.editReply({
         content: "You don't have any playlist create a playlist first.",
@@ -77,6 +81,7 @@ module.exports = {
         await wait(3000);
       } else if (queue.playing && track) {
         queue.addTrack(track);
+        await interaction.editReply({ content: "Songs Added to Queue!" });
       }
     }
     await addSong(music[0]);

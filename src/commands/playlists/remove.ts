@@ -1,7 +1,6 @@
 import { CommandInteraction } from "discord.js";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { playlistModel } from "../../models/playlist";
-
+import { prisma } from "../../prisma";
 module.exports = {
   command: new SlashCommandBuilder()
     .setName("remove")
@@ -15,7 +14,11 @@ module.exports = {
   async run(interaction: CommandInteraction) {
     var songTitle = null;
     await interaction.deferReply();
-    const user = await playlistModel.findOne({ userId: interaction.user.id });
+    const user = await prisma.playlists.findFirst({
+      where: {
+        userId: interaction.user.id,
+      },
+    });
     if (!user) {
       return await interaction.editReply({
         content: "You don't have any playlist. Create one first",
@@ -33,10 +36,14 @@ module.exports = {
         content: `No song name ${songName} found in the playlist!`,
       });
     } else {
-      await playlistModel.findOneAndUpdate(
-        { userId: interaction.user.id },
-        { playList: userPlaylist }
-      );
+      await prisma.playlists.update({
+        where: {
+          userId: interaction.user.id,
+        },
+        data: {
+          playList: userPlaylist,
+        },
+      });
       return await interaction.editReply({
         content: `**${songTitle}** removed from your playlist!`,
       });

@@ -8,9 +8,7 @@ module.exports = {
     .setDescription("Post Meme from r/programmerhumour"),
   async run(interaction: CommandInteraction) {
     await interaction.deferReply();
-    const response = await Axios.get(
-      "https://meme-api.herokuapp.com/gimme"
-    );
+    const response = await Axios.get("https://meme-api.herokuapp.com/gimme");
     if (!response.data) {
       await interaction.editReply({
         content: "An error occured while executing this command!",

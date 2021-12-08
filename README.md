@@ -1,4 +1,3 @@
-
 <div align="center" >
 
 # Welcome to PhantomKnight Discord bot's repo
@@ -8,13 +7,13 @@
 [![GNU Licence](https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 ![Status](https://lanyard-profile-readme.vercel.app/api/510480545160101898)
- <br/>
- <br/>
+<br/>
+<br/>
 <img style="margin-bottom:1rem" src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
 <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
 <br/>
- <br/>
- 
+<br/>
+
 [![Discord Bots](https://top.gg/api/widget/838686966387965992.svg)](https://top.gg/bot/838686966387965992)
 
 # How to Start The Bot
@@ -31,10 +30,10 @@
 ```
 
 Run The bot Using Docker
+
 ```
 docker-compose up --build --detach
 ```
-
 
 ![separator](https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif)
 
@@ -46,4 +45,3 @@ docker-compose up --build --detach
 <a href="https://github.com/Androz2091/discord-music-bot">Music Commands </a>
 </details>
 </div>
-
