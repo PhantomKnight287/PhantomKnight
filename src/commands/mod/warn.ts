@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { Client, CommandInteraction, Permissions } from "discord.js";
-import { warningModel } from "../../models/warnings";
+import { prisma } from "../../prisma";
 module.exports = {
   command: new SlashCommandBuilder()
     .setName("warn")
@@ -24,34 +24,44 @@ module.exports = {
         Permissions.FLAGS.BAN_MEMBERS,
       ])
     ) {
-      const guildRecords = await warningModel.findOne({
-        guildId: interaction.guildId,
+      const guildRecords = await prisma.warnings.findFirst({
+        where: {
+          guildId: interaction.guildId,
+        },
       });
-      const newWarningRecord = guildRecords
-        ? [
-            ...(guildRecords as any).warnings,
-            {
-              userId: user.id,
-              reason,
-              moderatorName: interaction.user.username,
-            },
-          ]
-        : new warningModel({
+      if (guildRecords) {
+        const warnings = [
+          ...(guildRecords as any).warnings,
+          {
+            userId: user.id,
+            reason,
+            moderatorName: interaction.user.username,
+          },
+        ];
+        await prisma.warnings.update({
+          where: {
+            guildId: interaction.user.id,
+          },
+          data: {
+            warnings,
+          },
+        });
+      } else {
+        const warnings = [
+          {
+            userId: user.id,
+            reason,
+            moderatorName: interaction.user.username,
+          },
+        ];
+        await prisma.warnings.create({
+          data: {
+            warnings,
             guildId: interaction.guildId,
-            warnings: [
-              {
-                userId: user.id,
-                reason,
-                moderatorName: interaction.user.username,
-              },
-            ],
-          });
-      guildRecords
-        ? await warningModel.findOneAndUpdate(
-            { guildId: interaction.guildId },
-            { warnings: newWarningRecord }
-          )
-        : await newWarningRecord.save();
+          },
+        });
+      }
+
       try {
         client.users.cache
           .get(user.id)

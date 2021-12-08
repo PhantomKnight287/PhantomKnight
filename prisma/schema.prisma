@@ -42,7 +42,7 @@ model users {
 model warnings {
   id       String @id @default(dbgenerated()) @map("_id") @db.ObjectId
   v        Int    @default(0) @map("__v")
-  guildId  String
+  guildId  String @unique
   warnings Json[]
 }
 
