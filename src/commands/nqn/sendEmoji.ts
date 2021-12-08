@@ -1,6 +1,6 @@
 import { WebhookClient, CommandInteraction, Client } from "discord.js";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { emojiModel } from "../../models/emojis";
+import { prisma } from "../../prisma";
 module.exports = {
   command: new SlashCommandBuilder()
     .setName("nqn")
@@ -13,7 +13,11 @@ module.exports = {
     }),
   async run(interaction: CommandInteraction, client: Client) {
     const emoji = interaction.options.getString("emoji").toLowerCase();
-    const emojiInDb = await emojiModel.findOne({ customName: emoji });
+    const emojiInDb = await prisma.emojis.findFirst({
+      where: {
+        customName: emoji,
+      },
+    });
     if (!emojiInDb) {
       await interaction.reply({
         content: "This emoji does not exist!",
