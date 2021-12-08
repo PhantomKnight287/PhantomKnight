@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import { prisma } from "../prisma";
 import { autoModWords } from "../types";
-export default async function autoMod(message: Message) {
+export async function autoMod(message: Message) {
   const autoModData = await prisma.automods.findFirst({
     where: {
       guildId: message.guildId,

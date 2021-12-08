@@ -2,7 +2,7 @@ import { GuildMember, MessageAttachment } from "discord.js";
 import type { Client } from "discord.js";
 import Canvas from "canvas";
 import { prisma } from "../prisma";
-async function sendWelcomeMessage(
+export async function sendWelcomeMessage(
   newJoinedMember: GuildMember,
   client: Client
 ) {
@@ -59,4 +59,3 @@ async function sendWelcomeMessage(
     });
   });
 }
-export default sendWelcomeMessage;

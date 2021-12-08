@@ -1,23 +1,20 @@
-import { registerSlashCommands } from "./handler/registerCommands";
-import { getJSFiles } from "./handler";
-import { Player } from "discord-player";
-import { connect, connection } from "mongoose";
-import { vcCheck } from "./checks";
-require("dotenv").config();
-connect(process.env.mongodbUrl as string);
-connection.on("open", () => {
-  console.log("connected to mongodb");
-});
-import { join } from "path";
-import { Collection } from "discord.js";
-import { PhantomKnight } from "./construct";
-const client = new PhantomKnight();
-import { CommandInteraction, GuildMember, Message } from "discord.js";
-import welcomerEvent from "./events/welcomeMessage";
-import { AutoPoster } from "topgg-autoposter";
-import autoMod from "./events/autoMod";
-import { command } from "./types";
-import { prisma } from "./prisma";
+require("dotenv").config(); // .env config
+import { getJSFiles, registerSlashCommands } from "./handler"; //for commands config
+import { Player } from "discord-player"; // player for discord-player
+import { vcCheck } from "./checks"; // checks for music based commands
+import { join } from "path"; // idk what this is for
+import { PhantomKnight } from "./construct"; // custom class to remove typescript errors
+import {
+  CommandInteraction,
+  GuildMember,
+  Message,
+  Collection,
+} from "discord.js"; // importing types
+import { AutoPoster } from "topgg-autoposter"; // autoposter to post topgg stats
+import { sendWelcomeMessage, autoMod } from "./events"; // events config
+
+import { command } from "./types"; // command type
+import { prisma } from "./prisma"; // prisma for levelling config
 const MusicCommand: string[] = [
   "disconnect",
   "fast-forward",
@@ -29,6 +26,7 @@ const MusicCommand: string[] = [
   "skip",
   "play-playlist",
 ];
+const client = new PhantomKnight();
 if (process.env.topggtoken) {
   const ap = AutoPoster(process.env.topggtoken as string, client);
   ap.on("posted", () => {
@@ -91,7 +89,7 @@ client.on("interactionCreate", async (interaction: CommandInteraction) => {
 });
 
 client.on("guildMemberAdd", async (userJoined: GuildMember) => {
-  await welcomerEvent(userJoined, client);
+  await sendWelcomeMessage(userJoined, client);
 });
 
 client.on("messageCreate", async (message: Message) => {
