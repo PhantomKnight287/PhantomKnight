@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import type { CommandInteraction } from "discord.js";
-import { welcomerModel } from "../../models/welcomerMessage";
+import { prisma } from "../../prisma";
 module.exports = {
   command: new SlashCommandBuilder()
     .setName("welcomer")
@@ -19,8 +19,10 @@ module.exports = {
     ),
   async run(interaction: CommandInteraction) {
     await interaction.deferReply();
-    const isOldGuild = await welcomerModel.findOne({
-      guildId: interaction.guildId,
+    const isOldGuild = await prisma.welcomers.findFirst({
+      where: {
+        guildId: interaction.guildId,
+      },
     });
     if (isOldGuild) {
       await interaction.editReply({
@@ -30,12 +32,14 @@ module.exports = {
     }
     const message = interaction.options.getString("message");
     const channel = interaction.options.getChannel("channel");
-    const newWelcomerConfig = new welcomerModel({
-      welcomerMessage: message,
-      channelId: channel.id,
-      guildId: interaction.guildId,
+    await prisma.welcomers.create({
+      data: {
+        channelId: channel.id,
+        enabled: true,
+        guildId: interaction.guildId,
+        welcomerMessage: message,
+      },
     });
-    await newWelcomerConfig.save();
     await interaction.editReply({
       content: "Welcomer for this server is configured successfully!",
     });
