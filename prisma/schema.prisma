@@ -52,7 +52,7 @@ model warnings {
 
 model welcomers {
   id              String  @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  v               Int     @map("__v")
+  v               Int     @default(0) @map("__v")
   channelId       String
   guildId         String  @unique
   welcomerMessage String
