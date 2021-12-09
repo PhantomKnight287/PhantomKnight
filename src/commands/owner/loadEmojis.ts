@@ -5,7 +5,7 @@ import { saveEmojis } from "../../events";
 export const command = new SlashCommandBuilder()
     .setName("load")
     .setDescription("Load Nqn Emojis");
-export async function execute(interaction: CommandInteraction) {
+export async function run(interaction: CommandInteraction) {
     await interaction.deferReply({
         ephemeral: true,
     });
