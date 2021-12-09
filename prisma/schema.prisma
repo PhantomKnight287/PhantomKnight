@@ -20,7 +20,8 @@ model emojis {
   id         String @id @default(dbgenerated()) @map("_id") @db.ObjectId
   v          Int    @default(0) @map("__v")
   customName String
-  data       String
+  emoji      String
+  guildId    String @unique
 }
 
 model playlists {

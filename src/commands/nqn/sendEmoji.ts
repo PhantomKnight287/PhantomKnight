@@ -12,7 +12,10 @@ module.exports = {
                 .setRequired(true);
         }),
     async run(interaction: CommandInteraction, client: Client) {
-        const emoji = interaction.options.getString("emoji").toLowerCase();
+        await interaction.deferReply({
+            ephemeral: true,
+        });
+        const emoji = interaction.options.getString("emoji");
         const emojiInDb = await prisma.emojis.findFirst({
             where: {
                 customName: emoji,
@@ -37,10 +40,10 @@ module.exports = {
             const allWebhooks = await (
                 interaction.channel as any
             ).fetchWebhooks();
-            allWebhooks.map((webjo) => {
-                if (webjo.owner.id == client.user.id) {
-                    webhookToken = webjo.token;
-                    webhookId = webjo.id;
+            allWebhooks.map((webHook) => {
+                if (webHook.owner.id == client.user.id) {
+                    webhookToken = webHook.token;
+                    webhookId = webHook.id;
                 }
             });
             if (webhookId && webhookToken) {
@@ -55,7 +58,7 @@ module.exports = {
                     })
                     .then((webhook) => {
                         webhook.send({
-                            content: `${emojiInDb.data}`,
+                            content: `${emojiInDb.emoji}`,
                         });
                     });
             } else if (!webhookId && !webhookToken) {
@@ -74,19 +77,17 @@ module.exports = {
                     avatar: `${interaction.user.avatarURL()}`,
                 });
                 webhookClient.send({
-                    content: `${emojiInDb.data}`,
+                    content: `${emojiInDb.emoji}`,
                 });
             }
 
-            await interaction.reply({
+            await interaction.editReply({
                 content: "Sent Emoji in the chat",
-                ephemeral: true,
             });
         } catch (error) {
             console.log(error.message);
-            await interaction.reply({
+            await interaction.editReply({
                 content: "An unknown error occured",
-                ephemeral: true,
             });
         }
     },

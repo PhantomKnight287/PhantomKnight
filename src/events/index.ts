@@ -1,3 +1,6 @@
 import { autoMod } from "./autoMod";
 import { sendWelcomeMessage } from "./welcomeMessage";
-export { autoMod, sendWelcomeMessage };
+import { saveEmojis } from "./handleEmojis";
+import { levelling } from "./levelling";
+import { deleteEmojis } from "./guildLeave";
+export { autoMod, sendWelcomeMessage, saveEmojis, levelling, deleteEmojis };
