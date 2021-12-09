@@ -1,61 +1,61 @@
 {
-  "name": "phantom-knight-bot",
-  "version": "1.0.0",
-  "description": "A revamp of PhantomKnight bot in JavaScript",
-  "main": "index.js",
-  "scripts": {
-    "start:dev": "nodemon ./build/src/index.js",
-    "start:prod": "node ./build/src/index.js",
-    "build:dev": "tsc -p tsconfig.json --watch ",
-    "build:prod": "tsc -p tsconfig.json",
-    "format": "prettier --write ."
-  },
-  "repository": {
-    "url": "https://github.com/PhantomKnight287/PhantomKnight",
-    "type": "git"
-  },
-  "bugs": {
-    "url": "https://github.com/PhantomKnight287/PhantomKnight/issues"
-  },
-  "author": "PhantomKnight287",
-  "license": "GPL-3.0",
-  "dependencies": {
-    "@discordjs/builders": "^0.9.0",
-    "@discordjs/opus": "^0.7.0",
-    "@discordjs/rest": "^0.1.0-canary.0",
-    "@discordjs/voice": "^0.7.5",
-    "@prisma/client": "^3.6.0",
-    "axios": "^0.24.0",
-    "canvacord": "^5.2.3",
-    "canvas": "^2.8.0",
-    "cors": "^2.8.5",
-    "discord-api-types": "^0.25.2",
-    "discord-image-generation": "^1.4.9",
-    "discord-player": "^5.2.0",
-    "discord.js": "^13.3.1",
-    "express": "^4.17.1",
-    "express-ws": "^5.0.2",
-    "ffmpeg-static": "^4.4.0",
-    "jimp": "^0.16.1",
-    "libsodium-wrappers": "^0.7.9",
-    "pretty-ms": "^7.0.1",
-    "socket.io": "^4.4.0",
-    "topgg-autoposter": "^2.0.1",
-    "usetube": "^2.1.4",
-    "ws": "^8.3.0",
-    "ytdl-core": "^4.9.1"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.13",
-    "@types/express-ws": "^3.0.1",
-    "@types/node": "^16.11.12",
-    "colors": "^1.4.0",
-    "dotenv": "^10.0.0",
-    "eslint": "^8.4.1",
-    "nodemon": "^2.0.15",
-    "pm2": "^5.1.2",
-    "prettier": "2.5.1",
-    "prisma": "^3.6.0",
-    "typescript": "^4.5.2"
-  }
+    "name": "phantom-knight-bot",
+    "version": "1.0.0",
+    "description": "A revamp of PhantomKnight bot in JavaScript",
+    "main": "index.js",
+    "scripts": {
+        "start:dev": "nodemon ./build/src/index.js",
+        "start:prod": "node ./build/src/index.js",
+        "build:dev": "tsc -p tsconfig.json --watch ",
+        "build:prod": "tsc -p tsconfig.json",
+        "format": "prettier --write ."
+    },
+    "repository": {
+        "url": "https://github.com/PhantomKnight287/PhantomKnight",
+        "type": "git"
+    },
+    "bugs": {
+        "url": "https://github.com/PhantomKnight287/PhantomKnight/issues"
+    },
+    "author": "PhantomKnight287",
+    "license": "GPL-3.0",
+    "dependencies": {
+        "@discordjs/builders": "^0.9.0",
+        "@discordjs/opus": "^0.7.0",
+        "@discordjs/rest": "^0.1.0-canary.0",
+        "@discordjs/voice": "^0.7.5",
+        "@prisma/client": "^3.6.0",
+        "axios": "^0.24.0",
+        "canvacord": "^5.2.3",
+        "canvas": "^2.8.0",
+        "cors": "^2.8.5",
+        "discord-api-types": "^0.25.2",
+        "discord-image-generation": "^1.4.9",
+        "discord-player": "^5.2.0",
+        "discord.js": "^13.3.1",
+        "express": "^4.17.1",
+        "express-ws": "^5.0.2",
+        "ffmpeg-static": "^4.4.0",
+        "jimp": "^0.16.1",
+        "libsodium-wrappers": "^0.7.9",
+        "pretty-ms": "^7.0.1",
+        "socket.io": "^4.4.0",
+        "topgg-autoposter": "^2.0.1",
+        "usetube": "^2.1.4",
+        "ws": "^8.3.0",
+        "ytdl-core": "^4.9.1"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.13",
+        "@types/express-ws": "^3.0.1",
+        "@types/node": "^16.11.12",
+        "colors": "^1.4.0",
+        "dotenv": "^10.0.0",
+        "eslint": "^8.4.1",
+        "nodemon": "^2.0.15",
+        "pm2": "^5.1.2",
+        "prettier": "2.5.1",
+        "prisma": "^3.6.0",
+        "typescript": "^4.5.2"
+    }
 }
