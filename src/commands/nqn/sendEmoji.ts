@@ -22,9 +22,8 @@ module.exports = {
             },
         });
         if (!emojiInDb) {
-            await interaction.reply({
+            await interaction.editReply({
                 content: "This emoji does not exist!",
-                ephemeral: true,
             });
             return;
         }
