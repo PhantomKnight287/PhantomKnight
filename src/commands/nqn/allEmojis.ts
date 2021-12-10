@@ -2,8 +2,8 @@ import {
     MessageEmbed,
     CommandInteraction,
     MessageActionRow,
-    MessageSelectMenu,
-    SelectMenuInteraction,
+    MessageButton,
+    ButtonInteraction,
 } from "discord.js";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { prisma } from "../../prisma";
@@ -12,6 +12,7 @@ module.exports = {
         .setName("nall")
         .setDescription("Sends list of emojis present in the database."),
     async run(interaction: CommandInteraction) {
+        let number = 0;
         await interaction.deferReply();
         const allEmojis = await prisma.emojis.findMany();
         async function sendEmbed(emojis: typeof allEmojis, index: number) {
@@ -39,29 +40,59 @@ module.exports = {
             embedObj[`Page${count}`] = await sendEmbed(allEmojis, i);
             count += 1;
         }
-        const options = [];
-        Object.keys(embedObj).forEach((embed) => {
-            options.push({
-                label: embed,
-                value: embed,
-            });
-        });
+
         const row = new MessageActionRow().addComponents(
-            new MessageSelectMenu().setCustomId("select").addOptions(options)
+            new MessageButton()
+                .setCustomId("back")
+                .setLabel("Back")
+                .setStyle("PRIMARY"),
+            new MessageButton()
+                .setCustomId(`${number}`)
+                .setLabel("\u200b")
+                .setStyle("SECONDARY")
+                .setDisabled(true),
+            new MessageButton()
+                .setCustomId("next")
+                .setLabel("Next")
+                .setStyle("PRIMARY")
         );
-        const embed = new MessageEmbed()
-            .setColor("RANDOM")
-            .setTimestamp()
-            .setDescription(" ** Choose An Options from Below **");
-        await interaction.editReply({ components: [row], embeds: [embed] });
+        await interaction.editReply({
+            components: [row],
+            embeds: [embedObj[Object.keys(embedObj)[number]]],
+        });
+        number += 1;
         const collector =
             await interaction.channel.createMessageComponentCollector({
                 time: 60000,
             });
-        collector.on("collect", async (collected: SelectMenuInteraction) => {
-            await collected.deferReply({ ephemeral: true });
-            const emb = embedObj[collected.values[0]];
-            await collected.editReply({ components: [row], embeds: [emb] });
+        collector.on("collect", async (collected: ButtonInteraction) => {
+            if (collected.user.id !== interaction.user.id)
+                await collected.deferUpdate();
+            await collected.deferUpdate()
+            if (collected.customId === "back") {
+                const customId = row.components[1].customId;
+                row.components[1].setCustomId(`${parseInt(customId) - 1}`);
+                const embed =
+                    embedObj[
+                        Object.keys(embedObj)[
+                            parseInt(customId) === 0
+                                ? 0
+                                : parseInt(customId) - 1
+                        ]
+                    ];
+                await collected.editReply({
+                    embeds: [embed],
+                });
+            }
+            if (collected.customId === "next") {
+                const customId = row.components[1].customId;
+                row.components[1].setCustomId(`${parseInt(customId) + 1}`);
+                const embed =
+                    embedObj[Object.keys(embedObj)[parseInt(customId) + 1]];
+                await collected.editReply({
+                    embeds: [embed],
+                });
+            }
         });
         collector.on("end", async () => {
             row.components.forEach((component) => {
