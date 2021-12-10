@@ -11,15 +11,12 @@ import {
     Collection,
 } from "discord.js"; // importing types
 import { AutoPoster } from "topgg-autoposter"; // autoposter to post topgg stats
-import {
-    sendWelcomeMessage,
-    autoMod,
-    saveEmojis,
-    levelling,
-    deleteEmojis,
-} from "./events"; // events config
+import { sendWelcomeMessage, autoMod, levelling, deleteEmojis } from "./events"; // events config
 
 import { command } from "./types"; // command type
+import { prisma } from "./prisma"; // prisma config
+import { promisify } from "util";
+const wait = promisify(setTimeout);
 const MusicCommand: string[] = [
     "disconnect",
     "fast-forward",
@@ -58,7 +55,7 @@ player.on("connectionError", (_, error) => {
     console.log(error);
 });
 
-registerSlashCommands(commands, false);
+registerSlashCommands(commands, true);
 client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}! at ${new Date()}`);
     client.user.setPresence({
@@ -97,8 +94,17 @@ client.on("guildMemberAdd", async (userJoined: GuildMember) => {
     await sendWelcomeMessage(userJoined, client);
 });
 
-client.on("guildCreate", async () => {
-    await saveEmojis();
+client.on("guildCreate", async (guild) => {
+    client.guilds.cache.get(guild.id)?.emojis.cache.forEach(async (emoji) => {
+        await wait(2000);
+        await prisma.emojis.create({
+            data: {
+                customName: emoji.name,
+                guildId: guild.id,
+                emoji: emoji.toString(),
+            },
+        });
+    });
 });
 
 client.on("guildDelete", async (guild) => {
