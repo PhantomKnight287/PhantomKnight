@@ -1,3 +1,8 @@
 {
-    "extends": "next/core-web-vitals"
+    "extends": "next/core-web-vitals",
+    "rules": {
+        "indent": "off",
+        "quotes": "off",
+        "comma-dangle":"off"
+    }
 }

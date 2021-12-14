@@ -1,14 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Dancing+Script:wght@500&family=Oswald&family=Pacifico&display=swap");
 html,
 body {
     padding: 0;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
         Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background-color: #000000;
+    color: white;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
-
+body::-webkit-scrollbar {
+    display: none;
+}
 a {
-    color: inherit;
     text-decoration: none;
+    color: skyblue;
 }
 
 * {

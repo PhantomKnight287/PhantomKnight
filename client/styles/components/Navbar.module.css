@@ -1,0 +1,108 @@
+.navigationContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: black;
+    color: white;
+    width: 100%;
+    border-bottom: 2px solid rgb(26, 26, 26);
+    padding-left: 1rem;
+}
+.logo {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.logo span {
+    padding: 0rem 1rem;
+    font-family: "Oswald";
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+.logoTextContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.logoTextContainer span {
+    font-size: 1.2rem;
+}
+
+.linkContainer {
+    margin-left: auto;
+    padding: 0rem 0.5rem;
+    font-family: "Oswald";
+    font-size: larger;
+}
+.linkContainer a {
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    color: white;
+}
+.linkContainer a:hover {
+    animation: raise 0.3s ease forwards;
+}
+
+.anchor {
+    font-size: 1.4rem;
+}
+
+@keyframes raise {
+    to {
+        transform: scale(1.2);
+        background-color: rgb(26, 26, 26);
+    }
+}
+.menuContainer {
+    display: none;
+    margin-left: auto;
+    padding: 0rem 2rem;
+}
+@media only screen and (max-width: 900px) {
+    .linkContainer {
+        display: none;
+    }
+    .menuContainer {
+        display: block;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .logoTextContainer span {
+        font-size: 0.7rem;
+        text-align: center;
+    }
+}
+.hvr-underline-from-center {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    overflow: hidden;
+}
+.hvr-underline-from-center:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 51%;
+    right: 51%;
+    bottom: 0;
+    background: #2098d1;
+    height: 4px;
+    -webkit-transition-property: left, right;
+    transition-property: left, right;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+.hvr-underline-from-center:hover:before,
+.hvr-underline-from-center:focus:before,
+.hvr-underline-from-center:active:before {
+    left: 0;
+    right: 0;
+}
