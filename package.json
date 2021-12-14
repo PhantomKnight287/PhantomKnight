@@ -8,7 +8,8 @@
         "start:prod": "node ./build/src/index.js",
         "build:dev": "tsc -p tsconfig.json --watch ",
         "build:prod": "tsc -p tsconfig.json",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "server:dev": "nodemon ./build/src/server.js"
     },
     "repository": {
         "url": "https://github.com/PhantomKnight287/PhantomKnight",
@@ -33,9 +34,11 @@
         "discord-image-generation": "^1.4.9",
         "discord-player": "^5.2.0",
         "discord.js": "^13.3.1",
+        "events": "^3.3.0",
         "express": "^4.17.1",
         "express-ws": "^5.0.2",
         "ffmpeg-static": "^4.4.0",
+        "flatted": "^3.2.4",
         "jimp": "^0.16.1",
         "libsodium-wrappers": "^0.7.9",
         "pretty-ms": "^7.0.1",

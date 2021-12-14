@@ -12,3 +12,12 @@ export type warningRecords = {
     warnings: Array<Record<string, any>>;
 };
 export type autoModWords = Array<string>;
+
+export type args = {
+    token: string;
+    redirectUrl: string;
+};
+export type serverArgs = {
+    id: string;
+    userId:string
+};
