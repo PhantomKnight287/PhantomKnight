@@ -66,14 +66,15 @@ const Home: NextPage = () => {
                 <div className={styles.align}>
                     <h3
                         className={styles.h3}
-                        style={{ marginBottom: "0.1rem" }}
                     >
                         More Commands
                     </h3>
-                    <ul>
-                        <li>Image Manipulation</li>
-                        <li>Create Your Own Music Playlist</li>
-                    </ul>
+                    <p style={{fontSize: `1.18rem`}}>
+                        Image Manipulation <br />
+                        User playlist creation
+                    </p>
+
+                    <br />
                     <h3 className={styles.h3}>And Many More On The Way</h3>
                 </div>
             </main>
