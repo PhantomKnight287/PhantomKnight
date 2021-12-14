@@ -106,6 +106,7 @@
 }
 .align {
     text-align: center;
+    width: 100%;
 }
 .align ul {
     list-style-type: none;
