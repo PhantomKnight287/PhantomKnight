@@ -117,6 +117,37 @@ client.on("messageCreate", async (message: Message) => {
     await levelling(message);
 });
 
+client.on("emojiCreate", async (emoji) => {
+    await prisma.emojis.create({
+        data: {
+            customName: emoji.name,
+            emoji: emoji.toString(),
+            guildId: emoji.guild.id,
+        },
+    });
+});
+
+client.on("emojiDelete", async (emoji) => {
+    await prisma.emojis.delete({
+        where: {
+            guildId: emoji.guild.id,
+            emoji: emoji.toString(),
+        },
+    });
+});
+client.on("emojiUpdate", async (oldEmoji, newEmoji) => {
+    await prisma.emojis.update({
+        where: {
+            guildId: newEmoji.guild.id,
+            emoji: oldEmoji.toString(),
+        },
+        data: {
+            guildId: oldEmoji.guild.id,
+            emoji: newEmoji.toString(),
+        },
+    });
+});
+
 client.login(process.env.token as string);
 
 export { player, client };
