@@ -9,7 +9,10 @@
         "build:dev": "tsc -p tsconfig.json --watch ",
         "build:prod": "tsc -p tsconfig.json",
         "format": "prettier --write .",
-        "server:dev": "nodemon ./build/src/server.js"
+        "server:dev": "nodemon ./build/src/server.js",
+        "web:dev": "cd client && npm run dev",
+        "web:build": "cd client && npm run build",
+        "web:prod": "cd client && npm run start"
     },
     "repository": {
         "url": "https://github.com/PhantomKnight287/PhantomKnight",

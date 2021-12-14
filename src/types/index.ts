@@ -19,5 +19,5 @@ export type args = {
 };
 export type serverArgs = {
     id: string;
-    userId:string
+    userId: string;
 };

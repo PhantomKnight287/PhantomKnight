@@ -123,11 +123,9 @@ router.post("/:guildId/user", async (req, res) => {
             }
         });
         console.log(channelId[0]);
-        return res
-            .status(200)
-            .send({
-                message: { inVc: channelId[0] == channelId[1] ? true : false },
-            });
+        return res.status(200).send({
+            message: { inVc: channelId[0] == channelId[1] ? true : false },
+        });
     } catch (error) {
         console.log(error.message);
         return res.status(500).send({ message: "An Error Occured" });

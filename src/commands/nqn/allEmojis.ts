@@ -68,7 +68,7 @@ module.exports = {
         collector.on("collect", async (collected: ButtonInteraction) => {
             if (collected.user.id !== interaction.user.id)
                 await collected.deferUpdate();
-            await collected.deferUpdate()
+            await collected.deferUpdate();
             if (collected.customId === "back") {
                 const customId = row.components[1].customId;
                 row.components[1].setCustomId(`${parseInt(customId) - 1}`);
