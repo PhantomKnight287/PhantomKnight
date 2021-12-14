@@ -20,7 +20,7 @@ model emojis {
   id         String @id @default(dbgenerated()) @map("_id") @db.ObjectId
   v          Int    @default(0) @map("__v")
   customName String
-  emoji      String
+  emoji      String @unique
   guildId    String @unique
 }
 
