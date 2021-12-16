@@ -3,6 +3,8 @@
     "rules": {
         "indent": "off",
         "quotes": "off",
-        "comma-dangle":"off"
+        "comma-dangle":"off",
+        "object-curly-spacing":"off",
+        "spaced-comment":"off"
     }
 }
