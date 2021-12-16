@@ -11,7 +11,7 @@ export default function MenuButtons() {
                     Home
                 </a>
             </Link>
-            <Link href="/poetry">
+            {/*<Link href="/poetry">
                 <a
                     className={`${styles["hvr-underline-from-center"]} ${styles.anchor}`}
                 >
@@ -45,7 +45,7 @@ export default function MenuButtons() {
                 >
                     Book A Show
                 </a>
-            </Link>
+            </Link>*/}
         </div>
     );
 }
