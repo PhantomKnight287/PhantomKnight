@@ -46,7 +46,7 @@ export default function Navbar() {
                             <a>Home</a>
                         </Link>
                     </MenuItem>
-                    <MenuItem onClick={handleClose}>
+                    {/*<MenuItem onClick={handleClose}>
                         <Link href="/poetry">
                             <a>Poetry</a>
                         </Link>
@@ -70,7 +70,7 @@ export default function Navbar() {
                         <Link href="/">
                             <a>Book A Show</a>
                         </Link>
-                    </MenuItem>
+                    </MenuItem>*/}
                 </Menu>
             </div>
             <MenuButtons />
