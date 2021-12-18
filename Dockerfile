@@ -1,18 +1,15 @@
-FROM ubuntu:impish-20211102
+FROM archlinux
 ENV TZ=Asia/Kolkata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN \
-    apt-get update &&\
-    apt-get -y upgrade &&\
-    apt-get install -y  curl git python3 python3-pip && \
+    pacman -Syu \
+    pacman -S curl git python3 python3-pip && \
     pip install --upgrade pip
 
-RUN apt-get install -y ffmpeg
-RUN curl -fsSL https://deb.nodesource.com/setup_17.x | bash -
-RUN apt-get install -y nodejs
+RUN pacman -S ffmpeg nodejs npm 
 WORKDIR /app
 COPY . /app/
-RUN npm install npx
+RUN npm install npx -g
 RUN npx prisma generate
 RUN npm install
 RUN npm run build:prod
