@@ -9,7 +9,7 @@ RUN \
 RUN pacman -Syu --noconfirm ffmpeg nodejs npm 
 WORKDIR /app
 COPY . /app/
-RUN npm install npx -g
+RUN npm install npx 
 RUN npx prisma generate
 RUN npm install
 RUN npm run build:prod
