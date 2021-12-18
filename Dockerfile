@@ -2,7 +2,7 @@ FROM archlinux
 ENV TZ=Asia/Kolkata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN \
-    pacman -Syu \
+    pacman -Syu && \
     pacman -S curl git python3 python3-pip && \
     pip install --upgrade pip
 
