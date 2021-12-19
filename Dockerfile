@@ -1,15 +1,10 @@
-FROM ubuntu:impish-20211102
+FROM  alpine
 ENV TZ=Asia/Kolkata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN \
-    apt-get update &&\
-    apt-get -y upgrade &&\
-    apt-get install -y  curl git python3 python3-pip && \
+    apk update &&\
+    apk add --no-cache curl git npm ffmpeg python3 py3-pip nodejs-current && \
     pip install --upgrade pip
-
-RUN apt-get install -y ffmpeg
-RUN curl -fsSL https://deb.nodesource.com/setup_17.x | bash -
-RUN apt-get install -y nodejs
 WORKDIR /app
 COPY . /app/
 RUN npm install npx
