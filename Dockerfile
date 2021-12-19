@@ -7,8 +7,8 @@ RUN \
     pip install --upgrade pip
 WORKDIR /app
 COPY . /app/
-RUN npm run generate
 RUN npm install
+RUN npm run generate
 RUN npm run build:prod
 EXPOSE 3001
 CMD [ "node","./build/src/web/server.js"]
