@@ -106,3 +106,20 @@
     left: 0;
     right: 0;
 }
+
+.linkContainerAvatar {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    padding: 0rem 0.5rem;
+    font-family: "Oswald";
+    font-size: larger;
+}
+.linkContainerAvatar a {
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    color: white;
+}
+.linkContainerAvatar a:hover {
+    animation: raise 0.3s ease forwards;
+}
