@@ -7,6 +7,7 @@ RUN \
     pip install --upgrade pip
 WORKDIR /app
 COPY . /app/
+RUN  npm install node-pre-gyp --save
 RUN npm install 
 RUN npm run generate
 RUN npm run build:prod
