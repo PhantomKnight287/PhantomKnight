@@ -1,0 +1,1 @@
+export { queryCode } from "./queryCode";
