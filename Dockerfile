@@ -3,11 +3,11 @@ ENV TZ=Asia/Kolkata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN \
     pacman --noconfirm -Syu &&\
-    pacman --noconfirm -S curl git npm ffmpeg python3 python-pip nodejs && \
+    pacman --noconfirm -S curl git npm ffmpeg python3 python2 python-pip nodejs && \
     pip install --upgrade pip
 WORKDIR /app
 COPY . /app/
-RUN npm install --build-from-source
+RUN npm install 
 RUN npm run generate
 RUN npm run build:prod
 EXPOSE 3001
