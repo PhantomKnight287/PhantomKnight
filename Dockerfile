@@ -3,7 +3,7 @@ ENV TZ=Asia/Kolkata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN \
     pacman --noconfirm -Syu &&\
-    pacman --noconfirm -S curl git npm ffmpeg python3 python3-pip nodejs && \
+    pacman --noconfirm -S curl git npm ffmpeg python3 python-pip nodejs && \
     pip install --upgrade pip
 WORKDIR /app
 COPY . /app/
