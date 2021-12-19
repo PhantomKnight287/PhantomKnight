@@ -16,4 +16,5 @@ RUN npm install npx
 RUN npx prisma generate
 RUN npm install
 RUN npm run build:prod
+EXPOSE 3001
 CMD [ "node","./build/src/index.js"]
