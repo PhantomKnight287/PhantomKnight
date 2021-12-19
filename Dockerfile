@@ -7,7 +7,7 @@ RUN \
     pip install --upgrade pip
 WORKDIR /app
 COPY . /app/
-RUN npm install
+RUN npm install --build-from-source
 RUN npm run generate
 RUN npm run build:prod
 EXPOSE 3001
