@@ -15,7 +15,17 @@ services:
             - guildId=$guildId
             - topggtoken= $topggtoken
         ports:
-          - "3001:3001"
+            - "3001:3001"
+        stdin_open: true
+        tty: true
+    client:
+        container_name: phantomknight-client
+        restart: unless-stopped
+        build:
+            context: client
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
         stdin_open: true
         tty: true
 volumes:
