@@ -1,9 +1,9 @@
-FROM  alpine
+FROM  archlinux
 ENV TZ=Asia/Kolkata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN \
-    apk update &&\
-    apk add --no-cache curl git npm ffmpeg python3 py3-pip nodejs-current && \
+    pacman -Syu &&\
+    pacman --noconfirm curl git npm ffmpeg python3 python3-pip nodejs && \
     pip install --upgrade pip
 WORKDIR /app
 COPY . /app/
