@@ -9,4 +9,4 @@ export const clientId =
 export const backendUrl =
     process.env.NODE_ENV === "development"
         ? "http://localhost:3001"
-        : "https://api.phantomknight.tk";
+        : "https://kek.phantomknight.tk";
