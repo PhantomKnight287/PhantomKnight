@@ -4,15 +4,22 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Menu, MenuItem, Avatar } from "@mui/material";
 import { MouseEvent, useState } from "react";
 import dynamic from "next/dynamic";
+import { clientId, redirectUri } from "../../constants";
+import { useUserState, useUserStateDispatch } from "../../context";
+
 const MenuButtons = dynamic(() => import("../dynamic/MenuButtons"), {
     loading: () => <div>Loading</div>
 });
 
 export default function Navbar() {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const userState = useUserState();
+    const dispatch = useUserStateDispatch();
     const open = Boolean(anchorEl);
     const handleClick = (
-        event: MouseEvent<HTMLButtonElement | SVGElement | MouseEvent>
+        event: MouseEvent<
+            HTMLButtonElement | SVGElement | MouseEvent | HTMLDivElement
+        >
     ) => {
         setAnchorEl((event as any).currentTarget);
     };
@@ -46,31 +53,59 @@ export default function Navbar() {
                             <a>Home</a>
                         </Link>
                     </MenuItem>
-                    {/*<MenuItem onClick={handleClose}>
-                        <Link href="/poetry">
-                            <a>Poetry</a>
-                        </Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                        <Link href="/videos">
-                            <a>Videos</a>
-                        </Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                        <Link href="/">
-                            <a>Gallery</a>
-                        </Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                        <Link href="/about">
-                            <a>About</a>
-                        </Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                        <Link href="/">
-                            <a>Book A Show</a>
-                        </Link>
-                    </MenuItem>*/}
+                    {userState.avatar ? (
+                        <>
+                            <Avatar
+                                src={
+                                    userState.avatar
+                                        ? `https://cdn.discordapp.com/avatars/${userState.id}/${userState.avatar}.webp?size=1024`
+                                        : "https://cdn.discordapp.com/embed/avatars/0.png"
+                                }
+                                sx={{ width: 50, height: 50 }}
+                                style={{ cursor: "pointer" }}
+                                onClick={(e) => handleClick(e)}
+                            />
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                                MenuListProps={{
+                                    "aria-labelledby": "basic-button"
+                                }}
+                            >
+                                <MenuItem onClick={handleClose}>
+                                    <span
+                                        onClick={() => {
+                                            dispatch({
+                                                type: "SET_USER",
+                                                payload: {
+                                                    avatar: "",
+                                                    id: "",
+                                                    username: "",
+                                                    email: "",
+                                                    discriminator: ""
+                                                }
+                                            });
+                                        }}
+                                    >
+                                        Logout
+                                    </span>
+                                </MenuItem>
+                            </Menu>
+                        </>
+                    ) : (
+                        <MenuItem onClick={handleClose}>
+                            <a
+                                className={`${styles["hvr-underline-from-center"]}`}
+                                href={`https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(
+                                    redirectUri
+                                )}&response_type=code&scope=identify%20email%20guilds&prompt=none`}
+                            >
+                                Login
+                            </a>
+                        </MenuItem>
+                    )}
                 </Menu>
             </div>
             <MenuButtons />
