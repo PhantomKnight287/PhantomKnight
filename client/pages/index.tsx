@@ -2,8 +2,53 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/pages/Home.module.css";
-
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useSocket } from "../hooks";
+import { redirectUri } from "../constants";
+import { BackendUserData, userContext } from "../types";
+import { useUserStateDispatch } from "../context";
 const Home: NextPage = () => {
+    const router = useRouter();
+    const socket = useSocket();
+    const dispatch = useUserStateDispatch();
+    const handleUserData = async () => {
+        socket.emit("routerQueryCode", {
+            code: router.query.code,
+            redirectUri
+        });
+    };
+
+    useEffect(() => {
+        console.log(router.query);
+        if (router.query.code) {
+            handleUserData();
+        }
+        socket.on(
+            "userData",
+            (data: {
+                error: null | boolean;
+                userData: null | BackendUserData;
+            }) => {
+                console.log(data);
+                if (!data.error) {
+                    if (data.userData) {
+                        const userDataPayload: userContext = {
+                            avatar: data.userData.avatar,
+                            username: data.userData.username,
+                            discriminator: data.userData.discriminator,
+                            email: data.userData.email,
+                            id: data.userData.id
+                        };
+                        dispatch({
+                            type: "SET_USER",
+                            payload: userDataPayload
+                        });
+                    }
+                }
+            }
+        );
+    }, [router.query]);
     return (
         <div>
             <Head>
@@ -64,12 +109,8 @@ const Home: NextPage = () => {
                     loading="lazy"
                 />
                 <div className={styles.align}>
-                    <h3
-                        className={styles.h3}
-                    >
-                        More Commands
-                    </h3>
-                    <p style={{fontSize: `1.18rem`}}>
+                    <h3 className={styles.h3}>More Commands</h3>
+                    <p style={{ fontSize: `1.18rem` }}>
                         Image Manipulation <br />
                         User playlist creation
                     </p>
