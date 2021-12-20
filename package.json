@@ -14,7 +14,7 @@
         "web:dev": "cd client && npm run dev",
         "web:build": "cd client && npm run build",
         "web:prod": "cd client && npm run start",
-        "generate":"prisma generate"
+        "generate": "prisma generate"
     },
     "repository": {
         "url": "https://github.com/PhantomKnight287/PhantomKnight",
