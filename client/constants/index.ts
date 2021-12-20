@@ -9,4 +9,4 @@ export const clientId =
 export const backendUrl =
     process.env.NODE_ENV === "development"
         ? "http://localhost:3001"
-        : "http://18.188.200.163:3001/";
+        : "https://kekw.loca.lt/";
