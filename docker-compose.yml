@@ -14,19 +14,23 @@ services:
             - clientId=$clientId
             - guildId=$guildId
             - topggtoken= $topggtoken
-        ports:
-            - "3001:3001"
         stdin_open: true
         tty: true
+        networks:
+            - phantomknight
     client:
-        container_name: phantomknight-client
+        container_name: PhantomKnight-Client
+        image: phantomknight/phantomknight-client:latest
         restart: unless-stopped
-        build:
-            context: client
-            dockerfile: Dockerfile
+        depends_on:
+            - bot
         ports:
             - "3000:3000"
-        stdin_open: true
-        tty: true
+        networks:
+            - phantomknight
 volumes:
     phantomknight-logs:
+
+networks:
+    frontend:
+        name: phantomknight
