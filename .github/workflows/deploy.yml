@@ -45,6 +45,6 @@ jobs:
             - name: Change Directory
               run: cd client
             - name: Build Docker image
-              run: docker build -t $REPO:latest -t $REPO:${GITHUB_SHA::8} .
+              run: docker build -t phantomknight/phantomknight-site:latest .
             - name: Publish Docker image
-              run: docker push $REPO
+              run: docker push phantomknight/phantomknight-site
