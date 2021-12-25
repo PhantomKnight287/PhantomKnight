@@ -23,7 +23,7 @@ services:
         stdin_open: true
         tty: true
         depends_on:
-          - mongodb
+            - mongodb
 volumes:
     phantomknight-logs:
     mongodb_data:
