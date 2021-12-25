@@ -28,7 +28,7 @@
     "dependencies": {
         "@discordjs/builders": "^0.10.0",
         "@discordjs/opus": "^0.7.0",
-        "@discordjs/rest": "^0.1.0-canary.0",
+        "@discordjs/rest": "^0.2.0-canary.0",
         "@discordjs/voice": "^0.7.5",
         "@prisma/client": "^3.6.0",
         "@types/express": "^4.17.13",
