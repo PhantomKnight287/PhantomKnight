@@ -6,15 +6,13 @@ on:
 
 jobs:
     docker:
-        name: Publish Bot's Docker Image
+        name: Publish Bot's Website Docker Image
         runs-on: ubuntu-latest
         strategy:
             matrix:
                 node-version: [16.x]
-        env:
-            REPO: ${{ secrets.DOCKER_REPO }}
         steps:
-            - uses: actions/checkout@v1
+            - uses: actions/checkout@v2
             - name: Set up Node
               uses: actions/setup-node@v2
               with:
@@ -23,6 +21,6 @@ jobs:
               run: docker login -u ${{ secrets.DOCKER_USER }}
                   -p ${{ secrets.DOCKER_PASS }}
             - name: Build Docker image
-              run: docker build -t $REPO:latest -t $REPO:${GITHUB_SHA::8} .
+              run: docker build -t phantomknight/phantomknight-site:latest -t phantomknight/phantomknight-site:${GITHUB_SHA::8} ./client
             - name: Publish Docker image
-              run: docker push $REPO
+              run: docker push phantomknight/phantomknight-site
