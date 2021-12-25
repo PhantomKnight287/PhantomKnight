@@ -68,6 +68,10 @@ client.on("ready", async () => {
 });
 
 client.on("interactionCreate", async (interaction: CommandInteraction) => {
+    if (!interaction.guild)
+        return void (await interaction.reply({
+            content: "You can't use these commands in DM's!",
+        }));
     if (MusicCommand.includes(interaction.commandName)) {
         const { checkFailed, message } = vcCheck(interaction);
         if (checkFailed) {
