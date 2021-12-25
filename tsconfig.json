@@ -16,6 +16,7 @@
             "@/*": ["src/*"]
         },
         "allowJs": false,
+        "skipLibCheck": true,
         // "strict": true /* Enable all strict type-checking options. */,
 
         /* Strict Type-Checking Options */
