@@ -16,21 +16,6 @@ services:
             - topggtoken= $topggtoken
         stdin_open: true
         tty: true
-        networks:
-            - phantomknight
-    client:
-        container_name: PhantomKnight-Client
-        image: phantomknight/phantomknight-client:latest
-        restart: unless-stopped
-        depends_on:
-            - bot
-        ports:
-            - "3000:3000"
-        networks:
-            - phantomknight
 volumes:
     phantomknight-logs:
 
-networks:
-    frontend:
-        name: phantomknight
