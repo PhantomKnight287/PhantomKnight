@@ -14,7 +14,7 @@ io.on("connection", (socket) => {
     console.log("A User Connected");
     socket.on(
         "routerQueryCode",
-        async (args: { code: string; redirectUri: string }) => {
+        async (args: { code: string; redirectUri: string,mongodbId:string }) => {
             await queryCode(socket, args);
         }
     );

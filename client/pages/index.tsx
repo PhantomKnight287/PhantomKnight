@@ -24,6 +24,12 @@ const Home: NextPage = () => {
         if (router.query.code) {
             handleUserData();
         }
+        const token = localStorage.getItem('token');
+        if(token){
+            socket.emit("routerQueryCode",{
+                mongodbId:atob(token)
+            })
+        }
         socket.on(
             "userData",
             (data: {
@@ -44,6 +50,7 @@ const Home: NextPage = () => {
                             type: "SET_USER",
                             payload: userDataPayload
                         });
+                        localStorage.setItem('token',btoa(data.userData.mongodb))
                     }
                 }
             }

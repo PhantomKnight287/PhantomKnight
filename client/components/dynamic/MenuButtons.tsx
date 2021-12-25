@@ -20,7 +20,6 @@ export default function MenuButtons() {
         setAnchorEl(null);
     };
     const userState = useUserState();
-    console.log(userState);
     return (
         <div
             className={

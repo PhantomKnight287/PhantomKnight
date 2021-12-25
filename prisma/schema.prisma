@@ -64,3 +64,8 @@ model leveling {
   levelUpXp Int
   userId    String @unique
 }
+
+model loginTokens {
+  refreshToken String
+  id           String @id @default(dbgenerated()) @map("_id") @db.ObjectId @unique
+}
