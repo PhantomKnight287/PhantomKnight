@@ -36,7 +36,6 @@ const Home: NextPage = () => {
                 error: null | boolean;
                 userData: null | BackendUserData;
             }) => {
-                console.log(data);
                 if (!data.error) {
                     if (data.userData) {
                         const userDataPayload: userContext = {

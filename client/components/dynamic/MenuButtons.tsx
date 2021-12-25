@@ -12,7 +12,7 @@ export default function MenuButtons() {
     const handleClick = (
         event: MouseEvent<
             HTMLButtonElement | SVGElement | MouseEvent | HTMLDivElement
-        >
+        > | any
     ) => {
         setAnchorEl((event as any).currentTarget);
     };
@@ -28,13 +28,6 @@ export default function MenuButtons() {
                     : `${styles.linkContainer}`
             }
         >
-            <Link href="/">
-                <a
-                    className={`${styles["hvr-underline-from-center"]} ${styles.anchor}`}
-                >
-                    Home
-                </a>
-            </Link>
             {userState.avatar ? (
                 <>
                     <Avatar
@@ -56,6 +49,21 @@ export default function MenuButtons() {
                             "aria-labelledby": "basic-button"
                         }}
                     >
+                        
+                        <MenuItem onClick={handleClose}>
+                                    <span className={styles.menuSpans} onClick={handleClick} >
+                                    <Link href="/" >
+                                        <a>Home</a>
+                                    </Link>
+                                    </span>
+                                </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                            <span className={styles.menuSpans} >
+                                <Link href="/playlist" >
+                                <a>Playlist</a>
+                                </Link>
+                            </span>
+                        </MenuItem>
                         <MenuItem onClick={handleClose}>
                             <span
                                 onClick={() => {

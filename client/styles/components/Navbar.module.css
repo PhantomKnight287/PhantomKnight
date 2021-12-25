@@ -49,6 +49,22 @@
 .anchor {
     font-size: 1.4rem;
 }
+.linkContainerAvatar {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    padding: 0rem 0.5rem;
+    font-family: "Oswald";
+    font-size: larger;
+}
+.linkContainerAvatar a {
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    color: white;
+}
+.linkContainerAvatar a:hover {
+    animation: raise 0.3s ease forwards;
+}
 
 @keyframes raise {
     to {
@@ -61,12 +77,21 @@
     margin-left: auto;
     padding: 0rem 2rem;
 }
+.menuSpans{
+    color:black !important;
+}
 @media only screen and (max-width: 900px) {
     .linkContainer {
-        display: none;
+        display: none !important;
     }
     .menuContainer {
-        display: block;
+        display: block !important;
+    }
+    .linkContainerAvatar{
+        display: none !important;
+    }
+    .avatar{
+        display: none;
     }
 }
 @media only screen and (max-width: 400px) {
@@ -107,19 +132,3 @@
     right: 0;
 }
 
-.linkContainerAvatar {
-    display: flex;
-    flex-direction: row;
-    margin-left: auto;
-    padding: 0rem 0.5rem;
-    font-family: "Oswald";
-    font-size: larger;
-}
-.linkContainerAvatar a {
-    padding: 0.3rem 1rem;
-    border-radius: 999px;
-    color: white;
-}
-.linkContainerAvatar a:hover {
-    animation: raise 0.3s ease forwards;
-}

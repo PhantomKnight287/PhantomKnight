@@ -19,7 +19,7 @@ export default function Navbar() {
     const handleClick = (
         event: MouseEvent<
             HTMLButtonElement | SVGElement | MouseEvent | HTMLDivElement
-        >
+        > | any
     ) => {
         setAnchorEl((event as any).currentTarget);
     };
@@ -64,6 +64,7 @@ export default function Navbar() {
                                 sx={{ width: 50, height: 50 }}
                                 style={{ cursor: "pointer" }}
                                 onClick={(e) => handleClick(e)}
+                                className={styles.avatar}
                             />
                             <Menu
                                 id="basic-menu"
@@ -74,6 +75,21 @@ export default function Navbar() {
                                     "aria-labelledby": "basic-button"
                                 }}
                             >
+                                
+                                <MenuItem onClick={handleClick}>
+                                    <span className={styles.menuSpans} onClick={handleClick} >
+                                    <Link href="/" >
+                                        <a>Home</a>
+                                    </Link>
+                                    </span>
+                                </MenuItem>
+                                <MenuItem onClick={handleClick}>
+                                    <span className={styles.menuSpans} onClick={handleClick} >
+                                    <Link href="/playlist" >
+                                        <a>Playlist</a>
+                                    </Link>
+                                    </span>
+                                </MenuItem>
                                 <MenuItem onClick={handleClose}>
                                     <span
                                         onClick={() => {
