@@ -1,5 +1,11 @@
 version: "3.7"
 services:
+    mongodb:
+        image: docker.io/bitnami/mongodb:4.4
+        ports:
+            - "27017:27017"
+        volumes:
+            - "mongodb_data:/bitnami/mongodb"
     bot:
         container_name: phantomknight
         image: phantomknight/phantomknight:latest
@@ -16,6 +22,9 @@ services:
             - topggtoken= $topggtoken
         stdin_open: true
         tty: true
+        depends_on:
+          - mongodb
 volumes:
     phantomknight-logs:
-
+    mongodb_data:
+        driver: local
