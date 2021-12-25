@@ -73,7 +73,7 @@ module.exports = {
                 return await collected.deferUpdate();
             }
             if (collected.customId == "okay") {
-                await collected.deferUpdate();
+                await collected.deferReply({ ephemeral: true });
                 const user = await prisma.playlists.findFirst({
                     where: {
                         userId: interaction.user.id,
@@ -94,6 +94,7 @@ module.exports = {
                         embeds: [embed],
                         components: [],
                     });
+                    await interaction.deleteReply();
                 } else if (user) {
                     const Playlist: string[] = user.playList;
                     Playlist.push(song[i].title);
@@ -110,38 +111,10 @@ module.exports = {
                         embeds: [embed],
                         components: [],
                     });
-                    await collector.dispose(collected);
+                    await interaction.deleteReply();
                 }
             } else if (collected.customId == "next") {
-                await collected.deferUpdate();
-                i++;
-                if ((song as any).length - 1 < i) {
-                    await collected.editReply({
-                        content: "This was the last song",
-                    });
-                    return;
-                }
-                const emb = new MessageEmbed()
-                    .setColor("RANDOM")
-                    .setTitle(`:minidisc: ${song[i].title}`)
-                    .addField(
-                        "<:dogeThugLife:848437513067954178> Requested By",
-                        `${userMention(interaction.user.id)}`,
-                        true
-                    )
-                    .addField(
-                        ":clock1: Duration",
-                        `**${song[i].duration}**`,
-                        true
-                    )
-                    .addField(
-                        "Url",
-                        `${hyperlink("Click Here", `${song[i].url}`)}`,
-                        true
-                    )
-                    .setFooter("To Add song to playlist press green button")
-                    .setThumbnail(`${song[i].thumbnail}`);
-                await collected.editReply({ embeds: [emb], components: [row] });
+                await interaction.deleteReply();
             }
         });
         collector.on("end", async () => {
