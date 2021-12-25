@@ -1,5 +1,9 @@
 import { CommandInteraction, MessageEmbed } from "discord.js";
-import { SlashCommandBuilder } from "@discordjs/builders";
+import {
+    hyperlink,
+    SlashCommandBuilder,
+    userMention,
+} from "@discordjs/builders";
 import { player } from "../..";
 module.exports = {
     command: new SlashCommandBuilder()
@@ -24,7 +28,23 @@ module.exports = {
             )
             .addField("\u200b", `${progressbar.replace(/ 0:00/g, "◉ LIVE")}`)
             .setColor("RANDOM")
-            .setTimestamp();
+            .setTimestamp()
+            .setThumbnail(`${queue.current.thumbnail}`)
+            .addField(
+                "<:dogeThugLife:848437513067954178> Requested By",
+                `${userMention(queue.current.requestedBy.id)}`,
+                true
+            )
+            .addField(
+                ":clock1: Duration",
+                `**${queue.current.duration}**`,
+                true
+            )
+            .addField(
+                "Url",
+                `${hyperlink("Click Here", `${queue.current.url}`)}`,
+                true
+            );
         await interaction.editReply({ embeds: [emb] });
     },
 };
