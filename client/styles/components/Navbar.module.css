@@ -77,8 +77,8 @@
     margin-left: auto;
     padding: 0rem 2rem;
 }
-.menuSpans{
-    color:black !important;
+.menuSpans {
+    color: black !important;
 }
 @media only screen and (max-width: 900px) {
     .linkContainer {
@@ -87,10 +87,10 @@
     .menuContainer {
         display: block !important;
     }
-    .linkContainerAvatar{
+    .linkContainerAvatar {
         display: none !important;
     }
-    .avatar{
+    .avatar {
         display: none;
     }
 }
@@ -131,4 +131,3 @@
     left: 0;
     right: 0;
 }
-

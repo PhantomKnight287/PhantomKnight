@@ -10,9 +10,11 @@ export default function MenuButtons() {
     const dispatch = useUserStateDispatch();
     const open = Boolean(anchorEl);
     const handleClick = (
-        event: MouseEvent<
-            HTMLButtonElement | SVGElement | MouseEvent | HTMLDivElement
-        > | any
+        event:
+            | MouseEvent<
+                  HTMLButtonElement | SVGElement | MouseEvent | HTMLDivElement
+              >
+            | any
     ) => {
         setAnchorEl((event as any).currentTarget);
     };
@@ -49,18 +51,20 @@ export default function MenuButtons() {
                             "aria-labelledby": "basic-button"
                         }}
                     >
-                        
                         <MenuItem onClick={handleClose}>
-                                    <span className={styles.menuSpans} onClick={handleClick} >
-                                    <Link href="/" >
-                                        <a>Home</a>
-                                    </Link>
-                                    </span>
-                                </MenuItem>
+                            <span
+                                className={styles.menuSpans}
+                                onClick={handleClick}
+                            >
+                                <Link href="/">
+                                    <a>Home</a>
+                                </Link>
+                            </span>
+                        </MenuItem>
                         <MenuItem onClick={handleClose}>
-                            <span className={styles.menuSpans} >
-                                <Link href="/playlist" >
-                                <a>Playlist</a>
+                            <span className={styles.menuSpans}>
+                                <Link href="/playlist">
+                                    <a>Playlist</a>
                                 </Link>
                             </span>
                         </MenuItem>

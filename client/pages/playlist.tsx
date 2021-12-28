@@ -1,9 +1,5 @@
 function Playlist() {
-    return (
-        <div>
-            This is playlist Page
-        </div>
-    )
+    return <div>This is playlist Page</div>;
 }
 
-export default Playlist
+export default Playlist;

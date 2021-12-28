@@ -19,5 +19,5 @@ export type BackendUserData = {
     public_flags: number;
     username: string;
     verified: boolean;
-    mongodb:string;
+    mongodb: string;
 };

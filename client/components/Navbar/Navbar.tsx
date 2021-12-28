@@ -17,9 +17,11 @@ export default function Navbar() {
     const dispatch = useUserStateDispatch();
     const open = Boolean(anchorEl);
     const handleClick = (
-        event: MouseEvent<
-            HTMLButtonElement | SVGElement | MouseEvent | HTMLDivElement
-        > | any
+        event:
+            | MouseEvent<
+                  HTMLButtonElement | SVGElement | MouseEvent | HTMLDivElement
+              >
+            | any
     ) => {
         setAnchorEl((event as any).currentTarget);
     };
@@ -75,19 +77,24 @@ export default function Navbar() {
                                     "aria-labelledby": "basic-button"
                                 }}
                             >
-                                
                                 <MenuItem onClick={handleClick}>
-                                    <span className={styles.menuSpans} onClick={handleClick} >
-                                    <Link href="/" >
-                                        <a>Home</a>
-                                    </Link>
+                                    <span
+                                        className={styles.menuSpans}
+                                        onClick={handleClick}
+                                    >
+                                        <Link href="/">
+                                            <a>Home</a>
+                                        </Link>
                                     </span>
                                 </MenuItem>
                                 <MenuItem onClick={handleClick}>
-                                    <span className={styles.menuSpans} onClick={handleClick} >
-                                    <Link href="/playlist" >
-                                        <a>Playlist</a>
-                                    </Link>
+                                    <span
+                                        className={styles.menuSpans}
+                                        onClick={handleClick}
+                                    >
+                                        <Link href="/playlist">
+                                            <a>Playlist</a>
+                                        </Link>
                                     </span>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
