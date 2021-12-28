@@ -2,8 +2,9 @@ version: "3.7"
 services:
     mongodb:
         image: docker.io/bitnami/mongodb:4.4
+        env_file: ./.env
         ports:
-            - "27017:27017"
+            - $mongodbLocalPort:$mongodbDockerPort
         volumes:
             - "mongodb_data:/bitnami/mongodb"
     bot:
