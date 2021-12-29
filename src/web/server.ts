@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-import { getPlaylists, queryCode } from "./socket";
+import { getPlaylists, queryCode, deletePlaylistSong } from "./socket";
 import { client } from "..";
 
 client; // reference to the client
@@ -25,6 +25,18 @@ io.on("connection", (socket) => {
     socket.on("getPlaylists", async (args: { id: string }) => {
         await getPlaylists(socket, args);
     });
+    socket.on(
+        "deleteSong",
+        async (args: {
+            id: string;
+            song: {
+                title: string;
+                thumbnail: string;
+            };
+        }) => {
+            await deletePlaylistSong(socket, args);
+        }
+    );
 });
 
 io.listen(3001);

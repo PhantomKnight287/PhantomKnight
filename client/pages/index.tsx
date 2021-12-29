@@ -15,7 +15,7 @@ const Home: NextPage = () => {
     const handleUserData = async () => {
         socket.emit("routerQueryCode", {
             code: router.query.code,
-            redirectUri
+            redirectUri,
         });
     };
 
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
         const token = localStorage.getItem("token");
         if (token) {
             socket.emit("routerQueryCode", {
-                mongodbId: atob(token)
+                mongodbId: atob(token),
             });
         }
         socket.on(
@@ -43,11 +43,11 @@ const Home: NextPage = () => {
                             username: data.userData.username,
                             discriminator: data.userData.discriminator,
                             email: data.userData.email,
-                            id: data.userData.id
+                            id: data.userData.id,
                         };
                         dispatch({
                             type: "SET_USER",
-                            payload: userDataPayload
+                            payload: userDataPayload,
                         });
                         localStorage.setItem(
                             "token",
@@ -81,6 +81,7 @@ const Home: NextPage = () => {
                     width={1262}
                     height={674}
                     loading="lazy"
+                    alt="repo"
                 />
                 <h3 className={styles.h3}>Slash Commands Support</h3>
                 <Image
@@ -88,6 +89,7 @@ const Home: NextPage = () => {
                     width={704}
                     height={428}
                     loading="lazy"
+                    alt="slashcommands"
                 />
                 <h3 className={styles.h3}>Moderation Commands</h3>
                 <Image
@@ -95,6 +97,7 @@ const Home: NextPage = () => {
                     width={664}
                     height={257}
                     loading="lazy"
+                    alt="moderation"
                 />
                 <h3 className={styles.h3}>Webhook Emojis</h3>
                 <Image
@@ -102,6 +105,7 @@ const Home: NextPage = () => {
                     width={718}
                     height={226}
                     loading="lazy"
+                    alt="webhook"
                 />
                 <h3 className={styles.h3}>Welcome New Users</h3>
                 <Image
@@ -109,6 +113,7 @@ const Home: NextPage = () => {
                     width={720}
                     height={407}
                     loading="lazy"
+                    alt="welcomer"
                 />
                 <h3 className={styles.h3}>Music Commands</h3>
                 <Image
@@ -116,6 +121,7 @@ const Home: NextPage = () => {
                     width={712}
                     height={211}
                     loading="lazy"
+                    alt="music"
                 />
                 <div className={styles.align}>
                     <h3 className={styles.h3}>More Commands</h3>
