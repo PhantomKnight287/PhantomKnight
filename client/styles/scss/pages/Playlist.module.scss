@@ -27,6 +27,8 @@
     align-items: center;
     justify-content: center;
     margin: 20px;
+    max-width: 520px;
+    text-align: center;
 }
 .buttonContainer {
     display: flex;
@@ -34,7 +36,24 @@
     align-items: center;
     justify-content: center;
     & button {
-        background-image: linear-gradient(140deg, #eadedb 0%, #bc70a4 50%, #bfd641 75%);
+        background: #7f7fd5; /* fallback for old browsers */
+        background: -webkit-linear-gradient(
+            to right,
+            #7f7fd5,
+            #86a8e7,
+            #91eae4
+        ); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+            to right,
+            #7f7fd5,
+            #86a8e7,
+            #91eae4
+        ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
         margin-top: 1rem;
+        font-family: Bungee;
+        color:black;
+        // word-spacing: 2px;
+        font-size: 1rem;
     }
 }
