@@ -8,7 +8,7 @@ import { clientId, redirectUri } from "../../constants";
 import { useUserState, useUserStateDispatch } from "../../context";
 
 const MenuButtons = dynamic(() => import("../dynamic/MenuButtons"), {
-    loading: () => <div>Loading</div>
+    loading: () => <div>Loading</div>,
 });
 
 export default function Navbar() {
@@ -47,7 +47,7 @@ export default function Navbar() {
                     open={open}
                     onClose={handleClose}
                     MenuListProps={{
-                        "aria-labelledby": "basic-button"
+                        "aria-labelledby": "basic-button",
                     }}
                 >
                     <MenuItem onClick={handleClose}>
@@ -63,8 +63,13 @@ export default function Navbar() {
                                         ? `https://cdn.discordapp.com/avatars/${userState.id}/${userState.avatar}.webp?size=1024`
                                         : "https://cdn.discordapp.com/embed/avatars/0.png"
                                 }
-                                sx={{ width: 50, height: 50 }}
-                                style={{ cursor: "pointer" }}
+                                sx={{
+                                    width: 50,
+                                    height: 50,
+                                }}
+                                style={{
+                                    cursor: "pointer",
+                                }}
                                 onClick={(e) => handleClick(e)}
                                 className={styles.avatar}
                             />
@@ -74,28 +79,24 @@ export default function Navbar() {
                                 open={open}
                                 onClose={handleClose}
                                 MenuListProps={{
-                                    "aria-labelledby": "basic-button"
+                                    "aria-labelledby": "basic-button",
                                 }}
                             >
                                 <MenuItem onClick={handleClick}>
-                                    <span
-                                        className={styles.menuSpans}
-                                        onClick={handleClick}
-                                    >
-                                        <Link href="/">
-                                            <a>Home</a>
-                                        </Link>
-                                    </span>
+                                    <Link href="/">
+                                        <a onClick={handleClick}>Home</a>
+                                    </Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClick}>
-                                    <span
-                                        className={styles.menuSpans}
-                                        onClick={handleClick}
-                                    >
-                                        <Link href="/playlist">
-                                            <a>Playlist</a>
-                                        </Link>
-                                    </span>
+                                    <Link href="/playlist">
+                                        <a
+                                            style={{
+                                                color: "black",
+                                            }}
+                                        >
+                                            Playlist
+                                        </a>
+                                    </Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
                                     <span
@@ -107,8 +108,8 @@ export default function Navbar() {
                                                     id: "",
                                                     username: "",
                                                     email: "",
-                                                    discriminator: ""
-                                                }
+                                                    discriminator: "",
+                                                },
                                             });
                                         }}
                                     >
