@@ -81,7 +81,9 @@ module.exports = {
                 });
                 if (!user) {
                     console.log(song[i].title);
-                    const playList = [song[i].title];
+                    const playList = [
+                        { title: song[i].title, thumbnail: song[i].thumbnail },
+                    ];
                     console.log(playList);
                     await prisma.playlists.create({
                         data: {
@@ -96,8 +98,11 @@ module.exports = {
                     });
                     await interaction.deleteReply();
                 } else if (user) {
-                    const Playlist: string[] = user.playList;
-                    Playlist.push(song[i].title);
+                    const Playlist = user.playList;
+                    Playlist.push({
+                        title: song[i].title,
+                        thumbnail: song[i].thumbnail,
+                    });
                     await prisma.playlists.update({
                         where: {
                             userId: interaction.user.id,
