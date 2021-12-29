@@ -24,7 +24,7 @@ module.exports = {
                 content: "You don't have any playlist create a playlist first.",
             });
         }
-        const music: string[] = user.playList;
+        const music = user.playList;
         async function addSong(musicQuery: string) {
             const queue = player.createQueue(interaction.guild, {
                 metadata: {
@@ -96,10 +96,10 @@ module.exports = {
                 });
             }
         }
-        await addSong(music[0]);
+        await addSong((music[0] as any).title);
         music.splice(0, 1);
-        music.forEach(async (song: string) => {
-            await addSong(song);
+        music.forEach(async (song: { title: string; thubnail: string }) => {
+            await addSong(song.title);
         });
     },
 };
