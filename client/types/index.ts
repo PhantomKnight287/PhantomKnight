@@ -21,3 +21,11 @@ export type BackendUserData = {
     verified: boolean;
     mongodb: string;
 };
+
+export type playlistArgs= {
+    message:string|null;
+    songs: [] | [{
+        id:string;
+        __v:number;
+    }]
+}
