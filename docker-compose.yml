@@ -23,6 +23,8 @@ services:
             - topggtoken= $topggtoken
         stdin_open: true
         tty: true
+        ports:
+            - "3001:3001"
         depends_on:
             - mongodb
 volumes:
