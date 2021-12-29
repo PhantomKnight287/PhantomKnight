@@ -36,6 +36,7 @@
     padding: 0rem 0.5rem;
     font-family: "Oswald";
     font-size: larger;
+    margin-right: 3rem;
 }
 .linkContainer a {
     padding: 0.3rem 1rem;
@@ -56,6 +57,7 @@
     padding: 0rem 0.5rem;
     font-family: "Oswald";
     font-size: larger;
+    margin-right: 1rem;
 }
 .linkContainerAvatar a {
     padding: 0.3rem 1rem;
