@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-import { queryCode } from "./socket";
+import { getPlaylists, queryCode } from "./socket";
 import { client } from "..";
 
 client; // reference to the client
@@ -14,10 +14,17 @@ io.on("connection", (socket) => {
     console.log("A User Connected");
     socket.on(
         "routerQueryCode",
-        async (args: { code: string; redirectUri: string,mongodbId:string }) => {
+        async (args: {
+            code: string;
+            redirectUri: string;
+            mongodbId: string;
+        }) => {
             await queryCode(socket, args);
         }
     );
+    socket.on("getPlaylists", async (args: { id: string }) => {
+        await getPlaylists(socket, args);
+    });
 });
 
 io.listen(3001);
