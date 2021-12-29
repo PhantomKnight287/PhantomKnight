@@ -10,7 +10,7 @@ export default function Footer() {
                     href="https://github.com/PhantomKnight287"
                     target="_blank"
                     rel="noreferrer"
-                    style={{ marginLeft: "0.3rem" }}
+                    style={{ marginLeft: "0.3rem", color: "skyblue" }}
                 >
                     {" "}
                     PhantomKnight
