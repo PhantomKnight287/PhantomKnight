@@ -3,19 +3,24 @@ import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import Navbar from "../components/Navbar/Navbar";
 import { UserStateProvider } from "../context";
-
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 const Footer = dynamic(() => import("../components/footer/Footer"), {
-    loading: () => <p>loading....</p>
+    loading: () => <p>loading....</p>,
 });
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
-            <UserStateProvider>
-                <Navbar />
-                <Component {...pageProps} />
-                <Footer />
-            </UserStateProvider>
+            <QueryClientProvider client={queryClient}>
+                <UserStateProvider>
+                    <Navbar />
+                    <Component {...pageProps} />
+                    <Footer />
+                    <ReactQueryDevtools />
+                </UserStateProvider>
+            </QueryClientProvider>
         </>
     );
 }
