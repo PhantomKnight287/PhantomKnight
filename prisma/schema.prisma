@@ -25,10 +25,10 @@ model emojis {
 }
 
 model playlists {
-  id       String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  v        Int      @default(0) @map("__v")
-  playList String[]
-  userId   String   @unique
+  id       String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  v        Int    @default(0) @map("__v")
+  playList Json[]
+  userId   String @unique
 }
 
 model users {
@@ -67,5 +67,5 @@ model leveling {
 
 model loginTokens {
   refreshToken String
-  id           String @id @default(dbgenerated()) @map("_id") @db.ObjectId @unique
+  id           String @id @unique @default(dbgenerated()) @map("_id") @db.ObjectId
 }
