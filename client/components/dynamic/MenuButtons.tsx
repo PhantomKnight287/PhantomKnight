@@ -48,25 +48,18 @@ export default function MenuButtons() {
                         open={open}
                         onClose={handleClose}
                         MenuListProps={{
-                            "aria-labelledby": "basic-button"
+                            "aria-labelledby": "basic-button",
                         }}
                     >
                         <MenuItem onClick={handleClose}>
-                            <span
-                                className={styles.menuSpans}
-                                onClick={handleClick}
-                            >
-                                <Link href="/">
-                                    <a>Home</a>
-                                </Link>
-                            </span>
+                            <Link href="/">
+                                <a style={{ color: "black" }}>Home</a>
+                            </Link>
                         </MenuItem>
                         <MenuItem onClick={handleClose}>
-                            <span className={styles.menuSpans}>
-                                <Link href="/playlist">
-                                    <a>Playlist</a>
-                                </Link>
-                            </span>
+                            <Link href="/playlist">
+                                <a style={{ color: "black" }}>Playlist</a>
+                            </Link>
                         </MenuItem>
                         <MenuItem onClick={handleClose}>
                             <span
@@ -78,8 +71,8 @@ export default function MenuButtons() {
                                             id: "",
                                             username: "",
                                             email: "",
-                                            discriminator: ""
-                                        }
+                                            discriminator: "",
+                                        },
                                     });
                                 }}
                             >
