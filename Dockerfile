@@ -1,13 +1,14 @@
-FROM  archlinux
+FROM node:alpine
 ENV TZ=Asia/Kolkata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN \
-    pacman --noconfirm -Syu &&\
-    pacman --noconfirm -S base-devel npm ffmpeg python3 python-pip nodejs && \
+    apk update && \
+    apk add --no-cache --virtual .gyp && \
+    apk add --no-cache --update g++ make ffmpeg python3 py3-pip  build-base cairo-dev jpeg-dev pango-dev giflib-dev && \
     pip install --upgrade pip
 WORKDIR /app
 COPY . /app/
-RUN npm install 
+RUN npm install --build-from-resource
 RUN npm run generate
 RUN npm run build:prod
 EXPOSE 3001

@@ -27,7 +27,31 @@ services:
             - "3001:3001"
         depends_on:
             - mongodb
+        networks:
+            - backend
+    certbot:
+        image: certbot/certbot
+        container_name: certbot
+        volumes:
+            - certbot-etc:/etc/letsencrypt
+            - certbot-var:/var/lib/letsencrypt
+            - web-root:/var/www/html
+    depends_on:
+      - webserver
+    command: certonly --webroot --webroot-path=/var/www/html --email birdie@vynk.me --agree-tos --no-eff-email --staging -d kek.phantomknight.tk 
 volumes:
+    certbot-etc:
+    certbot-var:
+    web-root:
+    driver: local
+    driver_opts:
+      type: none
+      device: /
+      o: bind
     phantomknight-logs:
     mongodb_data:
         driver: local
+
+networks:
+    backend:
+        driver: bridge
