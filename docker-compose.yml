@@ -14,55 +14,48 @@ services:
         volumes:
             - phantomknight-logs:/app/logs
         env_file:
-            - .env
+            - ./.env
         environment:
             - token=$token
             - mongodbUrl=$mongodbUrl
             - clientId=$clientId
             - guildId=$guildId
             - topggtoken= $topggtoken
+            - VIRTUAL_HOST=$VIRTUAL_HOST
+            - LETSENCRYPT_HOST=$LETSENCRYPT_HOST
+            - LETSENCRYPT_EMAIL=$LETSENCRYPT_EMAIL
         stdin_open: true
         tty: true
-        ports:
-            - "3001:3001"
         depends_on:
             - mongodb
         networks:
             - backend
     webserver:
-        image: nginx:mainline-alpine
-        container_name: webserver
-        restart: unless-stopped
+        container_name: proxy-pkn
+        image: jwilder/nginx-proxy
         ports:
-            - "3001:3001"
+            - 80:80
+            - 443:443
         volumes:
-            - web-root:/var/www/html
-            - ./nginx-conf:/etc/nginx/conf.d
-            - certbot-etc:/etc/letsencrypt
-            - certbot-var:/var/lib/letsencrypt
-        depends_on:
-            - bot
-        networks:
-            - backend
-    certbot:
-        image: certbot/certbot
-        container_name: certbot
+            - /etc/nginx/vhost.d
+            - /usr/share/nginx/html
+            - /var/lib/letsencrypt:/etc/nginx/certs:ro
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+            - ./nginx/htpasswd:/etc/nginx/htpasswd
+            - ./nginx/vhost.d:/etc/nginx/vhost.d
+        env_file:
+          - ./.env
+        environment:
+            - DEFAULT_HOST=$VIRTUAL_HOST
+    letsencrypt:
+        container_name: ssl-pkn
+        image: jrcs/letsencrypt-nginx-proxy-companion
+        volumes_from:
+            - proxy-pkn
         volumes:
-            - certbot-etc:/etc/letsencrypt
-            - certbot-var:/var/lib/letsencrypt
-            - web-root:/var/www/html
-        depends_on:
-            - webserver
-        command: certonly --webroot --webroot-path=/var/www/html --email birdie@vynk.me --agree-tos --no-eff-email --staging -d kek.phantomknight.tk 
+            - /var/lib/letsencrypt:/etc/nginx/certs:rw
+            - /var/run/docker.sock:/var/run/docker.sock
 volumes:
-    certbot-etc:
-    certbot-var:
-    web-root:
-        driver: local
-        driver_opts:
-            type: none
-            device: /
-            o: bind
     phantomknight-logs:
     mongodb_data:
         driver: local
