@@ -21,7 +21,7 @@ function Playlist() {
             .then((res) => {
                 setSongs(res.data.songs);
             })
-            .catch((error) => {
+            .catch((_) => {
                 toast.error("An Error Occured, Please Try Again Later");
             });
     }
