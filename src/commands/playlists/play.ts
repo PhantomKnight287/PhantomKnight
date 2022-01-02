@@ -84,7 +84,13 @@ module.exports = {
                         `${hyperlink("Click Here", `${track.url}`)}`,
                         true
                     )
-                    .setColor("RANDOM");
+                    .setColor("RANDOM")
+                    .setDescription(
+                        `To View Your Playlist Click ${hyperlink(
+                            "Here",
+                            "https://bot.phantomknight.tk"
+                        )}`
+                    );
                 await interaction.followUp({
                     embeds: [emb],
                 });

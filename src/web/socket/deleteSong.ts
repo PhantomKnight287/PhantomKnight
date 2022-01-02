@@ -25,7 +25,7 @@ export async function deletePlaylistSong(
             playList: playList.playList,
         },
     });
-    socket.emit("playlists", {
+    socket.emit("updatedPlaylist", {
         message: `Removed ${args.song.title} from Playlist`,
         songs: playList.playList,
     });

@@ -52,7 +52,7 @@ module.exports = {
                 `${hyperlink("Click Here", `${song[i].url}`)}`,
                 true
             )
-            .setFooter("To Add song to playlist press green button")
+            .setFooter({ text: "To Add song to playlist press green button" })
             .setThumbnail(`${song[i].thumbnail}`);
         const row = new MessageActionRow().addComponents(
             new MessageButton()
@@ -91,7 +91,13 @@ module.exports = {
                             playList,
                         },
                     });
-                    embed.setFooter("Song Added to Playlist");
+                    embed.setFooter({ text: "Song Added to Playlist" });
+                    embed.setDescription(
+                        `To View Your Playlist Click ${hyperlink(
+                            "Here",
+                            "https://bot.phantomknight.tk"
+                        )}`
+                    );
                     await collected.editReply({
                         embeds: [embed],
                         components: [],
@@ -111,7 +117,15 @@ module.exports = {
                             playList: Playlist,
                         },
                     });
-                    embed.setFooter("Song Added to Playlist");
+                    embed.setFooter({
+                        text: "Song Added to Playlist",
+                    });
+                    embed.setDescription(
+                        `To View Your Playlist Click ${hyperlink(
+                            "Here",
+                            "https://bot.phantomknight.tk"
+                        )}`
+                    );
                     await collected.editReply({
                         embeds: [embed],
                         components: [],

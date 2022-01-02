@@ -46,7 +46,13 @@ commandFiles.forEach((file) => {
     commands.push(command.command.toJSON());
     client.commands.set(command.command.name, command);
 });
-const player = new Player(client);
+const player = new Player(client, {
+    ytdlOptions: {
+        filter: "audioonly",
+        dlChunkSize: 0,
+        highWaterMark: 1 << 25,
+    },
+});
 
 player.on("error", (_, error) => {
     console.log(error);

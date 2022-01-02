@@ -4,7 +4,9 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    height:100vh
+    height:100vh;
+    margin:2rem;
+    gap:3rem;
 }
 .glassMorph {
     background: rgba(255, 255, 255, 0.3);
@@ -27,10 +29,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 20px;
     max-width: 520px;
     text-align: center;
     color:white;
+    margin-bottom: 5rem;
+
 }
 .buttonContainer {
     display: flex;

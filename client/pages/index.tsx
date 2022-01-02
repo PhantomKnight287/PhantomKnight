@@ -8,6 +8,9 @@ import { useSocket } from "../hooks";
 import { redirectUri } from "../constants";
 import { BackendUserData, userContext } from "../types";
 import { useUserStateDispatch } from "../context";
+import dynamic from "next/dynamic";
+const Footer = dynamic(() => import("../components/footer/Footer"));
+
 const Home: NextPage = () => {
     const router = useRouter();
     const socket = useSocket();
@@ -134,6 +137,7 @@ const Home: NextPage = () => {
                     <h3 className={styles.h3}>And Many More On The Way</h3>
                 </div>
             </main>
+            <Footer />
         </div>
     );
 };

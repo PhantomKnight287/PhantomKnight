@@ -29,7 +29,7 @@
 
 "@discordjs/builders@^0.11.0":
   version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@discordjs/builders/-/builders-0.11.0.tgz#4102abe3e0cd093501f3f71931df43eb92f5b0cc"
+  resolved "https://registry.npmjs.org/@discordjs/builders/-/builders-0.11.0.tgz"
   dependencies:
     "@sindresorhus/is" "^4.2.0"
     discord-api-types "^0.26.0"
@@ -71,7 +71,8 @@
 
 "@discordjs/opus@^0.7.0":
   version "0.7.0"
-  resolved "https://registry.npmjs.org/@discordjs/opus/-/opus-0.7.0.tgz"
+  resolved "https://registry.yarnpkg.com/@discordjs/opus/-/opus-0.7.0.tgz#69e9611a6412ea470f8e640f54478da89326ca3b"
+  integrity sha512-3Xxa3dh7taSDwBAR5fLALZ/KTxvbMmHCMxYLYve6NlPO7Ms1CLmKqp/R4ZoVzkRGQVUVWEhaB1s0v9jfa2tfDg==
   dependencies:
     "@discordjs/node-pre-gyp" "^0.4.2"
     node-addon-api "^4.2.0"
@@ -1015,6 +1016,7 @@ discord-image-generation@^1.4.9:
 discord-player@^5.2.0:
   version "5.2.0"
   resolved "https://registry.npmjs.org/discord-player/-/discord-player-5.2.0.tgz"
+  integrity sha512-PFMTOFYyPbvveR186/NexEbaQzOA6Ossgid7fIOiC7W3ulAyRfmRo2zXUU0nrLEcG8Wr3V87fI/F2H0FZIfTWQ==
   dependencies:
     "@discordjs/voice" "^0.7.5"
     discord-ytdl-core "^5.0.4"
@@ -1033,7 +1035,7 @@ discord-ytdl-core@^5.0.4:
 
 discord.js@^13.5.0:
   version "13.5.0"
-  resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-13.5.0.tgz#f9ca9e629f2de0fb138e8c916fa93e40d70631f5"
+  resolved "https://registry.npmjs.org/discord.js/-/discord.js-13.5.0.tgz"
   dependencies:
     "@discordjs/builders" "^0.11.0"
     "@discordjs/collection" "^0.4.0"
@@ -1309,7 +1311,8 @@ fast-levenshtein@^2.0.6:
 
 ffmpeg-static@^4.4.0:
   version "4.4.0"
-  resolved "https://registry.npmjs.org/ffmpeg-static/-/ffmpeg-static-4.4.0.tgz"
+  resolved "https://registry.yarnpkg.com/ffmpeg-static/-/ffmpeg-static-4.4.0.tgz#56f1fbff5dbfd33e368ce309333c8c12ffdafb77"
+  integrity sha512-NIJHVPXlSsIK9pYvsTPh4ZlppauorpPLLeOaIG7VOXWQck4Fx4Qi7Ahe+j8mj8KZXhWwCg3Hx46JdWAIOWLcpg==
   dependencies:
     "@derhuerst/http-basic" "^8.2.0"
     env-paths "^2.2.0"
@@ -1396,6 +1399,7 @@ fs.realpath@^1.0.0:
 fsevents@~2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
+  integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
 
 functional-red-black-tree@^1.0.1:
   version "1.0.1"
