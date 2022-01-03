@@ -6,7 +6,6 @@
 
 [![GNU Licence](https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-![Status](https://lanyard-profile-readme.vercel.app/api/510480545160101898)
 <br/>
 <br/>
 <img style="margin-bottom:1rem" src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
