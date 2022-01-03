@@ -1,10 +1,4 @@
-import {
-    ButtonInteraction,
-    CommandInteraction,
-    MessageActionRow,
-    MessageButton,
-    MessageEmbed,
-} from "discord.js";
+import { CommandInteraction, MessageEmbed } from "discord.js";
 import {
     hyperlink,
     SlashCommandBuilder,
@@ -52,95 +46,47 @@ module.exports = {
                 `${hyperlink("Click Here", `${song[i].url}`)}`,
                 true
             )
-            .setFooter({ text: "To Add song to playlist press green button" })
-            .setThumbnail(`${song[i].thumbnail}`);
-        const row = new MessageActionRow().addComponents(
-            new MessageButton()
-                .setCustomId("okay")
-                .setEmoji("✅")
-                .setStyle("SUCCESS"),
-            new MessageButton()
-                .setCustomId("next")
-                .setEmoji("<a:aFail:848315264491192320>")
-                .setStyle("DANGER")
-        );
-        await interaction.editReply({ components: [row], embeds: [embed] });
-        const collector = interaction.channel.createMessageComponentCollector({
-            time: 60000,
+            .setThumbnail(`${song[i].thumbnail}`)
+            .setDescription(
+                `Manage Your Playlist by Clicking ${hyperlink(
+                    "Here",
+                    "https://bot.phantomknight.tk"
+                )}`
+            );
+        await interaction.editReply({
+            embeds: [embed],
         });
-        collector.on("collect", async (collected: ButtonInteraction) => {
-            if (collected.user !== interaction.user) {
-                return await collected.deferUpdate();
-            }
-            if (collected.customId == "okay") {
-                await collected.deferUpdate();
-                const user = await prisma.playlists.findFirst({
-                    where: {
-                        userId: interaction.user.id,
-                    },
-                });
-                if (!user) {
-                    console.log(song[i].title);
-                    const playList = [
-                        { title: song[i].title, thumbnail: song[i].thumbnail },
-                    ];
-                    console.log(playList);
-                    await prisma.playlists.create({
-                        data: {
-                            userId: interaction.user.id,
-                            playList,
-                        },
-                    });
-                    embed.setFooter({ text: "Song Added to Playlist" });
-                    embed.setDescription(
-                        `To View Your Playlist Click ${hyperlink(
-                            "Here",
-                            "https://bot.phantomknight.tk"
-                        )}`
-                    );
-                    await interaction.deleteReply();
-                    await collected.channel.send({
-                        embeds: [embed],
-                        components: [],
-                    });
-                } else if (user) {
-                    const Playlist = user.playList;
-                    Playlist.push({
-                        title: song[i].title,
-                        thumbnail: song[i].thumbnail,
-                    });
-                    await prisma.playlists.update({
-                        where: {
-                            userId: interaction.user.id,
-                        },
-                        data: {
-                            playList: Playlist,
-                        },
-                    });
-                    embed.setFooter({
-                        text: "Song Added to Playlist",
-                    });
-                    embed.setDescription(
-                        `To View Your Playlist Click ${hyperlink(
-                            "Here",
-                            "https://bot.phantomknight.tk"
-                        )}`
-                    );
-                    await interaction.deleteReply();
-                    await collected.channel.send({
-                        embeds: [embed],
-                        components: [],
-                    });
-                }
-            } else if (collected.customId == "next") {
-                await interaction.deleteReply();
-            }
+        const user = await prisma.playlists.findFirst({
+            where: {
+                userId: interaction.user.id,
+            },
         });
-        collector.on("end", async () => {
-            row.components.forEach((component) => {
-                component.setDisabled(true);
+        if (!user) {
+            console.log(song[i].title);
+            const playList = [
+                { title: song[i].title, thumbnail: song[i].thumbnail },
+            ];
+            console.log(playList);
+            await prisma.playlists.create({
+                data: {
+                    userId: interaction.user.id,
+                    playList,
+                },
             });
-            await interaction.editReply({ embeds: [embed], components: [] });
-        });
+        } else if (user) {
+            const Playlist = user.playList;
+            Playlist.push({
+                title: song[i].title,
+                thumbnail: song[i].thumbnail,
+            });
+            await prisma.playlists.update({
+                where: {
+                    userId: interaction.user.id,
+                },
+                data: {
+                    playList: Playlist,
+                },
+            });
+        }
     },
 };
