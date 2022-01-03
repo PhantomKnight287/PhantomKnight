@@ -46,10 +46,6 @@ const Home: NextPage = () => {
                             type: "SET_USER",
                             payload: userDataPayload,
                         });
-                        localStorage.setItem(
-                            "token",
-                            btoa(data.userData.mongodb)
-                        );
                     }
                 }
             }
