@@ -19,7 +19,8 @@ module.exports = {
                 userId: interaction.user.id,
             },
         });
-        if (!user) {
+        console.log(user);
+        if (!user || !user.playList || !user.playList.length) {
             return await interaction.editReply({
                 content: "You don't have any playlist create a playlist first.",
             });
@@ -63,6 +64,7 @@ module.exports = {
                     content: `❌ | Track **${music[0]}** not found!`,
                 });
             }
+            console.log(track);
             if (!queue.playing && track) {
                 queue.play(track);
                 const emb = new MessageEmbed()

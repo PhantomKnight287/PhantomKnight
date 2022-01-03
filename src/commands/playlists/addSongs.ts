@@ -73,7 +73,7 @@ module.exports = {
                 return await collected.deferUpdate();
             }
             if (collected.customId == "okay") {
-                await collected.deferReply({ ephemeral: true });
+                await collected.deferUpdate();
                 const user = await prisma.playlists.findFirst({
                     where: {
                         userId: interaction.user.id,
@@ -98,11 +98,11 @@ module.exports = {
                             "https://bot.phantomknight.tk"
                         )}`
                     );
-                    await collected.editReply({
+                    await interaction.deleteReply();
+                    await collected.channel.send({
                         embeds: [embed],
                         components: [],
                     });
-                    await interaction.deleteReply();
                 } else if (user) {
                     const Playlist = user.playList;
                     Playlist.push({
@@ -126,11 +126,11 @@ module.exports = {
                             "https://bot.phantomknight.tk"
                         )}`
                     );
-                    await collected.editReply({
+                    await interaction.deleteReply();
+                    await collected.channel.send({
                         embeds: [embed],
                         components: [],
                     });
-                    await interaction.deleteReply();
                 }
             } else if (collected.customId == "next") {
                 await interaction.deleteReply();
