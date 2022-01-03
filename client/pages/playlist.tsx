@@ -15,7 +15,7 @@ function Playlist() {
     const router = useRouter();
     function handleSongRemove(sus: { title: string; thumbnail: string }) {
         axios
-            .post(`${backendUrl}/playlist/${user.id}`, {
+            .post(`${backendUrl}playlist/${user.id}`, {
                 song: sus,
             })
             .then((res) => {
@@ -30,7 +30,7 @@ function Playlist() {
             router.push("/");
         }
         axios
-            .get(`${backendUrl}/playlist/${user.id}`)
+            .get(`${backendUrl}playlist/${user.id}`)
             .then((res) => {
                 if (res.data.message) {
                     setMessage(res.data.message);
