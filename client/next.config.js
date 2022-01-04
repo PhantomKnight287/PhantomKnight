@@ -5,4 +5,7 @@ module.exports = {
     sassOptions: {
         includePaths: [path.join(__dirname, "styles/scss")],
     },
+    images: {
+        domains: ["cdn.discordapp.com"],
+    },
 };
