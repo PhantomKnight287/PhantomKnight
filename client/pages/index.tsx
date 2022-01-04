@@ -23,9 +23,12 @@ const Home: NextPage = () => {
     };
 
     useEffect(() => {
-        console.log(router.query);
         if (router.query.code) {
             handleUserData();
+        }
+        const refresh = localStorage.getItem("refresh");
+        if (refresh) {
+            socket.emit("routerQueryCode", { token: refresh });
         }
         socket.on(
             "userData",
@@ -33,6 +36,7 @@ const Home: NextPage = () => {
                 error: null | boolean;
                 userData: null | BackendUserData;
             }) => {
+                console.log(data);
                 if (!data.error) {
                     if (data.userData) {
                         const userDataPayload: userContext = {
@@ -41,11 +45,14 @@ const Home: NextPage = () => {
                             discriminator: data.userData.discriminator,
                             email: data.userData.email,
                             id: data.userData.id,
+                            guilds: data.userData.guilds,
                         };
+                        localStorage.setItem("refresh", data.userData.refresh);
                         dispatch({
                             type: "SET_USER",
                             payload: userDataPayload,
                         });
+                        router.push("/guilds");
                     }
                 }
             }
