@@ -35,7 +35,6 @@ module.exports = {
                     {
                         userId: user.id,
                         reason,
-                        moderatorName: interaction.user.username,
                     },
                 ];
                 await prisma.warnings.update({
@@ -51,7 +50,6 @@ module.exports = {
                     {
                         userId: user.id,
                         reason,
-                        moderatorName: interaction.user.username,
                     },
                 ];
                 await prisma.warnings.create({
