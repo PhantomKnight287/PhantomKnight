@@ -4,6 +4,7 @@ export type userContext = {
     email: string;
     id: string;
     username: string;
+    guilds?: [];
 };
 export type BackendUserData = {
     accent_color: number;
@@ -19,13 +20,28 @@ export type BackendUserData = {
     public_flags: number;
     username: string;
     verified: boolean;
-    mongodb: string;
+    refresh: string;
+    guilds: [];
 };
 
-export type playlistArgs= {
-    message:string|null;
-    songs: [] | [{
-        id:string;
-        __v:number;
-    }]
-}
+export type playlistArgs = {
+    message: string | null;
+    songs:
+        | []
+        | [
+              {
+                  id: string;
+                  __v: number;
+              }
+          ];
+};
+export type guild = {
+    id: string;
+    name: string;
+    icon: string | null;
+    owner: boolean;
+    permissions: number;
+    features: string[];
+    permissions_new: string;
+    invited: boolean;
+};
