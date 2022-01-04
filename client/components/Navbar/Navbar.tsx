@@ -52,7 +52,7 @@ export default function Navbar() {
                 >
                     <MenuItem onClick={handleClose}>
                         <Link href="/">
-                            <a>Home</a>
+                            <a style={{ color: "black" }}>Home</a>
                         </Link>
                     </MenuItem>
                     {userState.avatar ? (
@@ -89,13 +89,14 @@ export default function Navbar() {
                                 </MenuItem>
                                 <MenuItem onClick={handleClick}>
                                     <Link href="/playlist">
-                                        <a
-                                            style={{
-                                                color: "black",
-                                            }}
-                                        >
+                                        <a style={{ color: "black" }}>
                                             Playlist
                                         </a>
+                                    </Link>
+                                </MenuItem>
+                                <MenuItem onClick={handleClick}>
+                                    <Link href="/guilds">
+                                        <a style={{ color: "black" }}>Guilds</a>
                                     </Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
@@ -111,6 +112,7 @@ export default function Navbar() {
                                                     discriminator: "",
                                                 },
                                             });
+                                            localStorage.removeItem("refresh");
                                         }}
                                     >
                                         Logout
@@ -121,10 +123,10 @@ export default function Navbar() {
                     ) : (
                         <MenuItem onClick={handleClose}>
                             <a
-                                className={`${styles["hvr-underline-from-center"]}`}
                                 href={`https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(
                                     redirectUri
                                 )}&response_type=code&scope=identify%20email%20guilds&prompt=none`}
+                                style={{ color: "black" }}
                             >
                                 Login
                             </a>
