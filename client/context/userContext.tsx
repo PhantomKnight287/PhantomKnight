@@ -5,7 +5,8 @@ const UserStateContext = createContext<userContext>({
     username: "",
     id: "",
     discriminator: "",
-    email: ""
+    email: "",
+    guilds: []
 });
 
 const UserStateDispatchContext = createContext(
@@ -37,7 +38,8 @@ export const UserStateProvider = ({
         username: "",
         id: "",
         discriminator: "",
-        email: ""
+        email: "",
+        guilds:[],
     });
     return (
         <UserStateContext.Provider value={userState}>
