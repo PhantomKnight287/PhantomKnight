@@ -1,0 +1,68 @@
+$redColor: rgb(255, 28, 92);
+$blueColor: #1af0dc;
+$transparent: transparent;
+$fontFamilyLobster: "Mulish";
+.transparentText {
+    color: $transparent;
+    background-clip: text;
+}
+.container {
+    @extend .transparentText;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Bungee;
+    margin-top: 5rem;
+    font-size: 3.2rem;
+    text-align: center;
+    animation: changeGradient 3s ease-in infinite;
+    background-image: linear-gradient(
+        to right,
+        #feac5e,
+        #c779d0,
+        #4bc0c8,
+        #12c2e9,
+        #c471ed,
+        #f64f59
+    );
+    background-size: 200% 200%;
+}
+@keyframes changeGradient {
+    0% {
+        background-position: 10% 0%;
+    }
+    10% {
+        background-position: 20% 100%;
+    }
+    20% {
+        background-position: 30% 100%;
+    }
+    40% {
+        background-position: 50% 100%;
+    }
+    50% {
+        background-position: 60% 100%;
+    }
+    60% {
+        background-position: 70% 100%;
+    }
+    70% {
+        background-position: 80% 100%;
+    }
+    80% {
+        background-position: 90% 100%;
+    }
+
+    100% {
+        background-position: 10% 0%;
+    }
+}
+
+.linkContainer {
+    font-size: 4rem;
+    font-family: Lobster;
+    & a {
+        color:white;
+    }
+}
