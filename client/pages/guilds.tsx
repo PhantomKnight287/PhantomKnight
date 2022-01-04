@@ -15,9 +15,6 @@ function Guilds() {
         console.clear();
         if (guilds) {
             console.groupCollapsed("Guilds");
-            guilds.forEach((guild: guild) => {
-                console.log(guild);
-            });
         }
     }, []);
     return (
@@ -30,35 +27,29 @@ function Guilds() {
                     <div className={styles.container}>
                         <div className={styles.headingContainer}>
                             <h1>Servers</h1>
-                            <span>
-                                You're In{" "}
-                                {guilds.length > 1
-                                    ? `${guilds.length} servers`
-                                    : `${guilds.length} server`}
-                            </span>
                         </div>
                         <div className={styles.allGuildsContainer}>
-                            {guilds.map((guild: guild) => {
+                            {guilds.map((resGuild: guild) => {
                                 return (
                                     <div
-                                        key={guild.id}
+                                        key={resGuild.id}
                                         className={styles.guildContainer}
                                     >
                                         <Image
                                             src={
-                                                guild.icon
-                                                    ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=256`
+                                                resGuild.icon
+                                                    ? `https://cdn.discordapp.com/icons/${resGuild.id}/${resGuild.icon}.png?size=256`
                                                     : "/background.jpeg"
                                             }
                                             className={
-                                                guild.invited
+                                                resGuild.invited
                                                     ? styles.allowedImage
                                                     : styles.img
                                             }
                                             width={142}
                                             height={140}
                                         />
-                                        {guild.name}
+                                        {resGuild.name}
                                     </div>
                                 );
                             })}
