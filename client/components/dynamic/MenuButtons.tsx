@@ -62,6 +62,11 @@ export default function MenuButtons() {
                             </Link>
                         </MenuItem>
                         <MenuItem onClick={handleClose}>
+                            <Link href="/guilds">
+                                <a style={{ color: "black" }}>Guilds</a>
+                            </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
                             <span
                                 onClick={() => {
                                     dispatch({
@@ -72,8 +77,10 @@ export default function MenuButtons() {
                                             username: "",
                                             email: "",
                                             discriminator: "",
+                                            guilds: [],
                                         },
                                     });
+                                    localStorage.removeItem("refresh");
                                 }}
                             >
                                 Logout
