@@ -96,7 +96,7 @@ client.on("interactionCreate", async (interaction: CommandInteraction) => {
     try {
         await (command as command).run(interaction, client);
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
 });
 

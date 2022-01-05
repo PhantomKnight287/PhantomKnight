@@ -48,7 +48,8 @@
         "./package.json",
         "tests/**/*.ts",
         "src/**/*.js",
-        "./.eslintrc.json"
+        "./.eslintrc.json",
+        "src/**/*.jpg"
     ],
     "exclude": ["node_modules/**", "client/*"],
     "compileOnSave": false

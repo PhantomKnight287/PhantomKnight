@@ -7,8 +7,9 @@ export class Smackdown {
      * @param {imageUrl2} string
      */
     async generateImage(imageurl1: string, imageUrl2: string) {
+        console.log(__dirname);
         const base = await Canvas.loadImage(
-            `https://cdn.discordapp.com/attachments/867819380464680980/916658377503948820/11625052-1476532698-800.png`
+            `https://bot.phantomknight.tk/smackdown.jpg`
         );
         const image1 = await Canvas.loadImage(imageurl1);
         const image2 = await Canvas.loadImage(imageUrl2);
