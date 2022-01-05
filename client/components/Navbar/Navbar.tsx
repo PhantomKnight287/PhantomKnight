@@ -84,7 +84,12 @@ export default function Navbar() {
                             >
                                 <MenuItem onClick={handleClick}>
                                     <Link href="/">
-                                        <a onClick={handleClick}>Home</a>
+                                        <a
+                                            style={{ color: "black" }}
+                                            onClick={handleClick}
+                                        >
+                                            Home
+                                        </a>
                                     </Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClick}>
