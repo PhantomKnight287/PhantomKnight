@@ -5,7 +5,7 @@ router.get("/playlist/:id", async (req, res) => {
     const playlist = await prisma.playlists.findFirst({
         where: { userId: req.params.id },
     });
-    if (playlist.playList.length > 0) {
+    if (playlist && playlist.playList.length > 0) {
         return res.status(200).send({ songs: playlist.playList, message: null });
     } else {
         return res.status(200).send({
