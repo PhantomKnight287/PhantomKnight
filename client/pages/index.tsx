@@ -7,7 +7,46 @@ import { useEffect } from "react";
 import { useSocket } from "../hooks";
 import { redirectUri } from "../constants";
 import { BackendUserData, userContext } from "../types";
-import { useUserStateDispatch } from "../context";
+import { useUserStateDispatch, useUserState } from "../context";
+
+const Images = [
+    {
+        width: 704,
+        height: 438,
+        src: "/SlashCommands.png",
+        title: "Slash Commands Support",
+        alt: "SlashCommands",
+    },
+    {
+        width: 664,
+        height: 257,
+        src: "/moderation.png",
+        title: "Moderation Commands",
+        alt: "moderation",
+    },
+    {
+        width: 718,
+        height: 226,
+        src: "/webhookEmojis.png",
+        title: "Webhook Emojis",
+        alt: "webhook",
+    },
+    {
+        width: 720,
+        height: 407,
+        src: "/welcomer.png",
+        title: "Welcome New Users",
+        alt: "welcomer",
+    },
+    {
+        width: 712,
+        height: 211,
+        src: "/music.png",
+        title: "Music Commands",
+        alt: "music",
+    },
+];
+
 import dynamic from "next/dynamic";
 const Footer = dynamic(() => import("../components/footer/Footer"));
 
@@ -15,6 +54,7 @@ const Home: NextPage = () => {
     const router = useRouter();
     const socket = useSocket();
     const dispatch = useUserStateDispatch();
+    const user = useUserState();
     const handleUserData = async () => {
         socket.emit("routerQueryCode", {
             code: router.query.code,
@@ -27,7 +67,7 @@ const Home: NextPage = () => {
             handleUserData();
         }
         const refresh = localStorage.getItem("refresh");
-        if (refresh) {
+        if (refresh && !user.id) {
             socket.emit("routerQueryCode", { token: refresh });
         }
         socket.on(
@@ -83,46 +123,20 @@ const Home: NextPage = () => {
                     loading="lazy"
                     alt="repo"
                 />
-                <h3 className={styles.h3}>Slash Commands Support</h3>
-                <Image
-                    src="/SlashCommands.png"
-                    width={704}
-                    height={428}
-                    loading="lazy"
-                    alt="slashcommands"
-                />
-                <h3 className={styles.h3}>Moderation Commands</h3>
-                <Image
-                    src="/moderation.png"
-                    width={664}
-                    height={257}
-                    loading="lazy"
-                    alt="moderation"
-                />
-                <h3 className={styles.h3}>Webhook Emojis</h3>
-                <Image
-                    src="/webhookEmojis.png"
-                    width={718}
-                    height={226}
-                    loading="lazy"
-                    alt="webhook"
-                />
-                <h3 className={styles.h3}>Welcome New Users</h3>
-                <Image
-                    src="/welcomer.png"
-                    width={720}
-                    height={407}
-                    loading="lazy"
-                    alt="welcomer"
-                />
-                <h3 className={styles.h3}>Music Commands</h3>
-                <Image
-                    src="/music.png"
-                    width={712}
-                    height={211}
-                    loading="lazy"
-                    alt="music"
-                />
+                {Images &&
+                    Images.map((img) => {
+                        return (
+                            <>
+                                <h3 className={styles.h3}>{img.title}</h3>
+                                <Image
+                                    src={`${img.src}`}
+                                    alt={`${img.alt}`}
+                                    width={img.width}
+                                    height={img.height}
+                                />
+                            </>
+                        );
+                    })}
                 <div className={styles.align}>
                     <h3 className={styles.h3}>More Commands</h3>
                     <p style={{ fontSize: `1.18rem` }}>
