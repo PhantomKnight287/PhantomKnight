@@ -6,6 +6,6 @@ module.exports = {
         includePaths: [path.join(__dirname, "styles/scss")],
     },
     images: {
-        domains: ["cdn.discordapp.com"],
+        domains: ["cdn.discordapp.com","i3.ytimg.com"],
     },
 };
