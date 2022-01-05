@@ -30,6 +30,11 @@
     margin: 0;
     font-size: 3rem;
 }
+@media only screen and (max-width:400px){
+    .title{
+        font-size: 2rem;
+    }
+}
 
 .title,
 .description {
