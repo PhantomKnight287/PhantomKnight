@@ -7,6 +7,7 @@ import Head from "next/head";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { backendUrl } from "@constants/index";
+import Image from "next/image";
 function Playlist() {
     const [songs, setSongs] =
         useState<{ title: string; thumbnail: string }[]>();
@@ -21,7 +22,7 @@ function Playlist() {
             .then((res) => {
                 setSongs(res.data.songs);
             })
-            .catch(( _ ) => {
+            .catch((_) => {
                 toast.error("An Error Occured, Please Try Again Later");
             });
     }
@@ -52,12 +53,15 @@ function Playlist() {
                 songs.map((song, index) => {
                     return (
                         <div key={index} className={styles.contentContainer}>
-                            <img
+                            <Image
                                 src={`${song.thumbnail.replace(
                                     "maxresdefault",
                                     "hqdefault"
                                 )}`}
                                 alt="thumbnail"
+                                width={480}
+                                height={360}
+                                loading="lazy"
                             />
                             <div>{song.title}</div>
                             <div className={styles.buttonContainer}>
