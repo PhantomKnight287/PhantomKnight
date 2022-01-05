@@ -1,12 +1,17 @@
-.mainContentContainer {
+.flexBox {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.mainContentContainer {
+    @extend .flexBox;
+    flex-direction: row;
     flex-wrap: wrap;
-    height:100vh;
-    margin:2rem;
-    gap:3rem;
+    height: 100vh;
+    margin: 2rem;
+    gap: 3rem;
 }
 .glassMorph {
     background: rgba(255, 255, 255, 0.3);
@@ -17,29 +22,12 @@
 }
 .contentContainer {
     font-family: Bungee;
-    padding: 20px;
-    border-top: 2px solid #47c465;
-    border-bottom: 2px solid #00deff;
-    background-image: linear-gradient(#47c465, #00deff),
-        linear-gradient(#47c465, #00deff);
-    background-size: 2px 100%;
-    background-position: 0 0, 100% 0;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-width: 520px;
-    text-align: center;
-    color:white;
-    margin-bottom: 5rem;
-
+    @extend .flexBox;
+    text-align: center
 }
 .buttonContainer {
-    display: flex;
+    @extend .flexBox;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
     & button {
         background: #7f7fd5; /* fallback for old browsers */
         background: -webkit-linear-gradient(
@@ -57,7 +45,7 @@
 
         margin-top: 1rem;
         font-family: Bungee;
-        color:black;
+        color: black;
         // word-spacing: 2px;
         font-size: 1rem;
     }
