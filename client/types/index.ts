@@ -45,3 +45,9 @@ export type guild = {
     permissions_new: string;
     invited: boolean;
 };
+
+export type userData = {
+    avatar: string;
+    discriminator: string;
+    username: string;
+};
