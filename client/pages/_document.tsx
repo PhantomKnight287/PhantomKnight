@@ -21,7 +21,7 @@ class MyDocument extends Document {
                         content="An Open Source Discord Bot with moderation, Music,Music Playlist Support, Leveling, Image Manipulation, Webhook Emojis and many more things."
                     />
                     <meta
-                        name="og:description"
+                        property="og:description"
                         content="An Open Source Discord Bot with moderation, Music,Music Playlist Support, Leveling, Image Manipulation, Webhook Emojis and many more things."
                     />
                     <link

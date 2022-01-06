@@ -51,7 +51,7 @@ function Playlist({
                         : "Playlist"}
                 </title>
                 <meta
-                    name="og:title"
+                    property="og:title"
                     content={
                         user.user && user.user.username
                             ? `Playlist | ${user.user.username}`
@@ -59,7 +59,7 @@ function Playlist({
                     }
                 />
                 <meta
-                    name="og:description"
+                    property="og:description"
                     content={
                         user.user && user.user.username
                             ? `Manage Playlist of ${user.user.username}`
@@ -67,7 +67,7 @@ function Playlist({
                     }
                 />
                 <meta
-                    name="description"
+                    property="description"
                     content={
                         user.user && user.user.username
                             ? `Manage Playlist of ${user.user.username}`

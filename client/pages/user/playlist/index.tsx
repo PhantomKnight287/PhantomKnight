@@ -21,13 +21,13 @@ function PlaylistIndex() {
         <div className={styles.container}>
             <Head>
                 <title>Search for Playlist</title>
-                <meta name="og:title" content="Search For Playlist" />
+                <meta property="og:title" content="Search For Playlist" />
                 <meta
-                    name="description"
+                    property="description"
                     content="Search for User's Playlist."
                 />
                 <meta
-                    name="og:description"
+                    property="og:description"
                     content="Search for User's Playlist."
                 />
             </Head>
