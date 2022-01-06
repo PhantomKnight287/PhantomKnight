@@ -11,18 +11,26 @@ import { prisma } from "../../prisma";
 module.exports = {
     command: new SlashCommandBuilder()
         .setName("play-playlist")
-        .setDescription("Play Music in your Playlist"),
+        .setDescription("Play Music in your Playlist")
+        .addUserOption((user) => {
+            return user
+                .setName("user")
+                .setDescription("Mention a user to play their playlist")
+                .setRequired(false);
+        }),
     async run(interaction: CommandInteraction) {
         await interaction.deferReply();
+        const mentionedUser = interaction.options.getUser("user");
         const user = await prisma.playlists.findFirst({
             where: {
-                userId: interaction.user.id,
+                userId: mentionedUser ? mentionedUser.id : interaction.user.id,
             },
         });
-        console.log(user);
         if (!user || !user.playList || !user.playList.length) {
             return await interaction.editReply({
-                content: "You don't have any playlist create a playlist first.",
+                content: !mentionedUser
+                    ? `${mentionedUser.username} has no playlist. Tell them to create one.`
+                    : "You don't have any playlist create a playlist first.",
             });
         }
         const music = user.playList;
@@ -64,7 +72,7 @@ module.exports = {
                     content: `❌ | Track **${music[0]}** not found!`,
                 });
             }
-            console.log(track);
+
             if (!queue.playing && track) {
                 queue.play(track);
                 const emb = new MessageEmbed()
