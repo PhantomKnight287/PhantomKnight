@@ -8,7 +8,7 @@ import { useSocket } from "../hooks";
 import { redirectUri } from "../constants";
 import { BackendUserData, userContext } from "../types";
 import { useUserStateDispatch, useUserState } from "../context";
-
+import { Fragment } from "react";
 const Images = [
     {
         width: 704,
@@ -124,9 +124,9 @@ const Home: NextPage = () => {
                     alt="repo"
                 />
                 {Images &&
-                    Images.map((img) => {
+                    Images.map((img, index) => {
                         return (
-                            <>
+                            <Fragment key={index}>
                                 <h3 className={styles.h3}>{img.title}</h3>
                                 <Image
                                     src={`${img.src}`}
@@ -134,7 +134,7 @@ const Home: NextPage = () => {
                                     width={img.width}
                                     height={img.height}
                                 />
-                            </>
+                            </Fragment>
                         );
                     })}
                 <div className={styles.align}>
