@@ -46,7 +46,7 @@
         "libsodium-wrappers": "^0.7.9",
         "opusscript": "^0.0.8",
         "pretty-ms": "^7.0.1",
-        "socket.io": "^4.4.0",
+        "socket.io": "^4.4.1",
         "topgg-autoposter": "^2.0.1",
         "ytdl-core": "^4.9.1"
     },
