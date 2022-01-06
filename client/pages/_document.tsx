@@ -32,7 +32,7 @@ class MyDocument extends Document {
                         property="og:image"
                         content="https://cdn.discordapp.com/app-icons/838686966387965992/7dacaad77a7dc8083aee518157daa567.png?size=256"
                     />
-                    <meta property="theme-color" content="#4285f4" />
+                    <meta property="theme-color" content="#000000" />
                     <meta property="og:title" content="PhantomKnight" />
                 </Head>
                 <body>
