@@ -990,9 +990,9 @@ discord-api-types@^0.25.2:
   version "0.25.2"
   resolved "https://registry.npmjs.org/discord-api-types/-/discord-api-types-0.25.2.tgz"
 
-discord-api-types@^0.26.0:
-  version "0.26.0"
-  resolved "https://registry.npmjs.org/discord-api-types/-/discord-api-types-0.26.0.tgz"
+discord-api-types@^0.26.0, discord-api-types@^0.26.1:
+  version "0.26.1"
+  resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.26.1.tgz#726f766ddc37d60da95740991d22cb6ef2ed787b"
 
 discord-image-generation@^1.4.9:
   version "1.4.9"
