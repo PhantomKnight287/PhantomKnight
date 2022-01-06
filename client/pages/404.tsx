@@ -6,6 +6,7 @@ function Custom404() {
         <div>
             <Head>
                 <title>Page Not Found</title>
+                <meta property="og:title" content="This Link Seems Broken" />
             </Head>
             <div className={styles.container}>
                 It looks like you reached DeadEnd.

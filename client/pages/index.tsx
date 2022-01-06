@@ -101,6 +101,18 @@ const Home: NextPage = () => {
         <div>
             <Head>
                 <title>PhantomKnight - An Open Source Discord Bot</title>
+                <meta
+                    property="og:title"
+                    content="PhantomKnight - An Open Source Discord Bot"
+                />
+                <meta
+                    name="description"
+                    content="An Open Source Discord Bot with moderation, Music,Music Playlist Support, Leveling, Image Manipulation, Webhook Emojis and many more things."
+                />
+                <meta
+                    property="og:description"
+                    content="An Open Source Discord Bot with moderation, Music,Music Playlist Support, Leveling, Image Manipulation, Webhook Emojis and many more things."
+                />
             </Head>
 
             <main className={styles.main}>
