@@ -21,3 +21,6 @@ a {
 * {
     box-sizing: border-box;
 }
+input[type=number] {
+    -moz-appearance: textfield;
+  }
