@@ -93,7 +93,9 @@ export default function Navbar() {
                                     </Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClick}>
-                                    <Link href="/playlist">
+                                    <Link
+                                        href={`/user/playlist`}
+                                    >
                                         <a style={{ color: "black" }}>
                                             Playlist
                                         </a>

@@ -57,7 +57,7 @@ export default function MenuButtons() {
                             </Link>
                         </MenuItem>
                         <MenuItem onClick={handleClose}>
-                            <Link href="/playlist">
+                            <Link href={`/user/playlist`}>
                                 <a style={{ color: "black" }}>Playlist</a>
                             </Link>
                         </MenuItem>
