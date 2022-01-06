@@ -45,3 +45,11 @@
 .button {
     margin-top: 2rem;
 }
+ @media only screen and (max-width:400px){
+     .bgContainer{
+         width: 98vw;
+     }
+     .card{
+         width: auto;
+     }
+ }
