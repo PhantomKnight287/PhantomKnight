@@ -23,7 +23,8 @@
 .contentContainer {
     font-family: Bungee;
     @extend .flexBox;
-    text-align: center
+    text-align: center;
+    max-width: 400px;
 }
 .buttonContainer {
     @extend .flexBox;
@@ -48,5 +49,23 @@
         color: black;
         // word-spacing: 2px;
         font-size: 1rem;
+    }
+}
+
+.userInfoContainer {
+    @extend .flexBox;
+    flex-direction: row;
+    margin-top: 2rem;
+    & img {
+        border-radius: 10px;
+    }
+    & span {
+        color: #01e6ce !important;
+    }
+    & div {
+        @extend .flexBox;
+        flex-direction: row;
+        margin-left: 1rem;
+        font-size: calc(18px + (32 - 18) * ((100vw - 300px) / (1600 - 300)));
     }
 }

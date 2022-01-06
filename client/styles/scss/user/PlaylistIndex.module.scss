@@ -1,0 +1,47 @@
+.flexBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container {
+    margin-top: 3rem;
+    @extend .flexBox;
+    & input {
+        padding: 1rem;
+    }
+    & input::-webkit-outer-spin-button,
+    & input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+.bgContainer {
+    @extend .flexBox;
+    background-image: url("/bg.png");
+    width: 100%;
+    padding: 0.5rem;
+    max-width: 75vw;
+    border-radius: 9px;
+}
+.card {
+    @extend .flexBox;
+    background-color: rgba(10, 10, 10, 0.5);
+    border-radius: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    backdrop-filter: blur(64px);
+    width: 50vw;
+    text-align: center;
+    --tw-shadow-color: #6366f1;
+    box-shadow: 0 25px 50px -12px #6366f1;
+    color: white;
+    & h3 {
+        color: #6366f1 !important;
+    }
+}
+.button {
+    margin-top: 2rem;
+}
