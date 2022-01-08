@@ -9,6 +9,7 @@ import { backendUrl } from "@constants/index";
 import Image from "next/image";
 import { userData as userDataType } from "../../../types";
 import { GetServerSideProps } from "next";
+import {useUserState} from "@context/index";
 function Playlist({
     user,
 }: {
@@ -18,11 +19,12 @@ function Playlist({
         user: userDataType;
     };
 }) {
+    const {id} = useUserState();
     const [songs, setSongs] =
         useState<{ title: string; thumbnail: string }[]>();
     const router = useRouter();
     function handleSongRemove(sus: { title: string; thumbnail: string }) {
-        if (!(user.user as any).id) {
+        if (!id) {
             return toast.error("You need to Login to Manage the playlist!");
         }
         if ((user.user as any).id != router.query.userId) {
