@@ -1,5 +1,0 @@
-{
-    "verbose": false,
-    "ignore": [".git", "node_modules", "*.tsx", "client/*"],
-    "watch": ["build/*", "src/*"]
-}
