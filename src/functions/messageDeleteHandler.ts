@@ -12,6 +12,8 @@ export const messageHandler = async (
         },
     });
     const enabled = config ? config.enabled : false;
-    const channel = client.channels.cache.get(`${config.channelId}`);
+    const channel = config
+        ? client.channels.cache.get(`${config.channelId}`)
+        : undefined;
     return { embed, enabled, channel };
 };
