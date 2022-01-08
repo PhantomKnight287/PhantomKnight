@@ -1,12 +1,5 @@
 version: "3.7"
 services:
-    mongodb:
-        image: docker.io/bitnami/mongodb:4.4
-        env_file: ./.env
-        ports:
-            - $mongodbLocalPort:$mongodbDockerPort
-        volumes:
-            - "mongodb_data:/bitnami/mongodb"
     bot:
         container_name: phantomknight
         image: phantomknight/phantomknight:latest
@@ -25,9 +18,5 @@ services:
         tty: true
         ports:
             - "3001:3001"
-        depends_on:
-            - mongodb
 volumes:
     phantomknight-logs:
-    mongodb_data:
-        driver: local
