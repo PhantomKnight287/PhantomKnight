@@ -67,5 +67,12 @@ model leveling {
 
 model loginTokens {
   refreshToken String
-  id           String @id @unique @default(dbgenerated()) @map("_id") @db.ObjectId
+  id           String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+}
+
+model logsConfig {
+  channelId String
+  id        String  @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  enabled   Boolean
+  guildId   String @unique
 }
