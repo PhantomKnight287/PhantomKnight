@@ -84,7 +84,7 @@ const Home: NextPage = () => {
                             discriminator: data.userData.discriminator,
                             email: data.userData.email,
                             id: data.userData.id,
-                            guilds: data.userData.guilds,
+                            guilds: [],
                         };
                         localStorage.setItem("refresh", data.userData.refresh);
                         dispatch({

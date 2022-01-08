@@ -89,14 +89,22 @@ export default function MenuButtons() {
                     </Menu>
                 </>
             ) : (
-                <a
-                    className={`${styles["hvr-underline-from-center"]} ${styles.anchor}`}
-                    href={`https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(
-                        redirectUri
-                    )}&response_type=code&scope=identify%20email%20guilds&prompt=none`}
-                >
-                    Login
-                </a>
+                <>
+                    <a
+                        href="https://top.gg/bot/838686966387965992"
+                        className={`${styles["hvr-underline-from-center"]} ${styles.anchor}`}
+                    >
+                        Invite
+                    </a>
+                    <a
+                        className={`${styles["hvr-underline-from-center"]} ${styles.anchor}`}
+                        href={`https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(
+                            redirectUri
+                        )}&response_type=code&scope=identify%20email%20guilds&prompt=none`}
+                    >
+                        Login
+                    </a>
+                </>
             )}
         </div>
     );

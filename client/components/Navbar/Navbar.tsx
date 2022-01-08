@@ -55,6 +55,14 @@ export default function Navbar() {
                             <a style={{ color: "black" }}>Home</a>
                         </Link>
                     </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                        <a
+                            style={{ color: "black" }}
+                            href="https://top.gg/bot/838686966387965992"
+                        >
+                            Invite
+                        </a>
+                    </MenuItem>
                     {userState.avatar ? (
                         <>
                             <Avatar
@@ -93,9 +101,7 @@ export default function Navbar() {
                                     </Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClick}>
-                                    <Link
-                                        href={`/user/playlist`}
-                                    >
+                                    <Link href={`/user/playlist`}>
                                         <a style={{ color: "black" }}>
                                             Playlist
                                         </a>

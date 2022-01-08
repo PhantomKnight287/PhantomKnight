@@ -6,15 +6,11 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 function Guilds() {
-    const { guilds } = useUserState();
+    const { guilds, id } = useUserState();
     const router = useRouter();
     useEffect(() => {
-        if (!guilds?.length) {
+        if (!id) {
             router.push("/");
-        }
-        console.clear();
-        if (guilds) {
-            console.groupCollapsed("Guilds");
         }
     }, []);
     return (
@@ -22,7 +18,7 @@ function Guilds() {
             <Head>
                 <title>Servers</title>
             </Head>
-            {guilds ? (
+            {guilds && guilds.length ? (
                 <div className={styles.mainContainer}>
                     <div className={styles.container}>
                         <div className={styles.headingContainer}>
@@ -56,7 +52,17 @@ function Guilds() {
                         </div>
                     </div>
                 </div>
-            ) : null}
+            ) : (
+                <div className={styles.mainContainer}>
+                    <div className={styles.container}>
+                        <div className={styles.messageContainer}>
+                            {
+                                "You don't share any discord server with the bot. Add bot in a Server and try again later."
+                            }
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

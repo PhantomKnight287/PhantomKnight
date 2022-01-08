@@ -74,3 +74,33 @@
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.125);
 }
+
+.messageContainer {
+    font-family: Bungee;
+    font-size: 2rem;
+    color: transparent;
+    background-image: linear-gradient(
+        to right,
+        #feac5e,
+        #c779d0,
+        #4bc0c8,
+        #12c2e9,
+        #c471ed,
+        #f64f59
+    );
+    background-size: 200% 200%;
+    animation: changeGradient 3s ease-in infinite;
+    text-align: center;
+    background-clip: text;
+}
+@keyframes changeGradient {
+    0% {
+        background-position: 10% 0%;
+    }
+    50% {
+        background-position: 91% 100%;
+    }
+    100% {
+        background-position: 10% 0%;
+    }
+}
