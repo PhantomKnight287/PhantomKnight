@@ -10,6 +10,7 @@ export class PhantomKnight extends Client {
                 Intents.FLAGS.GUILD_MEMBERS,
                 Intents.FLAGS.GUILD_VOICE_STATES,
                 Intents.FLAGS.GUILD_MESSAGES,
+                Intents.FLAGS.DIRECT_MESSAGES
             ],
         });
     }
