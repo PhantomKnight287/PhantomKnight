@@ -12,10 +12,11 @@ import {
 } from "discord.js"; // importing types
 import { AutoPoster } from "topgg-autoposter"; // autoposter to post topgg stats
 import { sendWelcomeMessage, autoMod, levelling, deleteEmojis } from "./events"; // events config
-
 import { command } from "./types"; // command type
 import { prisma } from "./prisma"; // prisma config
+import { singleMessageDelete } from "./events";
 import { promisify } from "util";
+import { messageUpdateHandler } from "./events/messageUpdate";
 const wait = promisify(setTimeout);
 const MusicCommand: string[] = [
     "disconnect",
@@ -156,6 +157,15 @@ client.on("emojiUpdate", async (oldEmoji, newEmoji) => {
             emoji: newEmoji.toString(),
         },
     });
+});
+
+client.on("messageDelete", async (message) => {
+    if (!message.guildId) return;
+    await singleMessageDelete(message);
+});
+client.on("messageUpdate", async (oldMessage, newMessage) => {
+    if (!oldMessage.guildId) return;
+    await messageUpdateHandler(oldMessage, newMessage);
 });
 
 client.login(process.env.token as string);
