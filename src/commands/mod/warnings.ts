@@ -1,6 +1,12 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction, MessageEmbed } from "discord.js";
 import { prisma } from "../../prisma";
+type param = {
+    moderator: string;
+    reason: string;
+    timestamp: string;
+    warnedUser: string;
+};
 module.exports = {
     command: new SlashCommandBuilder()
         .setName("warnings")
@@ -10,11 +16,21 @@ module.exports = {
                 .setName("user")
                 .setDescription("user")
                 .setRequired(true);
+        })
+        .addIntegerOption((pageNumber) => {
+            return pageNumber
+                .setName("page")
+                .setDescription("Specify Page Number")
+                .setRequired(false);
         }),
     async run(interaction: CommandInteraction) {
         await interaction.deferReply({ ephemeral: true });
         const user = interaction.options.getUser("user");
-        const guildRecord = await prisma.warnings.findFirst({
+        const pageStart = interaction.options.getInteger("page")
+            ? interaction.options.getInteger("page")
+            : 0;
+        const pageEnd = pageStart + 10;
+        const guildRecord = await prisma.warn.findFirst({
             where: {
                 guildId: interaction.guildId,
             },
@@ -25,29 +41,34 @@ module.exports = {
             });
             return;
         }
-        const warnings = [];
-        guildRecord.warnings.map((warning: any, index) => {
-            if (warning.userId == user.id) {
-                warnings.push({ warning, id: index + 1 });
-            }
-        });
-        const embed = new MessageEmbed().setAuthor(
-            user.username,
-            user.displayAvatarURL()
-        );
+        const warnings = guildRecord.warnings
+            .slice(pageStart, pageEnd)
+            .map((m: param) => {
+                console.log(m);
+                if (m.warnedUser === `${user.username}#${user.discriminator}`) {
+                    return `**${m.moderator} warned ${m.warnedUser} ${
+                        m.reason && `\n Reason: ${m.reason} **`
+                    }`;
+                }
+            });
+
+        const embed = new MessageEmbed();
+
         if (warnings.length == 0) {
             await interaction.editReply({
                 content: "No warnings for specified User",
             });
             return;
         }
-        warnings.forEach((warning) => {
-            embed.addField(
-                `ID:${warning.id}`,
-                `${warning.warning.reason}`,
-                false
-            );
-        });
+        embed.setDescription(
+            `${warnings.join("\n")} ${
+                guildRecord.warnings.length > pageEnd
+                    ? `\n .. ${
+                          guildRecord.warnings.length - pageEnd
+                      } more records`
+                    : ""
+            }`
+        );
         await interaction.editReply({ embeds: [embed] });
     },
 };
