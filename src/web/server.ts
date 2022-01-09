@@ -3,7 +3,11 @@ import { getPlaylists, queryCode, deletePlaylistSong } from "./socket";
 import { client } from "..";
 import express from "express";
 import http from "http";
-import { deletePlaylistSongRoute, getPlaylistRoute } from "./routes";
+import {
+    checkServerPermissionRoute,
+    deletePlaylistSongRoute,
+    getPlaylistRoute,
+} from "./routes";
 import cors from "cors";
 const app = express();
 app.use(cors());
@@ -24,7 +28,7 @@ app.get("/", async (_, res) => {
 });
 app.use("/", getPlaylistRoute);
 app.use("/", deletePlaylistSongRoute);
-
+app.use("/", checkServerPermissionRoute);
 io.on("connection", (socket) => {
     socket.on(
         "routerQueryCode",
