@@ -9,7 +9,7 @@ RUN \
 WORKDIR /app
 COPY . /app/
 RUN npm install --build-from-resource
-RUN npm run push
+RUN npm run generate
 RUN npm run build:prod
 EXPOSE 3001
 CMD [ "node","./build/src/web/server.js"]
