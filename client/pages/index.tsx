@@ -91,7 +91,7 @@ const Home: NextPage = () => {
                             type: "SET_USER",
                             payload: userDataPayload,
                         });
-                        router.push("/guilds");
+                        router.push("/servers");
                     }
                 }
             }
