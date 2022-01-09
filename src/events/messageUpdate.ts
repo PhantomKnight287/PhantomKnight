@@ -21,7 +21,7 @@ export const messageUpdateHandler = async (
             iconURL: oldMessage.author.displayAvatarURL(),
         })
         .setDescription(
-            `Message Deleted in ${channelMention(oldMessage.channelId)}`
+            `Message Updated in ${channelMention(oldMessage.channelId)}`
         )
         .addFields(
             {
