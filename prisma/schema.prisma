@@ -40,13 +40,6 @@ model users {
   lastWorked    BigInt
 }
 
-model warnings {
-  id       String @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  v        Int    @default(0) @map("__v")
-  guildId  String @unique
-  warnings Json[]
-}
-
 model welcomers {
   id              String  @id @default(dbgenerated()) @map("_id") @db.ObjectId
   v               Int     @default(0) @map("__v")
@@ -63,11 +56,22 @@ model leveling {
   nextLevel Int
   levelUpXp Int
   userId    String @unique
+  v         Int    @default(0) @map("__v")
+
 }
 
 model logsConfig {
   channelId String
   id        String  @id @default(dbgenerated()) @map("_id") @db.ObjectId
   enabled   Boolean
-  guildId   String @unique
+  guildId   String  @unique
+  v         Int     @default(0) @map("__v")
+
+}
+
+model warn {
+  id       String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  v        Int    @default(0) @map("__v")
+  guildId  String @unique
+  warnings Json[]
 }
