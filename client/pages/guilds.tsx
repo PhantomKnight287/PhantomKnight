@@ -17,6 +17,16 @@ function Guilds() {
         <div>
             <Head>
                 <title>Servers</title>
+                <meta property="theme-color" content="#4285f4" />
+                <meta property="og:title" content="Servers | PhantomKnight" />
+                <meta
+                    property="og:description"
+                    content="Manage Server Configuration for PhantomKnight."
+                />
+                <meta
+                    property="description"
+                    content="Manage Server Configuration for PhantomKnight."
+                />
             </Head>
             {guilds && guilds.length ? (
                 <div className={styles.mainContainer}>

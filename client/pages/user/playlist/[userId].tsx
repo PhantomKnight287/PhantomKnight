@@ -9,17 +9,19 @@ import { backendUrl } from "@constants/index";
 import Image from "next/image";
 import { userData as userDataType } from "../../../types";
 import { GetServerSideProps } from "next";
-import {useUserState} from "@context/index";
+import { useUserState } from "@context/index";
 function Playlist({
     user,
+    color,
 }: {
     user: {
         songs: { title: string; thumbnail: string }[];
         message: null | string;
         user: userDataType;
     };
+    color: number;
 }) {
-    const {id} = useUserState();
+    const { id } = useUserState();
     const [songs, setSongs] =
         useState<{ title: string; thumbnail: string }[]>();
     const router = useRouter();
@@ -52,6 +54,8 @@ function Playlist({
                         ? `Playlist | ${user.user.username}`
                         : "Playlist"}
                 </title>
+
+                <meta property="theme-color" content={`#${color}`} />
                 <meta
                     property="og:title"
                     content={
@@ -142,6 +146,7 @@ function Playlist({
     );
 }
 export const getServerSideProps: GetServerSideProps = async (context) => {
+    var randomColor = Math.floor(Math.random() * 16777215).toString(16);
     const user = await axios
         .get(`${backendUrl}playlist/${context.query.userId}`)
         .then((res) => {
@@ -154,6 +159,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         props: {
             user,
+            color: randomColor,
         },
     };
 };

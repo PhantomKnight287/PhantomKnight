@@ -7,6 +7,15 @@ function Custom404() {
             <Head>
                 <title>Page Not Found</title>
                 <meta property="og:title" content="This Link Seems Broken" />
+                <meta
+                    property="description"
+                    content="It looks like You Came to Dead End. This Link is Invalid"
+                />
+                <meta
+                    property="og:description"
+                    content="It looks like You Came to Dead End. This Link is Invalid"
+                />
+                <meta property="theme-color" content="#4285f4" />
             </Head>
             <div className={styles.container}>
                 It looks like you reached DeadEnd.

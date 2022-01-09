@@ -84,7 +84,7 @@ const Home: NextPage = () => {
                             discriminator: data.userData.discriminator,
                             email: data.userData.email,
                             id: data.userData.id,
-                            guilds: [],
+                            guilds: data.userData.guilds,
                         };
                         localStorage.setItem("refresh", data.userData.refresh);
                         dispatch({
@@ -113,6 +113,7 @@ const Home: NextPage = () => {
                     property="og:description"
                     content="An Open Source Discord Bot with moderation, Music,Music Playlist Support, Leveling, Image Manipulation, Webhook Emojis and many more things."
                 />
+                <meta property="theme-color" content="#4285f4" />
             </Head>
 
             <main className={styles.main}>

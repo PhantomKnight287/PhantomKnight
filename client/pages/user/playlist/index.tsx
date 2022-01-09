@@ -30,6 +30,7 @@ function PlaylistIndex() {
                     property="og:description"
                     content="Search for User's Playlist."
                 />
+                <meta property="theme-color" content="#4285f4" />
             </Head>
             <ToastContainer pauseOnHover={false} pauseOnFocusLoss={false} />
 
