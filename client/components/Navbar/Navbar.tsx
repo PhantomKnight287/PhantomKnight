@@ -108,7 +108,7 @@ export default function Navbar() {
                                     </Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClick}>
-                                    <Link href="/guilds">
+                                    <Link href="/servers">
                                         <a style={{ color: "black" }}>Guilds</a>
                                     </Link>
                                 </MenuItem>
