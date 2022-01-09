@@ -6,7 +6,12 @@ export const messageUpdateHandler = async (
     oldMessage: Message<boolean> | PartialMessage,
     newMessage: Message<boolean> | PartialMessage
 ) => {
-    if (newMessage.author.id === client.user.id || !newMessage.content) return;
+    if (
+        newMessage.author.id === client.user.id ||
+        !newMessage.content ||
+        oldMessage.content === newMessage.content
+    )
+        return;
 
     const { channel, embed, enabled } = await messageHandler(oldMessage);
     if (!enabled) return;
