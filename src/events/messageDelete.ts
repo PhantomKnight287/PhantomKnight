@@ -1,6 +1,6 @@
 import { messageHandler } from "../functions";
 import { Message, PartialMessage, TextChannel } from "discord.js";
-import { channelMention } from "@discordjs/builders";
+import { channelMention, userMention } from "@discordjs/builders";
 export const singleMessageDelete = async (
     message: Message<boolean> | PartialMessage
 ) => {
@@ -14,7 +14,9 @@ export const singleMessageDelete = async (
                 iconURL: message.author.displayAvatarURL(),
             })
             .setDescription(
-                `Message Deleted in ${channelMention(message.channelId)}`
+                `**Message sent by ${userMention(
+                    message.author.id
+                )} Deleted in ${channelMention(message.channelId)}**`
             )
             .addField(`Message`, `${message.content}`)
             .setTimestamp();
