@@ -42,7 +42,8 @@ module.exports = {
                 true
             )
             .addField("AutoMod", "`Select AutoMod Option`", true)
-            .addField("Image", "`Select Image Option`", true);
+            .addField("Image", "`Select Image Option`", true)
+            .addField("Logs", "`Select Logs Option`", true);
         const row = new MessageActionRow().addComponents(
             new MessageSelectMenu()
                 .setCustomId("select")
@@ -86,13 +87,18 @@ module.exports = {
                     {
                         emoji: "<:lmao:851030422719954946>",
                         label: "Image",
-                        description: "GEt List of Image Manipulation Commands",
+                        description: "Get List of Image Manipulation Commands",
                         value: "image",
                     },
                     {
                         label: "AutoMod",
                         value: "automod",
                         description: "Get List of AutoMod Commands",
+                    },
+                    {
+                        label: "Logs",
+                        value: "logs",
+                        description: "Get List of Logs Command",
                     },
                 ])
         );
@@ -286,6 +292,21 @@ module.exports = {
                     {
                         name: "Add",
                         value: "Add new Words in automod",
+                        inline: true,
+                    }
+                ),
+            logs: new MessageEmbed()
+                .setTitle("Logs")
+                .setColor("RANDOM")
+                .addFields(
+                    {
+                        name: "logs enable",
+                        value: "Enable Logs For Your Server",
+                        inline: true,
+                    },
+                    {
+                        name: "logs disable",
+                        value: "Disable Logs For Your Server",
                         inline: true,
                     }
                 ),
