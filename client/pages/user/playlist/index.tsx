@@ -58,6 +58,8 @@ function PlaylistIndex() {
                         color="info"
                         label="User Id"
                         placeholder="Enter UserId"
+                        variant="standard"
+                        focused={true}
                     />
                     <Button
                         variant="outlined"
