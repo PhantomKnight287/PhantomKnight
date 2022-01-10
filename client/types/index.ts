@@ -51,3 +51,13 @@ export type userData = {
     discriminator: string;
     username: string;
 };
+
+type song = {
+    artist: string;
+    duration: number;
+    id: string;
+    original_title: string;
+    publishedAt: string;
+    title: string;
+};
+export type Songs = song[];
