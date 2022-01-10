@@ -50,7 +50,7 @@ module.exports = {
             .setDescription(
                 `Manage Your Playlist by Clicking ${hyperlink(
                     "Here",
-                    "https://bot.phantomknight.tk"
+                    `https://bot.phantomknight.tk/user/playlist/${interaction.user.id}`
                 )}`
             );
         await interaction.editReply({

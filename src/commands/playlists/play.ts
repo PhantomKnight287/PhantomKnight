@@ -98,7 +98,7 @@ module.exports = {
                     .setDescription(
                         `To View Your Playlist Click ${hyperlink(
                             "Here",
-                            "https://bot.phantomknight.tk"
+                            `https://bot.phantomknight.tk/user/playlist/${interaction.user.id}`
                         )}`
                     );
                 await interaction.followUp({
