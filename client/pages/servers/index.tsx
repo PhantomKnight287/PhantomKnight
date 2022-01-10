@@ -12,22 +12,22 @@ function Guilds() {
     const { guilds, id } = useUserState();
     const router = useRouter();
     const handleClick = async (guildId: string) => {
-        // axios
-        //     .post(`${backendUrl}permission/${guildId}`, { userId: id })
-        //     .then((res) => {
-        //         if (res.data.showMessage) {
-        //             toast.success(res.data.message);
-        //         }
-        //         router.push(`${res.data.redirect}`);
-        //         // console.log(res.data);
-        //     })
-        //     .catch((error) => {
-        //         console.log(error.response.data);
-        //         if (error.response.data.showMessage) {
-        //             toast.error(error.response.data.message);
-        //         }
-        //         router.push(`${error.response.data.redirect}`);
-        //     });
+        axios
+            .post(`${backendUrl}permission/${guildId}`, { userId: id })
+            .then((res) => {
+                if (res.data.showMessage) {
+                    toast.success(res.data.message);
+                }
+                router.push(`${res.data.redirect}`);
+                // console.log(res.data);
+            })
+            .catch((error) => {
+                console.log(error.response.data);
+                if (error.response.data.showMessage) {
+                    toast.error(error.response.data.message);
+                }
+                router.push(`${error.response.data.redirect}`);
+            });
     };
     useEffect(() => {
         if (!id) {
