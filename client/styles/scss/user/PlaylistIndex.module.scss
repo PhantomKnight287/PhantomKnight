@@ -18,38 +18,39 @@
 }
 .bgContainer {
     @extend .flexBox;
-    background-image: url("/bg.png");
+    background-size: 100%;
     width: 100%;
     padding: 0.5rem;
-    max-width: 75vw;
+    width: 100%;
     border-radius: 9px;
+    @media only screen and (min-width: 400px) {
+        width: 75vw;
+    }
 }
 .card {
     @extend .flexBox;
+    background-image: url("/mattBg.jpg");
     background-color: rgba(10, 10, 10, 0.5);
     border-radius: 2rem;
     padding-left: 3rem;
     padding-right: 3rem;
     padding-top: 20px;
     padding-bottom: 20px;
-    backdrop-filter: blur(64px);
+    // backdrop-filter: blur(64px);
     width: 50vw;
     text-align: center;
     --tw-shadow-color: #6366f1;
-    box-shadow: 0 25px 50px -12px #6366f1;
+    box-shadow: 2px 25px 50px -40px #6366f1;
     color: white;
+    width: auto;
     & h3 {
         color: #6366f1 !important;
+    }
+    & input {
+        // outline: 2px solid #6366f1;
+        color: white;
     }
 }
 .button {
     margin-top: 2rem;
 }
- @media only screen and (max-width:400px){
-     .bgContainer{
-         width: 98vw;
-     }
-     .card{
-         width: auto;
-     }
- }
