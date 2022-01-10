@@ -7,17 +7,18 @@ import {
     checkServerPermissionRoute,
     deletePlaylistSongRoute,
     getPlaylistRoute,
+    searchSongRoute,
 } from "./routes";
 import cors from "cors";
 const app = express();
-app.use(cors());
+app.use(cors({ origin: "https://bot.phantomknight.tk/" }));
 app.use(express.json());
 const server = http.createServer(app);
 
 client; // reference to the client
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: "https://bot.phantomknight.tk",
     },
 });
 
@@ -29,6 +30,7 @@ app.get("/", async (_, res) => {
 app.use("/", getPlaylistRoute);
 app.use("/", deletePlaylistSongRoute);
 app.use("/", checkServerPermissionRoute);
+app.use("/", searchSongRoute);
 io.on("connection", (socket) => {
     socket.on(
         "routerQueryCode",
