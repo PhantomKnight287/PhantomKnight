@@ -110,27 +110,27 @@ function AddSong() {
                 </div>
                 <div className={styles.songsContainer}>
                     {songs ? (
-                        songs.map((song, index) => {
+                        songs.map((updatedSong, index) => {
                             return (
                                 <div
                                     key={index}
                                     className={styles.songContainer}
                                 >
                                     <Image
-                                        src={`https://i3.ytimg.com/vi/${song.id}/hqdefault.jpg`}
+                                        src={`https://i3.ytimg.com/vi/${updatedSong.id}/hqdefault.jpg`}
                                         alt="thumbnail"
                                         width={480}
                                         height={360}
                                         loading="lazy"
                                     />
-                                    <h4>{song.title}</h4>
+                                    <h4>{updatedSong.title}</h4>
                                     <div className={styles.buttonContainer}>
                                         <Button
                                             variant="outlined"
                                             onClick={() => {
                                                 addSong(
-                                                    song.title,
-                                                    `https://i3.ytimg.com/vi/${song.id}/hqdefault.jpg`
+                                                    updatedSong.title,
+                                                    `https://i3.ytimg.com/vi/${updatedSong.id}/hqdefault.jpg`
                                                 );
                                             }}
                                         >
