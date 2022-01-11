@@ -55,7 +55,7 @@
     "devDependencies": {
         "@types/node": "^17.0.8",
         "colors": "^1.4.0",
-        "dotenv": "^10.0.0",
+        "dotenv": "^11.0.0",
         "eslint": "^8.6.0",
         "nodemon": "^2.0.15",
         "prettier": "2.5.1",
