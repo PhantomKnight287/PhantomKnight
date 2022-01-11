@@ -11,7 +11,7 @@ import {
 } from "./routes";
 import cors from "cors";
 const app = express();
-app.use(cors({ origin: "https://bot.phantomknight.tk/" }));
+app.use(cors());
 app.use(express.json());
 const server = http.createServer(app);
 
