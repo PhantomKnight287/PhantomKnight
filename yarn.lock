@@ -2718,9 +2718,9 @@ youtube-sr@^4.1.9:
   version "4.1.11"
   resolved "https://registry.npmjs.org/youtube-sr/-/youtube-sr-4.1.11.tgz"
 
-ytdl-core@^4.9.1:
-  version "4.9.2"
-  resolved "https://registry.npmjs.org/ytdl-core/-/ytdl-core-4.9.2.tgz"
+ytdl-core@^4.10.0, ytdl-core@^4.9.1:
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/ytdl-core/-/ytdl-core-4.10.0.tgz#0835cb411677684539fac2bcc10553f6f58db3e1"
   dependencies:
     m3u8stream "^0.8.4"
     miniget "^4.0.0"
