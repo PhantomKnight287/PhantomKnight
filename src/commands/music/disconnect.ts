@@ -1,5 +1,5 @@
-import { CommandInteraction } from "discord.js";
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { CommandInteraction, MessageEmbed } from "discord.js";
+import { hyperlink, SlashCommandBuilder } from "@discordjs/builders";
 import { player } from "../..";
 module.exports = {
     command: new SlashCommandBuilder()
@@ -14,6 +14,18 @@ module.exports = {
             });
         }
         queue.destroy();
-        return interaction.editReply({ content: "🛑 | Stopped the player!" });
+        const embed = new MessageEmbed()
+            .setTimestamp()
+            .setTitle("Thank you for using the bot!")
+            .setDescription(
+                `The bot has been disconnected from the voice channel!
+                If You like our service, please consider giving us a star on ${hyperlink(
+                    "Github",
+                    "https://github.com/PhantomKnight287/PhantomKnight"
+                )}
+                `
+            )
+            .setColor("RANDOM");
+        return interaction.editReply({ embeds: [embed] });
     },
 };
