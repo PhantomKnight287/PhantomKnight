@@ -9,6 +9,7 @@ import {
     GuildMember,
     Message,
     Collection,
+    MessageEmbed,
 } from "discord.js"; // importing types
 import { AutoPoster } from "topgg-autoposter"; // autoposter to post topgg stats
 import { sendWelcomeMessage, autoMod, levelling, deleteEmojis } from "./events"; // events config
@@ -123,6 +124,15 @@ client.on("guildDelete", async (guild) => {
 });
 
 client.on("messageCreate", async (message: Message) => {
+    if (message.content.includes(`<@${client.user.id}>`)) {
+        const embed = new MessageEmbed()
+            .setColor("RANDOM")
+            .setTimestamp()
+            .setDescription(
+                "The Bot uses `Slash Commands` instead of `Message Commands`!\n To Use a command type `/` and wait for a menu to appear."
+            );
+        await message.channel.send({ embeds: [embed] });
+    }
     if (message.author.bot) return;
     await autoMod(message);
     await levelling(message);

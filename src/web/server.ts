@@ -18,7 +18,7 @@ const server = http.createServer(app);
 client; // reference to the client
 const io = new Server(server, {
     cors: {
-        origin: "https://bot.phantomknight.tk",
+        origin: "*",
     },
 });
 
