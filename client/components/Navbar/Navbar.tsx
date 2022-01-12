@@ -2,10 +2,13 @@ import Link from "next/link";
 import styles from "../../styles/components/Navbar.module.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Menu, MenuItem, Avatar } from "@mui/material";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { clientId, redirectUri } from "../../constants";
 import { useUserState, useUserStateDispatch } from "../../context";
+import { useRouter } from "next/router";
+import { useSocket } from "@hooks/useSocket";
+import { BackendUserData, userContext } from "types";
 
 const MenuButtons = dynamic(() => import("../dynamic/MenuButtons"), {
     loading: () => <div>Loading</div>,
@@ -15,6 +18,49 @@ export default function Navbar() {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const userState = useUserState();
     const dispatch = useUserStateDispatch();
+    const router = useRouter();
+    const socket = useSocket();
+    const user = useUserState();
+    const handleUserData = async () => {
+        socket.emit("routerQueryCode", {
+            code: router.query.code,
+            redirectUri,
+        });
+    };
+    useEffect(() => {
+        if (router.query.code && !user.id) {
+            handleUserData();
+        }
+        const refresh = localStorage.getItem("refresh");
+        if (refresh && !user.id) {
+            socket.emit("routerQueryCode", { token: refresh });
+        }
+        socket.on(
+            "userData",
+            (data: {
+                error: null | boolean;
+                userData: null | BackendUserData;
+            }) => {
+                if (!data.error) {
+                    if (data.userData) {
+                        const userDataPayload: userContext = {
+                            avatar: data.userData.avatar,
+                            username: data.userData.username,
+                            discriminator: data.userData.discriminator,
+                            email: data.userData.email,
+                            id: data.userData.id,
+                            guilds: data.userData.guilds,
+                        };
+                        localStorage.setItem("refresh", data.userData.refresh);
+                        dispatch({
+                            type: "SET_USER",
+                            payload: userDataPayload,
+                        });
+                    }
+                }
+            }
+        );
+    }, []);
     const open = Boolean(anchorEl);
     const handleClick = (
         event:
