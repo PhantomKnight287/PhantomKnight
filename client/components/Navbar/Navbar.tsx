@@ -28,7 +28,7 @@ export default function Navbar() {
         });
     };
     useEffect(() => {
-        if (router.query.code && !user.id) {
+        if (router.query.code) {
             handleUserData();
         }
         const refresh = localStorage.getItem("refresh");
@@ -155,7 +155,7 @@ export default function Navbar() {
                                 </MenuItem>
                                 <MenuItem onClick={handleClick}>
                                     <Link href="/servers">
-                                        <a style={{ color: "black" }}>Guilds</a>
+                                        <a style={{ color: "black" }}>Servers</a>
                                     </Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>

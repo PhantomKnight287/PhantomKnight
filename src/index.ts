@@ -4,6 +4,7 @@ import { Player } from "discord-player"; // player for discord-player
 import { vcCheck } from "./checks"; // checks for music based commands
 import { join } from "path"; // idk what this is for
 import { PhantomKnight } from "./construct"; // custom class to remove typescript errors
+import "reflect-metadata"; // for class decorators
 import {
     CommandInteraction,
     GuildMember,
@@ -18,6 +19,7 @@ import { prisma } from "./prisma"; // prisma config
 import { singleMessageDelete } from "./events";
 import { promisify } from "util";
 import { messageUpdateHandler } from "./events/messageUpdate";
+
 const wait = promisify(setTimeout);
 const MusicCommand: string[] = [
     "disconnect",
@@ -124,7 +126,7 @@ client.on("guildDelete", async (guild) => {
 });
 
 client.on("messageCreate", async (message: Message) => {
-    if (message.content.includes(`<@${client.user.id}>`)) {
+    if (message.content.includes(`<@!${client.user.id}>`)) {
         const embed = new MessageEmbed()
             .setColor("RANDOM")
             .setTimestamp()
@@ -177,7 +179,7 @@ client.on("messageUpdate", async (oldMessage, newMessage) => {
     if (!oldMessage.guildId) return;
     await messageUpdateHandler(oldMessage, newMessage);
 });
-
+const betcoin = "<:betcoin:896012051946803251>";
 client.login(process.env.token as string);
 
-export { player, client };
+export { player, client, betcoin };

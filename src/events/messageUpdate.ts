@@ -26,12 +26,20 @@ export const messageUpdateHandler = async (
         .addFields(
             {
                 name: "Before",
-                value: `${oldMessage.content}`,
+                value: `${
+                    oldMessage.content
+                        ? oldMessage.content
+                        : "Unable to get content"
+                }`,
                 inline: false,
             },
             {
                 name: "After",
-                value: `${newMessage.content}`,
+                value: `${
+                    newMessage.content
+                        ? newMessage.content
+                        : "Unable to get content"
+                }`,
                 inline: false,
             }
         )

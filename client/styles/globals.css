@@ -21,6 +21,18 @@ a {
 * {
     box-sizing: border-box;
 }
-input[type=number] {
+input[type="number"] {
     -moz-appearance: textfield;
-  }
+}
+
+#nprogress .bar {
+    background: linear-gradient(
+        to right,
+        #12c2e9,
+        #c779d0,
+        #4bc0c8,
+        #12c2e9,
+        #c471ed,
+        #f64f59
+    ) !important;
+}

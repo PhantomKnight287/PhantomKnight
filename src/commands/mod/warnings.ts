@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder, time } from "@discordjs/builders";
 import { CommandInteraction, MessageEmbed } from "discord.js";
 import { prisma } from "../../prisma";
 type param = {
@@ -24,7 +24,7 @@ module.exports = {
                 .setRequired(false);
         }),
     async run(interaction: CommandInteraction) {
-        await interaction.deferReply({ ephemeral: true });
+        await interaction.deferReply();
         const user = interaction.options.getUser("user");
         const pageStart = interaction.options.getInteger("page")
             ? interaction.options.getInteger("page")
@@ -44,10 +44,13 @@ module.exports = {
         const warnings = guildRecord.warnings
             .slice(pageStart, pageEnd)
             .map((m: param) => {
-                console.log(m);
                 if (m.warnedUser === `${user.username}#${user.discriminator}`) {
                     return `**${m.moderator} warned ${m.warnedUser} ${
-                        m.reason && `\n Reason: ${m.reason} **`
+                        m.reason &&
+                        `\n Reason: ${m.reason} \n Timestamp: ${time(
+                            Math.round(Number(m.timestamp) / 1000),
+                            "R"
+                        )}**`
                     }`;
                 }
             });

@@ -63,7 +63,7 @@ export default function MenuButtons() {
                         </MenuItem>
                         <MenuItem onClick={handleClose}>
                             <Link href="/servers">
-                                <a style={{ color: "black" }}>Guilds</a>
+                                <a style={{ color: "black" }}>Servers</a>
                             </Link>
                         </MenuItem>
                         <MenuItem onClick={handleClose}>

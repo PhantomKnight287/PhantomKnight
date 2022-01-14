@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/pages/Home.module.css";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 const Images = [
     {
         width: 704,
@@ -42,9 +42,58 @@ const Images = [
 ];
 
 import dynamic from "next/dynamic";
+import { BackendUserData, userContext } from "types";
+import { useUserState, useUserStateDispatch } from "@context/userContext";
+import { useRouter } from "next/router";
+import { useSocket } from "@hooks/useSocket";
+import { redirectUri } from "@constants/index";
 const Footer = dynamic(() => import("../components/footer/Footer"));
 
 const Home: NextPage = () => {
+    const dispatch = useUserStateDispatch();
+    const router = useRouter();
+    const socket = useSocket();
+    const user = useUserState();
+    const handleUserData = async () => {
+        socket.emit("routerQueryCode", {
+            code: router.query.code,
+            redirectUri,
+        });
+    };
+    useEffect(() => {
+        if (router.query.code) {
+            handleUserData();
+        }
+        const refresh = localStorage.getItem("refresh");
+        if (refresh && !user.id) {
+            socket.emit("routerQueryCode", { token: refresh });
+        }
+        socket.on(
+            "userData",
+            (data: {
+                error: null | boolean;
+                userData: null | BackendUserData;
+            }) => {
+                if (!data.error) {
+                    if (data.userData) {
+                        const userDataPayload: userContext = {
+                            avatar: data.userData.avatar,
+                            username: data.userData.username,
+                            discriminator: data.userData.discriminator,
+                            email: data.userData.email,
+                            id: data.userData.id,
+                            guilds: data.userData.guilds,
+                        };
+                        localStorage.setItem("refresh", data.userData.refresh);
+                        dispatch({
+                            type: "SET_USER",
+                            payload: userDataPayload,
+                        });
+                    }
+                }
+            }
+        );
+    }, [router.isReady]);
     return (
         <div>
             <Head>
