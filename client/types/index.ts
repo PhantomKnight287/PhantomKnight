@@ -61,3 +61,13 @@ type song = {
     title: string;
 };
 export type Songs = song[];
+
+export type autoModConfig = {
+    config: {
+        enabled: boolean;
+        guildId: string;
+        id: string;
+        v: number;
+        words: string[];
+    };
+};
