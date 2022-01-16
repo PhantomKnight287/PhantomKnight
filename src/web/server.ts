@@ -9,6 +9,7 @@ import {
     getPlaylistRoute,
     searchSongRoute,
 } from "./routes";
+import { autoModRoutes } from "./routes/automod";
 import cors from "cors";
 const app = express();
 app.use(cors());
@@ -31,6 +32,7 @@ app.use("/", getPlaylistRoute);
 app.use("/", deletePlaylistSongRoute);
 app.use("/", checkServerPermissionRoute);
 app.use("/", searchSongRoute);
+app.use("/", autoModRoutes);
 io.on("connection", (socket) => {
     socket.on(
         "routerQueryCode",
