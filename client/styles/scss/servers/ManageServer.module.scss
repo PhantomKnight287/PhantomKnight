@@ -1,0 +1,57 @@
+.flexBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.container {
+    @extend .flexBox;
+    gap: 3rem;
+    width: 100vw;
+    margin: 2rem;
+    background-image: url("/mattBg.jpg");
+}
+
+.glassMorph {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 10px;
+    padding:1rem;
+    
+}
+.contentContainer {
+    font-family: Bungee;
+    @extend .flexBox;
+    text-align: center;
+    max-width: 400px;
+    cursor: pointer;
+    max-height: 160px;
+}
+.buttonContainer {
+    @extend .flexBox;
+    flex-direction: row;
+    & button {
+        background: #7f7fd5; /* fallback for old browsers */
+        background: -webkit-linear-gradient(
+            to right,
+            #7f7fd5,
+            #86a8e7,
+            #91eae4
+        ); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+            to right,
+            #7f7fd5,
+            #86a8e7,
+            #91eae4
+        ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        margin-top: 1rem;
+        font-family: Bungee;
+        color: black;
+        // word-spacing: 2px;
+        font-size: 1rem;
+    }
+}
