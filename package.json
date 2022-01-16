@@ -45,13 +45,11 @@
         "flatted": "^3.2.4",
         "jimp": "^0.16.1",
         "libsodium-wrappers": "^0.7.9",
-        "mysql": "^2.18.1",
         "opusscript": "^0.0.8",
         "pretty-ms": "^7.0.1",
         "reflect-metadata": "^0.1.13",
         "socket.io": "^4.4.1",
         "topgg-autoposter": "^2.0.1",
-        "typeorm": "^0.2.41",
         "usetube": "^2.1.4",
         "ytdl-core": "^4.10.0"
     },
