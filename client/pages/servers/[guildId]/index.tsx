@@ -10,9 +10,8 @@ function ManageServerOption() {
     const [currentGuild, setCurrentGuild] = useState<guild>({} as guild);
     useEffect(() => {
         if (!guilds) {
-            // router.push("/servers");
+            router.push("/servers");
         }
-        console.log(router.query);
         guilds?.forEach((eachguild: guild) => {
             if (eachguild.id == router.query.guildId) {
                 setCurrentGuild(eachguild);
@@ -36,8 +35,8 @@ function ManageServerOption() {
                     }}
                 >
                     <div className={styles.glassMorph}>
-                        <h3>AutoMod</h3>
-                        <p>Manage AutoMod For Your Server</p>
+                        <h3>Moderation</h3>
+                        <p>Moderation Settings For Your Server</p>
                     </div>
                 </div>
                 <div className={styles.contentContainer}>
