@@ -36,3 +36,7 @@ input[type="number"] {
         #f64f59
     ) !important;
 }
+
+.MuiSwitch-track {
+    background-color: #ffffff !important;
+}
