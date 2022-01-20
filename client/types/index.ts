@@ -63,11 +63,9 @@ type song = {
 export type Songs = song[];
 
 export type autoModConfig = {
-    config: {
-        enabled: boolean;
-        guildId: string;
-        id: string;
-        v: number;
-        words: string[];
-    };
+    enabled: boolean;
+    guildId: string;
+    id: string;
+    v: number;
+    words: string[];
 };
