@@ -840,7 +840,7 @@ canvacord@^5.2.3:
     moment "^2.29.1"
     moment-duration-format "^2.3.2"
 
-canvas@^2.2.0, canvas@^2.6.1, canvas@^2.8.0:
+canvas@^2.2.0, canvas@^2.6.1, canvas@^2.8.0, canvas@^2.9.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/canvas/-/canvas-2.9.0.tgz#7df0400b141a7e42e597824f377935ba96880f2a"
   integrity sha512-0l93g7uxp7rMyr7H+XRQ28A3ud0dKIUTIEkUe1Dxh4rjUYN7B93+SjC3r1PDKA18xcQN87OFGgUnyw7LSgNLSQ==
