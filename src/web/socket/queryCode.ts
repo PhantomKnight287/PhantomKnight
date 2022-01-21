@@ -24,8 +24,6 @@ export async function queryCode(
                     },
                 }
             );
-
-            console.log(data);
             const { data: userData } = await axios.get(
                 "http://discordapp.com/api/users/@me",
                 {
@@ -65,7 +63,6 @@ export async function queryCode(
             socket.emit("userData", { userData, error: null });
         } catch (error) {
             socket.emit("userData", { userData: null, error: true });
-            console.log(error.response);
         }
     } else if (args.token) {
         const params = new URLSearchParams();
@@ -83,7 +80,6 @@ export async function queryCode(
                     },
                 }
             );
-            console.log(data);
             const { data: userData } = await axios.get(
                 "http://discordapp.com/api/users/@me",
                 {
@@ -123,7 +119,6 @@ export async function queryCode(
             socket.emit("userData", { userData, error: null });
         } catch (error) {
             socket.emit("userData", { userData: null, error: true });
-            console.log(error.response);
         }
     }
 }

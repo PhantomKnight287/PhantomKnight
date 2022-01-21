@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useUserState } from "@context/userContext";
 import { guild } from "types";
+import { toast, ToastContainer } from "react-toastify";
 function ManageServerOption() {
     const router = useRouter();
     const { guilds } = useUserState();
@@ -27,6 +28,7 @@ function ManageServerOption() {
                         : "Configure Server's Settings"}
                 </title>
             </Head>
+            <ToastContainer pauseOnFocusLoss={false} pauseOnHover={false} />
             <div className={styles.container}>
                 <div
                     className={styles.contentContainer}
@@ -39,7 +41,12 @@ function ManageServerOption() {
                         <p>Moderation Settings For Your Server</p>
                     </div>
                 </div>
-                <div className={styles.contentContainer}>
+                <div
+                    className={styles.contentContainer}
+                    onClick={() => {
+                        toast.info("This Page is Under construction!");
+                    }}
+                >
                     <div className={styles.glassMorph}>
                         <h3>Welcome</h3>
                         <p>Manage Welcome Config For Your Server</p>
