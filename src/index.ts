@@ -19,7 +19,6 @@ import { prisma } from "./prisma"; // prisma config
 import { singleMessageDelete } from "./events";
 import { promisify } from "util";
 import { messageUpdateHandler } from "./events/messageUpdate";
-
 const wait = promisify(setTimeout);
 const MusicCommand: string[] = [
     "disconnect",
@@ -31,6 +30,14 @@ const MusicCommand: string[] = [
     "seek",
     "skip",
     "play-playlist",
+];
+const economyCommands = [
+    "balance",
+    "deposit",
+    "give",
+    "rob",
+    "withdraw",
+    "work",
 ];
 const client = new PhantomKnight();
 if (process.env.topggtoken) {
@@ -65,7 +72,7 @@ player.on("connectionError", (_, error) => {
     console.log(error);
 });
 
-registerSlashCommands(commands, true);
+registerSlashCommands(commands, false);
 client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}! at ${new Date()}`);
     client.user.setPresence({
@@ -82,6 +89,11 @@ client.on("interactionCreate", async (interaction: CommandInteraction) => {
         return void (await interaction.reply({
             content: "You can't use these commands in DM's!",
         }));
+    if (economyCommands.includes(interaction.commandName)) {
+        return void (await interaction.reply({
+            content: "These Commands Are Deprecated!",
+        }));
+    }
     if (MusicCommand.includes(interaction.commandName)) {
         const { checkFailed, message } = vcCheck(interaction);
         if (checkFailed) {

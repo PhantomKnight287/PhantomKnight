@@ -6,6 +6,7 @@
 }
 .container {
     @extend .flexBox;
+    text-align: center;
     & h1 {
         color: transparent;
         background-image: linear-gradient(to right, #338cf5, #4fd1c5);

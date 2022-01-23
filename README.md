@@ -1,8 +1,6 @@
 <div align="center" >
 
-# Welcome to PhantomKnight Discord bot's repo
-
-![pp](https://cultofthepartyparrot.com/parrots/hd/laptop_parrot.gif)
+# PhantomKnight - A Discord Bot
 
 [![GNU Licence](https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 

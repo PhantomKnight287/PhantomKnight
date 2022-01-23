@@ -41,17 +41,6 @@ function ManageServerOption() {
                         <p>Moderation Settings For Your Server</p>
                     </div>
                 </div>
-                <div
-                    className={styles.contentContainer}
-                    onClick={() => {
-                        toast.info("This Page is Under construction!");
-                    }}
-                >
-                    <div className={styles.glassMorph}>
-                        <h3>Welcome</h3>
-                        <p>Manage Welcome Config For Your Server</p>
-                    </div>
-                </div>
             </div>
         </div>
     );

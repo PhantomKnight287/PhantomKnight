@@ -31,15 +31,6 @@ model playlists {
   userId   String @unique
 }
 
-model users {
-  id            String @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  userId        String @unique
-  walletBalance BigInt
-  bankBalance   BigInt
-  inventory     Json[]
-  lastWorked    BigInt
-}
-
 model welcomers {
   id              String  @id @default(dbgenerated()) @map("_id") @db.ObjectId
   v               Int     @default(0) @map("__v")

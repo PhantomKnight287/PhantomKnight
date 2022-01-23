@@ -69,3 +69,17 @@ export type autoModConfig = {
     v: number;
     words: string[];
 };
+
+export type welcomeConfig = {
+    enabled: boolean;
+    config:
+        | undefined
+        | {
+              channelId: string;
+              enabled: boolean;
+              guildId: string;
+              id: string;
+              v: number;
+              welcomerMessage: string;
+          };
+};
