@@ -11,6 +11,7 @@ import {
     Message,
     Collection,
     MessageEmbed,
+    ActivitiesOptions,
 } from "discord.js"; // importing types
 import { AutoPoster } from "topgg-autoposter"; // autoposter to post topgg stats
 import { sendWelcomeMessage, autoMod, levelling, deleteEmojis } from "./events"; // events config
@@ -75,13 +76,33 @@ player.on("connectionError", (_, error) => {
 registerSlashCommands(commands, false);
 client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}! at ${new Date()}`);
-    client.user.setPresence({
-        activities: [
-            {
-                name: "Made By 'PHANTOM KNIGHT#9254'",
-            },
-        ],
-    });
+    const activities:ActivitiesOptions[] = [
+        {
+            name: "Screams of Developers",
+            type: "WATCHING",
+        },
+        {
+            name: "Made By 'PHANTOM KNIGHT#9254'",
+            type: "LISTENING",
+        },
+        {
+            name: "Living in the shadow of the sun",
+            type: "PLAYING",
+        },
+        {
+            name: "Living Alone in an EC2",
+            type: "PLAYING",
+        },
+    ];
+    setInterval(() => {
+        client.user.setPresence({
+            activities: [
+                activities[Math.floor(Math.random() * activities.length)],
+            ],
+            status: "online",
+            afk: true,
+        });
+    }, 60000);
 });
 
 client.on("interactionCreate", async (interaction: CommandInteraction) => {

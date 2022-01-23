@@ -3,21 +3,6 @@ import { Message } from "discord.js";
 
 export async function levelling(message: Message) {
     try {
-        const user = await prisma.users.findFirst({
-            where: {
-                userId: message.author.id,
-            },
-        });
-        if (!user) {
-            await prisma.users.create({
-                data: {
-                    userId: message.author.id,
-                    lastWorked: new Date().getTime() - 3600000,
-                    bankBalance: 1000,
-                    walletBalance: 1000,
-                },
-            });
-        }
         const levelingUser = await prisma.leveling.findFirst({
             where: {
                 userId: message.author.id,
