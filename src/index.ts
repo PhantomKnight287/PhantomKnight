@@ -20,6 +20,7 @@ import { prisma } from "./prisma"; // prisma config
 import { singleMessageDelete } from "./events";
 import { promisify } from "util";
 import { messageUpdateHandler } from "./events/messageUpdate";
+import { hyperlink } from "@discordjs/builders";
 const wait = promisify(setTimeout);
 const MusicCommand: string[] = [
     "disconnect",
@@ -76,10 +77,10 @@ player.on("connectionError", (_, error) => {
 registerSlashCommands(commands, false);
 client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}! at ${new Date()}`);
-    const activities:ActivitiesOptions[] = [
+    const activities: ActivitiesOptions[] = [
         {
             name: "Screams of Developers",
-            type: "WATCHING",
+            type: "LISTENING",
         },
         {
             name: "Made By 'PHANTOM KNIGHT#9254'",
@@ -93,6 +94,18 @@ client.on("ready", async () => {
             name: "Living Alone in an EC2",
             type: "PLAYING",
         },
+        {
+            name: "Not as Easy as You Think",
+            type: "PLAYING",
+        },
+        {
+            name: `${client.users.cache.size} Members`,
+            type: "WATCHING",
+        },
+        {
+            name: `${client.guilds.cache.size} Servers`,
+            type: "WATCHING",
+        },
     ];
     setInterval(() => {
         client.user.setPresence({
@@ -102,7 +115,7 @@ client.on("ready", async () => {
             status: "online",
             afk: true,
         });
-    }, 60000);
+    }, 10000);
 });
 
 client.on("interactionCreate", async (interaction: CommandInteraction) => {
@@ -165,6 +178,20 @@ client.on("messageCreate", async (message: Message) => {
             .setTimestamp()
             .setDescription(
                 "The Bot uses `Slash Commands` instead of `Message Commands`!\n To Use a command type `/` and wait for a menu to appear."
+            )
+            .addField(
+                "Commands Not Showing?",
+                `This can happen because our Bot needs \`applications.commands\` scope. To Add The scope click ${hyperlink(
+                    "here",
+                    `https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=-9&scope=bot%20applications.commands`
+                )}`
+            )
+            .addField(
+                "Commands Not Working?",
+                `Create an Issue on ${hyperlink(
+                    "Github",
+                    "https://github.com/PhantomKnight287/PhantomKnight"
+                )}`
             );
         await message.channel.send({ embeds: [embed] });
     }
