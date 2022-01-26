@@ -15,7 +15,10 @@ import Image from "next/image";
 import axios, { AxiosError } from "axios";
 import { backendUrl } from "constants/index";
 import { useRouter } from "next/router";
-import { welcomeConfig, welcomeConfigurationState } from "types";
+import {
+    welcomeConfig as welcomeConfigType,
+    welcomeConfigurationState,
+} from "types";
 import { Picker } from "emoji-mart";
 import { BsEmojiLaughingFill } from "react-icons/bs";
 export default function Welcome() {
@@ -48,7 +51,7 @@ export default function Welcome() {
             .get(`${backendUrl}welcome/${router.query.guildId}`)
             .then((res) => {
                 console.log(res.data);
-                const data: welcomeConfig = res.data;
+                const data: welcomeConfigType = res.data;
                 setEnabled(data.enabled);
                 if (data.config != undefined) {
                     setWelcomeConfig(data.config);
@@ -145,9 +148,9 @@ export default function Welcome() {
                                 </h1>
                                 <span style={{ paddingBottom: "1rem" }}>
                                     <kbd>|guild|</kbd> will be replaced by your
-                                    server's name <br />
+                                    server&apos;s name <br />
                                     <kbd>|user|</kbd> will be replace by
-                                    username of new user. <br/>
+                                    username of new user. <br />
                                     These <code>|</code> are mandatory
                                 </span>
                                 <div className={styles.inputBoxContainer}>
