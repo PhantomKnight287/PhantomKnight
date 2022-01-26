@@ -83,3 +83,13 @@ export type welcomeConfig = {
               welcomerMessage: string;
           };
 };
+export type welcomeConfigurationState =
+    | undefined
+    | {
+          channelId: string;
+          enabled: boolean;
+          guildId: string;
+          id: string;
+          v: number;
+          welcomerMessage: string;
+      };
