@@ -1,1 +1,1 @@
-export * from "./messageDeleteHandler"
+export * from "./messageDeleteHandler";

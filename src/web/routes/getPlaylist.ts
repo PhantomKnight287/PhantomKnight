@@ -15,7 +15,7 @@ router.get("/playlist/:id", async (req, res) => {
         return res.status(200).send({
             songs: null,
             message: "You've not added any songs to your playlist yet!",
-            user
+            user,
         });
     }
 });

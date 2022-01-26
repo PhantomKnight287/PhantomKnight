@@ -8,7 +8,7 @@ import {
     deletePlaylistSongRoute,
     getPlaylistRoute,
     searchSongRoute,
-    welcomeMessageRoute
+    welcomeMessageRoute,
 } from "./routes";
 import { autoModRoutes } from "./routes/automod";
 import cors from "cors";
@@ -34,7 +34,7 @@ app.use("/", deletePlaylistSongRoute);
 app.use("/", checkServerPermissionRoute);
 app.use("/", searchSongRoute);
 app.use("/", autoModRoutes);
-app.use("/",welcomeMessageRoute)
+app.use("/", welcomeMessageRoute);
 io.on("connection", (socket) => {
     socket.on(
         "routerQueryCode",
