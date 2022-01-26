@@ -1,4 +1,4 @@
-import styles from "../../styles/components/Footer.module.css";
+import styles from "../../styles/components/Footer.module.scss";
 import { SiNextdotjs } from "react-icons/si";
 export default function Footer() {
     return (

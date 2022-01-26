@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "../../styles/components/Navbar.module.css";
+import styles from "../../styles/components/Navbar.module.scss";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Menu, MenuItem, Avatar } from "@mui/material";
 import { MouseEvent, useEffect, useState } from "react";
