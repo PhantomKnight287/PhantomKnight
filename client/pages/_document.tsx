@@ -18,11 +18,11 @@ class MyDocument extends Document {
                 <Head>
                     <link
                         rel="icon"
-                        href="https://cdn.discordapp.com/app-icons/838686966387965992/7dacaad77a7dc8083aee518157daa567.png?size=256"
+                        href="https://cdn.discordapp.com/app-icons/838686966387965992/9666e404884a8e155df5e72cf6d3f491.png?size=256"
                     />
                     <meta
                         property="og:image"
-                        content="https://cdn.discordapp.com/app-icons/838686966387965992/7dacaad77a7dc8083aee518157daa567.png?size=256"
+                        content="https://cdn.discordapp.com/app-icons/838686966387965992/9666e404884a8e155df5e72cf6d3f491.png?size=256"
                     />
                 </Head>
                 <body>
