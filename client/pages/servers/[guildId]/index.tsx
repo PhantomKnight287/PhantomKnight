@@ -5,6 +5,18 @@ import { useEffect, useState } from "react";
 import { useUserState } from "@context/userContext";
 import { guild } from "types";
 import { toast, ToastContainer } from "react-toastify";
+const routes = [
+    {
+        href: "/automod",
+        name: "Moderation",
+        desc: "Moderation Settings For Your Server",
+    },
+    {
+        href: "/welcome",
+        name: "Welcome",
+        desc: "Welcome Message Settings For Your Server",
+    },
+];
 function ManageServerOption() {
     const router = useRouter();
     const { guilds } = useUserState();
@@ -30,17 +42,26 @@ function ManageServerOption() {
             </Head>
             <ToastContainer pauseOnFocusLoss={false} pauseOnHover={false} />
             <div className={styles.container}>
-                <div
-                    className={styles.contentContainer}
-                    onClick={() => {
-                        router.push(`${router.asPath}/automod`);
-                    }}
-                >
-                    <div className={styles.glassMorph}>
-                        <h3>Moderation</h3>
-                        <p>Moderation Settings For Your Server</p>
-                    </div>
-                </div>
+                {routes
+                    ? routes.map((route, index) => {
+                          return (
+                              <div
+                                  key={index}
+                                  className={styles.contentContainer}
+                                  onClick={() => {
+                                      router.push(
+                                          `${router.asPath}${route.href}`
+                                      );
+                                  }}
+                              >
+                                  <div className={styles.glassMorph}>
+                                      <h3>{route.name}</h3>
+                                      <p> {route.desc} </p>
+                                  </div>
+                              </div>
+                          );
+                      })
+                    : null}
             </div>
         </div>
     );

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MouseEvent, useState } from "react";
 import { clientId, redirectUri } from "../../constants";
 import { useUserState, useUserStateDispatch } from "../../context";
-import styles from "../../styles/components/Navbar.module.css";
+import styles from "../../styles/components/Navbar.module.scss";
 
 export default function MenuButtons() {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

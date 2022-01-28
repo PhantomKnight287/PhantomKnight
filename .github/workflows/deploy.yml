@@ -26,13 +26,3 @@ jobs:
               run: docker build -t $REPO:latest -t $REPO:${GITHUB_SHA::8} .
             - name: Publish Docker image
               run: docker push $REPO
-    redeploy:
-        name: Redeploy Webhook
-        runs-on: ubuntu-latest
-        needs: [docker]
-        steps:
-            - name: Redeploy Docker Container Webhook Call
-              uses: joelwmale/webhook-action@master
-              env:
-                  WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-                  data: "{ 'redeploy': 'true' }"

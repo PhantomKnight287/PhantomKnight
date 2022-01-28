@@ -20,7 +20,7 @@ module.exports = {
                 content: "❌ | No music is being played!",
             });
         }
-        const trackIndex = interaction.options.getInteger("songs") -1;
+        const trackIndex = interaction.options.getInteger("songs") - 1;
         const trackName = queue.tracks[trackIndex].title;
         queue.jump(trackIndex);
         await interaction.editReply({ content: `✅ | Jumped to ${trackName}` });

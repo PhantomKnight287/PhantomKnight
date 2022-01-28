@@ -9,7 +9,10 @@ export const messageUpdateHandler = async (
     if (
         newMessage.author.id === client.user.id ||
         !newMessage.content ||
-        oldMessage.content === newMessage.content
+        oldMessage.content === newMessage.content ||
+        !oldMessage.content ||
+        newMessage.embeds.length > 0 ||
+        oldMessage.embeds.length > 0
     )
         return;
 

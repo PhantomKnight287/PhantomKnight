@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "../../styles/components/Navbar.module.css";
+import styles from "../../styles/components/Navbar.module.scss";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Menu, MenuItem, Avatar } from "@mui/material";
 import { MouseEvent, useEffect, useState } from "react";
@@ -78,7 +78,7 @@ export default function Navbar() {
         <nav className={styles.navigationContainer}>
             <div className={styles.logo}>
                 <Avatar
-                    src="https://cdn.discordapp.com/app-icons/838686966387965992/7dacaad77a7dc8083aee518157daa567.png?size=256"
+                    src="https://cdn.discordapp.com/app-icons/838686966387965992/9666e404884a8e155df5e72cf6d3f491.png?size=256"
                     sx={{ width: 60, height: 60 }}
                 />
                 <div className={styles.logoTextContainer}>
@@ -155,7 +155,9 @@ export default function Navbar() {
                                 </MenuItem>
                                 <MenuItem onClick={handleClick}>
                                     <Link href="/servers">
-                                        <a style={{ color: "black" }}>Servers</a>
+                                        <a style={{ color: "black" }}>
+                                            Servers
+                                        </a>
                                     </Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>

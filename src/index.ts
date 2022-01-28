@@ -12,6 +12,8 @@ import {
     Collection,
     MessageEmbed,
     ActivitiesOptions,
+    MessageActionRow,
+    MessageButton,
 } from "discord.js"; // importing types
 import { AutoPoster } from "topgg-autoposter"; // autoposter to post topgg stats
 import { sendWelcomeMessage, autoMod, levelling, deleteEmojis } from "./events"; // events config
@@ -20,7 +22,6 @@ import { prisma } from "./prisma"; // prisma config
 import { singleMessageDelete } from "./events";
 import { promisify } from "util";
 import { messageUpdateHandler } from "./events/messageUpdate";
-import { hyperlink } from "@discordjs/builders";
 const wait = promisify(setTimeout);
 const MusicCommand: string[] = [
     "disconnect",
@@ -173,27 +174,25 @@ client.on("guildDelete", async (guild) => {
 
 client.on("messageCreate", async (message: Message) => {
     if (message.content.includes(`<@!${client.user.id}>`)) {
+        const row = new MessageActionRow().addComponents(
+            new MessageButton()
+                .setStyle("LINK")
+                .setURL(
+                    `https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=-9&scope=bot%20applications.commands`
+                )
+                .setLabel("Invite Me"),
+            new MessageButton()
+                .setStyle("LINK")
+                .setLabel("Github")
+                .setURL("https://github.com/PhantomKnight287/PhantomKnight")
+        );
         const embed = new MessageEmbed()
             .setColor("RANDOM")
             .setTimestamp()
             .setDescription(
                 "The Bot uses `Slash Commands` instead of `Message Commands`!\n To Use a command type `/` and wait for a menu to appear."
-            )
-            .addField(
-                "Commands Not Showing?",
-                `This can happen because our Bot needs \`applications.commands\` scope. To Add The scope click ${hyperlink(
-                    "here",
-                    `https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=-9&scope=bot%20applications.commands`
-                )}`
-            )
-            .addField(
-                "Commands Not Working?",
-                `Create an Issue on ${hyperlink(
-                    "Github",
-                    "https://github.com/PhantomKnight287/PhantomKnight"
-                )}`
             );
-        await message.channel.send({ embeds: [embed] });
+        await message.channel.send({ embeds: [embed], components: [row] });
     }
     if (message.author.bot) return;
     await autoMod(message);
