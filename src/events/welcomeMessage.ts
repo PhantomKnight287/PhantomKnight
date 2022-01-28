@@ -1,6 +1,6 @@
 import { GuildMember, MessageAttachment, TextChannel } from "discord.js";
 import type { Client } from "discord.js";
-import Canvas from "canvas";
+import Canvas from "discord-canvas";
 import { prisma } from "../prisma";
 export async function sendWelcomeMessage(
     newJoinedMember: GuildMember,
@@ -14,37 +14,31 @@ export async function sendWelcomeMessage(
     if (!isGuildPresent || isGuildPresent.enabled !== true) {
         return;
     }
-    const canvas = Canvas.createCanvas(700, 250);
-    const context = canvas.getContext("2d");
+    const canvas = await new Canvas.Welcome();
+    const image = await canvas
+        .setUsername(`${newJoinedMember.user.username}`)
+        .setDiscriminator(`${newJoinedMember.user.discriminator}`)
+        .setMemberCount(`${newJoinedMember.guild.memberCount}`)
+        .setGuildName(`${newJoinedMember.guild.name}`)
+        .setAvatar(
+            `${newJoinedMember.user.displayAvatarURL({ format: "png" })}`
+        )
+        .setColor("border", "#8015EA")
+        .setColor("username-box", "#8015EA")
+        .setColor("discriminator-box", "#8015EA")
+        .setColor("message-box", "#8015EA")
+        .setColor("title", "#8015EA")
+        .setColor("avatar", "#8015EA")
+        .toAttachment();
 
-    const background = await Canvas.loadImage(
-        "https://discordjs.guide/assets/canvas-preview.30c4fe9e.png"
+    const attachment = new MessageAttachment(
+        image.toBuffer(),
+        "welcomeMessage.png"
     );
-    context.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-    context.strokeStyle = "#0099ff";
-    context.strokeRect(0, 0, canvas.width, canvas.height);
-
-    context.font = "35px sans-serif";
-    context.fillStyle = "#ffffff";
     const messageContent = isGuildPresent.welcomerMessage
         .replace("|user|", `<@${newJoinedMember.user.id}>`)
         .replace("|guild|", `${newJoinedMember.guild.name}`);
 
-    const avatar = await Canvas.loadImage(
-        newJoinedMember.displayAvatarURL({ format: "jpg" })
-    );
-    context.drawImage(avatar, canvas.width / 2 - avatar.width / 2, 25);
-    const text = `${newJoinedMember.user.username} Just Joined The Server`;
-    context.fillText(
-        text,
-        canvas.width / 2 - context.measureText(text).width / 2,
-        60 + avatar.height
-    );
-    const attachment = new MessageAttachment(
-        canvas.toBuffer(),
-        "welcomeMessage.png"
-    );
     client.channels.fetch(`${isGuildPresent.channelId}`).then((channel) => {
         (channel as TextChannel)
             .send({

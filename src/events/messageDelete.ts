@@ -5,7 +5,12 @@ import { client } from "..";
 export const singleMessageDelete = async (
     message: Message<boolean> | PartialMessage
 ) => {
-    if (message.author.id === client.user.id || !message.content) return;
+    if (
+        message.author.id === client.user.id ||
+        !message.content ||
+        message.embeds.length > 0
+    )
+        return;
     const { embed, enabled, channel } = await messageHandler(message);
     if (!enabled) {
         return null;
