@@ -1,6 +1,6 @@
 import { prisma } from "../../prisma";
 import { Router } from "express";
-
+import { client } from "../..";
 const router = Router();
 
 router.get("/welcome/:id", async (req, res) => {
@@ -35,12 +35,20 @@ router.post("/welcome/disable/:id", async (req, res) => {
 });
 
 router.post("/welcome/enable/:id", async (req, res) => {
+    const welcomeConfig = await prisma.welcomers.findFirst({
+        where: {
+            guildId: req.params.id,
+        },
+    });
     await prisma.welcomers.update({
         where: {
             guildId: req.params.id,
         },
         data: {
             enabled: true,
+            welcomerMessage: welcomeConfig.welcomerMessage
+                ? welcomeConfig.welcomerMessage
+                : "Welcome |user|",
         },
     });
     return res
@@ -62,6 +70,19 @@ router.post("/welcome/update/:id", async (req, res) => {
     return res
         .status(200)
         .send({ message: "Updated Welcome Message For Your Server." });
+});
+
+router.get("/welcome/channels/:id", async (req, res) => {
+    const guild = client.guilds.cache.get(req.params.id);
+    if (!guild) {
+        return res
+            .status(200)
+            .send({ message: "It Looks the bot isn't in the server" });
+    }
+    const channels = guild.channels.cache.filter(
+        (channel) => channel.type == "GUILD_TEXT"
+    );
+    return res.status(200).send({ channels });
 });
 
 export { router as welcomeMessageRoute };
