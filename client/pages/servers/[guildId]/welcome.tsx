@@ -18,6 +18,7 @@ import { useRouter } from "next/router";
 import {
     welcomeConfig as welcomeConfigType,
     welcomeConfigurationState,
+    channels as channelsType,
 } from "types";
 import { Picker } from "emoji-mart";
 import { BsEmojiLaughingFill } from "react-icons/bs";
@@ -28,7 +29,62 @@ export default function Welcome() {
         useState<welcomeConfigurationState>({} as welcomeConfigurationState);
     const [newMessage, setnewMessage] = useState("");
     const [showEmojiPanel, setShowEmojiPanel] = useState(false);
+    const [channels, setChannels] = useState<channelsType>([] as channelsType);
+    const [welcomeChannel, setWelcomeChannel] = useState<{
+        id: string;
+        name: string;
+    }>({ id: "", name: "Welcome " });
     const router = useRouter();
+    const update = () => {
+        if (welcomeConfig && !welcomeConfig.channelId) {
+            return toast.error("Please Select A Channel To Send Message");
+        }
+        if (!welcomeConfig) {
+            if (!newMessage) {
+                return toast.error("Please Type A Message.");
+            }
+        }
+        if (!welcomeConfig?.channelId && !welcomeChannel.id) {
+            console.log(welcomeChannel);
+            return toast.error("Please Select A Channel To Send Message!");
+        }
+        axios
+            .post(`${backendUrl}welcome/update/${router.query.guildId}`, {
+                channelId: welcomeChannel?.id,
+                enabled,
+                welcomerMessage: newMessage,
+            })
+            .then((res) => {
+                toast.success(res.data.message);
+            })
+            .catch(() => {
+                toast.error("An Error Occured!");
+            });
+    };
+    const fetchChannels = () => {
+        axios
+            .get(`${backendUrl}welcome/channels/${router.query.guildId}`)
+            .then((res) => {
+                let channelName: string;
+                res.data.channels.forEach((channelData: any) => {
+                    if (channelData.id == welcomeChannel.id) {
+                        channelName = channelData.name;
+                    }
+                });
+                // console.log(channelName);
+                setChannels(res.data.channels);
+                setWelcomeChannel((data) => {
+                    data.name = channelName;
+                    return data;
+                });
+                // console.log(welcomeChannel);
+            })
+            .catch(() => {
+                toast.error(
+                    "An Error Occured When Fetching Channels. Please Try Again Later."
+                );
+            });
+    };
 
     const handleChange = () => {
         axios
@@ -50,17 +106,20 @@ export default function Welcome() {
         axios
             .get(`${backendUrl}welcome/${router.query.guildId}`)
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 const data: welcomeConfigType = res.data;
                 setEnabled(data.enabled);
                 if (data.config != undefined) {
                     setWelcomeConfig(data.config);
+                    setnewMessage(data.config.welcomerMessage);
+                    setWelcomeChannel({ id: data.config.channelId, name: "" });
                 }
             })
             .catch((err: AxiosError) => {
                 console.log(err.response?.data);
                 toast.error("An Error Occured. Please Try again later.");
             });
+        fetchChannels();
     }, [router.isReady]);
 
     return (
@@ -69,7 +128,7 @@ export default function Welcome() {
                 <title>Manage Welcome Message Configuration</title>
             </Head>
             <ToastContainer pauseOnFocusLoss={false} pauseOnHover={false} />
-            <div>
+            <div style={{ paddingBottom: "3rem" }}>
                 <div className={styles.container}>
                     <h1>
                         Manage Welcome Message Configuration For Your Server
@@ -154,8 +213,7 @@ export default function Welcome() {
                                     These <code>|</code> are mandatory
                                 </span>
                                 <div className={styles.inputBoxContainer}>
-                                    <input
-                                        type="text"
+                                    <textarea
                                         className={styles.input}
                                         value={newMessage}
                                         onChange={(e) => {
@@ -164,6 +222,7 @@ export default function Welcome() {
                                         style={{
                                             marginBottom: "0px",
                                         }}
+                                        rows={5}
                                     />
                                     <BsEmojiLaughingFill
                                         color="grey"
@@ -191,6 +250,45 @@ export default function Welcome() {
                                         }}
                                     />
                                 )}
+
+                                <label htmlFor="ChannelName">
+                                    Select A Channel To Send Message
+                                </label>
+                                <select
+                                    name="channel"
+                                    id="serverChannels"
+                                    defaultValue={welcomeChannel.name}
+                                    className={styles.selectMenu}
+                                    onChange={(e) => {
+                                        setWelcomeChannel((d) => {
+                                            d.id = e.target.value;
+                                            return d;
+                                        });
+                                    }}
+                                >
+                                    {channels
+                                        ? channels.map((guildChannel, i) => {
+                                              return (
+                                                  <option
+                                                      key={i}
+                                                      value={guildChannel.id}
+                                                  >
+                                                      {guildChannel.name}
+                                                  </option>
+                                              );
+                                          })
+                                        : null}
+                                </select>
+                                <Button
+                                    variant="contained"
+                                    style={{
+                                        marginTop: "2rem",
+                                    }}
+                                    className={styles.button}
+                                    onClick={update}
+                                >
+                                    Update
+                                </Button>
                             </div>
                         </>
                     ) : null}
