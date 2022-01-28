@@ -1,12 +1,19 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
+import {
+    MessageEmbed,
+    MessageActionRow,
+    MessageButton,
+    version,
+} from "discord.js";
 const prettyMs = require("pretty-ms");
 import type { CommandInteraction } from "discord.js";
+import { client } from "../..";
+import { version as tsVersion } from "typescript";
 module.exports = {
     command: new SlashCommandBuilder()
         .setName("stats")
         .setDescription("Get Stats of Bot."),
-    async run(interaction: CommandInteraction, client) {
+    async run(interaction: CommandInteraction) {
         await interaction.deferReply();
         const row = new MessageActionRow().addComponents(
             new MessageButton()
@@ -16,19 +23,37 @@ module.exports = {
         );
         const embed = new MessageEmbed()
             .setTitle("Stats")
-            .setColor(0x1ee0eb)
-            .setDescription(
-                `
-        :arrow_up: Uptime : ${prettyMs(client.uptime)}\n\n:ping_pong: Ping : ${
-                    client.ws.ping
-                }ms\n\n<:javascript:832809294046691378>  Made in JavaScript\n\n:sunglasses: Playing in ${
-                    client.guilds.cache.size
-                } Servers
-        `
-            )
+            .setColor("RANDOM")
             .setImage(
                 `https://cdn.discordapp.com/attachments/616315208251605005/616319462349602816/Tw.gif`
-            );
+            )
+            .addFields([
+                {
+                    name: ":arrow_up: Uptime",
+                    value: `\`\`\`${prettyMs(client.uptime)}\`\`\``,
+                    inline: false,
+                },
+                {
+                    name: ":ping_pong: Ping",
+                    value: `\`\`\`${client.ws.ping}ms\`\`\``,
+                    inline: false,
+                },
+                {
+                    name: "<:djs:936654010277056564> Discord.js Version",
+                    value: `\`\`\`${version}\`\`\``,
+                    inline: false,
+                },
+                {
+                    name: "<:typescript:936654542295158785> Typescript Version ",
+                    value: `\`\`\`${tsVersion}\`\`\``,
+                    inline: false,
+                },
+                {
+                    name: "<:HomeServerLogo:843716672094339073> Total Servers",
+                    value: `\`\`\`${client.guilds.cache.size}\`\`\``,
+                    inline: false,
+                },
+            ]);
         await interaction.editReply({ embeds: [embed], components: [row] });
     },
 };
