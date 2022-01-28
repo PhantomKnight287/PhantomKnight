@@ -1,9 +1,20 @@
 @import "./AutoMod.module.scss";
 
-.inputBoxContainer{
+.inputBoxContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap:1rem;
+    gap: 1rem;
+}
+.button {
+    background-image: linear-gradient(to right, #4cb8c4, #f7bb97) !important;
+    background-color: transparent;
+    color:black
+}
+.selectMenu{
+    width:235px;
+    background-image: linear-gradient(to right, #4cb8c4, #f7bb97) !important;
+    padding:0.5rem;
+    border-radius: 10px;
 }
