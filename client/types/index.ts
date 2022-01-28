@@ -93,3 +93,21 @@ export type welcomeConfigurationState =
           v: number;
           welcomerMessage: string;
       };
+type channel = {
+    createdTimestamp: number;
+    guild: string;
+    guildId: string;
+    id: string;
+    lastMessageId: string;
+    messages: any[];
+    name: string;
+    nsfw: boolean;
+    parentId: any;
+    permissionOverwrite: string[];
+    rateLimitPerUser: number;
+    rawPosition: number;
+    threads: any[];
+    topic: string;
+    type: "GUILD_TEXT";
+};
+export type channels = channel[];
