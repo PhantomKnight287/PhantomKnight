@@ -997,6 +997,16 @@
   "resolved" "https://registry.npmjs.org/discord-api-types/-/discord-api-types-0.26.1.tgz"
   "version" "0.26.1"
 
+"discord-canvas@^1.4.1":
+  "integrity" "sha512-0Ee1mvmalw1Nz60MwU6SxUdFNUDrJwx8II4JxaDFqw/2nEPav7PB8giQxDPaCgcyFOAvReQJFSQ66FCr+m1O8g=="
+  "resolved" "https://registry.npmjs.org/discord-canvas/-/discord-canvas-1.4.1.tgz"
+  "version" "1.4.1"
+  dependencies:
+    "canvas" "^2.6.1"
+    "fortnite" "^4.3.2"
+    "fortnite-9812" "^1.0.4"
+    "fs" "^0.0.1-security"
+
 "discord-image-generation@^1.4.9":
   "resolved" "https://registry.npmjs.org/discord-image-generation/-/discord-image-generation-1.4.9.tgz"
   "version" "1.4.9"
@@ -1368,6 +1378,20 @@
     "combined-stream" "^1.0.8"
     "mime-types" "^2.1.12"
 
+"fortnite-9812@^1.0.4":
+  "integrity" "sha512-TkdbPT1oTQ/GncnC5Sf4dVo6CLo4NJAtiU17rOUetcZ59nLAgNhceNkSqgMCYdYx6gCEB1A/9pYzm/JKOmgRcA=="
+  "resolved" "https://registry.npmjs.org/fortnite-9812/-/fortnite-9812-1.0.4.tgz"
+  "version" "1.0.4"
+  dependencies:
+    "node-fetch" "^2.3.0"
+
+"fortnite@^4.3.2":
+  "integrity" "sha512-6BReElBAwP/3Gq6zEBn9gdQzrzWpMlumY9IF0suZgDshbzsS8dCDuV8JszDl1l1PVJwtzm2uexfUo9YtUqUV6Q=="
+  "resolved" "https://registry.npmjs.org/fortnite/-/fortnite-4.3.2.tgz"
+  "version" "4.3.2"
+  dependencies:
+    "node-fetch" "^2.3.0"
+
 "forwarded@0.2.0":
   "resolved" "https://registry.npmjs.org/forwarded/-/forwarded-0.2.0.tgz"
   "version" "0.2.0"
@@ -1385,6 +1409,11 @@
 "fs.realpath@^1.0.0":
   "resolved" "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   "version" "1.0.0"
+
+"fs@^0.0.1-security":
+  "integrity" "sha1-invTcYa23d84E/I4WLV+yq9eQdQ="
+  "resolved" "https://registry.npmjs.org/fs/-/fs-0.0.1-security.tgz"
+  "version" "0.0.1-security"
 
 "functional-red-black-tree@^1.0.1":
   "resolved" "https://registry.npmjs.org/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz"
@@ -1899,7 +1928,7 @@
   "resolved" "https://registry.npmjs.org/node-addon-api/-/node-addon-api-4.2.0.tgz"
   "version" "4.2.0"
 
-"node-fetch@^2.6.1", "node-fetch@^2.6.5":
+"node-fetch@^2.3.0", "node-fetch@^2.6.1", "node-fetch@^2.6.5":
   "resolved" "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.6.tgz"
   "version" "2.6.6"
   dependencies:
