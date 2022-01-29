@@ -173,7 +173,10 @@ client.on("guildDelete", async (guild) => {
 });
 
 client.on("messageCreate", async (message: Message) => {
-    if (message.content.includes(`<@!${client.user.id}>`)) {
+    if (
+        message.content.includes(`<@!${client.user.id}>`) ||
+        message.content.includes(`<@${client.user.id}>`)
+    ) {
         const row = new MessageActionRow().addComponents(
             new MessageButton()
                 .setStyle("LINK")
@@ -212,7 +215,6 @@ client.on("emojiCreate", async (emoji) => {
 client.on("emojiDelete", async (emoji) => {
     await prisma.emojis.delete({
         where: {
-            guildId: emoji.guild.id,
             emoji: emoji.toString(),
         },
     });

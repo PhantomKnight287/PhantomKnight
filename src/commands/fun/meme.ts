@@ -5,7 +5,7 @@ import Axios from "axios";
 module.exports = {
     command: new SlashCommandBuilder()
         .setName("meme")
-        .setDescription("Post Meme from r/programmerhumour"),
+        .setDescription("Post Meme in the chat!"),
     async run(interaction: CommandInteraction) {
         await interaction.deferReply();
         const response = await Axios.get(

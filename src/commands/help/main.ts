@@ -32,7 +32,7 @@ module.exports = {
             )
             .addField("Moderation", "`Select Moderation Option`", true)
             .addField(
-                "<a:nitro:872445091111923753> Lack of Nitro",
+                "<a:nitro:936935213345411094> Lack of Nitro",
                 "`Select Lack of Nitro Option`",
                 true
             )
@@ -76,7 +76,7 @@ module.exports = {
                         label: "Lack of nitro",
                         description: "Get List of Lon Commands",
                         value: "nqn",
-                        emoji: "<a:nitro:872445091111923753>",
+                        emoji: "<a:nitro:936935213345411094>",
                     },
                     {
                         emoji: "<a:music:872445429877440513>",
@@ -85,7 +85,7 @@ module.exports = {
                         value: "music",
                     },
                     {
-                        emoji: "<:lmao:851030422719954946>",
+                        emoji: "<:avatar:936935522515955763>",
                         label: "Image",
                         description: "Get List of Image Manipulation Commands",
                         value: "image",
