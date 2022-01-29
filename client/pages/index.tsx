@@ -27,8 +27,8 @@ const Images = [
     },
     {
         width: 720,
-        height: 407,
-        src: "/welcomer.png",
+        height: 253,
+        src: "/welcomeMessage.png",
         title: "Welcome New Users",
         alt: "welcomer",
     },
