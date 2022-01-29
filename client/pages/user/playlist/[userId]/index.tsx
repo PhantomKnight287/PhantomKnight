@@ -32,6 +32,9 @@ function Playlist({
         if ((user.user as any).id != router.query.userId) {
             return toast.error("You Can't Manage this Playlist!");
         }
+        if (id != router.query.userId) {
+            return toast.error("You Can't Manage this Playlist!");
+        }
         axios
             .post(`${backendUrl}playlist/${router.query.userId}`, {
                 song: sus,
