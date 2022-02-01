@@ -123,13 +123,13 @@ function AddSong() {
                                         height={360}
                                         loading="lazy"
                                     />
-                                    <h4>{updatedSong.title}</h4>
+                                    <h4>{updatedSong.original_title}</h4>
                                     <div className={styles.buttonContainer}>
                                         <Button
                                             variant="outlined"
                                             onClick={() => {
                                                 addSong(
-                                                    updatedSong.title,
+                                                    updatedSong.original_title,
                                                     `https://i3.ytimg.com/vi/${updatedSong.id}/hqdefault.jpg`
                                                 );
                                             }}
