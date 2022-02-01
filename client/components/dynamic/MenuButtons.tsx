@@ -67,6 +67,11 @@ export default function MenuButtons() {
                             </Link>
                         </MenuItem>
                         <MenuItem onClick={handleClose}>
+                            <Link href="/stats">
+                                <a style={{ color: "black" }}>Status</a>
+                            </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
                             <span
                                 onClick={() => {
                                     dispatch({
@@ -104,6 +109,13 @@ export default function MenuButtons() {
                     >
                         Login
                     </a>
+                    <Link href="/stats">
+                        <a
+                            className={`${styles["hvr-underline-from-center"]} ${styles.anchor} `}
+                        >
+                            Status
+                        </a>
+                    </Link>
                 </>
             )}
         </div>

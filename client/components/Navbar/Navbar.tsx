@@ -109,6 +109,11 @@ export default function Navbar() {
                             Invite
                         </a>
                     </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                        <Link href="/stats">
+                            <a style={{ color: "black" }}>Status</a>
+                        </Link>
+                    </MenuItem>
                     {userState.avatar ? (
                         <>
                             <Avatar
@@ -157,6 +162,13 @@ export default function Navbar() {
                                     <Link href="/servers">
                                         <a style={{ color: "black" }}>
                                             Servers
+                                        </a>
+                                    </Link>
+                                </MenuItem>
+                                <MenuItem onClick={handleClick}>
+                                    <Link href="/stats">
+                                        <a style={{ color: "black" }}>
+                                            Status
                                         </a>
                                     </Link>
                                 </MenuItem>
