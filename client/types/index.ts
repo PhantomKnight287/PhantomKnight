@@ -111,3 +111,11 @@ type channel = {
     type: "GUILD_TEXT";
 };
 export type channels = channel[];
+
+export type BotStats = {
+    Servers: number;
+    Members: number;
+    Ping: number;
+    DJS:number;
+    Typescript:number;
+};
