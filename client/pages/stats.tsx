@@ -35,7 +35,7 @@ export default function StatsPage() {
                 <title>Current Stats of PhantomKnight </title>
                 <meta
                     property="og:title"
-                    content="Current Stats of PhantomKnight and Tech Stack Used."
+                    content="Current Stats of PhantomKnight"
                 />
                 <meta
                     property="og:description"
@@ -47,7 +47,9 @@ export default function StatsPage() {
                 />
                 <meta
                     property="theme-color"
-                    content={Math.floor(Math.random() * 16777215).toString(16)} 
+                    content={`#${Math.floor(Math.random() * 16777215).toString(
+                        16
+                    )}`}
                     // generates a random color every time.
                 />
             </Head>
