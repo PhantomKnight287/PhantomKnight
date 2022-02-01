@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap:2rem;
+    padding-top:2rem;
+    & div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        & img,svg{
+            margin-bottom:1rem
+        }
+    }
+}
+.contentContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    & h2{
+        font-family: Lobster;
+    }
+}
