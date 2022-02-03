@@ -398,15 +398,15 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
-"@prisma/client@^3.8.1":
-  version "3.8.1"
-  resolved "https://registry.npmjs.org/@prisma/client/-/client-3.8.1.tgz"
+"@prisma/client@^3.9.0":
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-3.9.0.tgz#03b011fa441b8361cc461f8d502374730a1b91bd"
   dependencies:
-    "@prisma/engines-version" "3.8.0-43.34df67547cf5598f5a6cd3eb45f14ee70c3fb86f"
+    "@prisma/engines-version" "3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009"
 
-"@prisma/engines-version@3.8.0-43.34df67547cf5598f5a6cd3eb45f14ee70c3fb86f":
-  version "3.8.0-43.34df67547cf5598f5a6cd3eb45f14ee70c3fb86f"
-  resolved "https://registry.npmjs.org/@prisma/engines-version/-/engines-version-3.8.0-43.34df67547cf5598f5a6cd3eb45f14ee70c3fb86f.tgz"
+"@prisma/engines-version@3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009":
+  version "3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009"
+  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009.tgz#ea03ffa723382a526dc6625ce6eae9b6ad984400"
 
 "@prisma/engines@3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009":
   version "3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009"
