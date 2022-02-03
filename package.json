@@ -51,7 +51,7 @@
         "socket.io": "^4.4.1",
         "topgg-autoposter": "^2.0.1",
         "usetube": "^2.1.4",
-        "ytdl-core": "^4.10.0"
+        "ytdl-core": "^4.10.1"
     },
     "devDependencies": {
         "@types/node": "^17.0.14",
