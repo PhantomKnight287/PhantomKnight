@@ -1785,11 +1785,11 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-m3u8stream@^0.8.4:
-  version "0.8.4"
-  resolved "https://registry.npmjs.org/m3u8stream/-/m3u8stream-0.8.4.tgz"
+m3u8stream@^0.8.4, m3u8stream@^0.8.6:
+  version "0.8.6"
+  resolved "https://registry.yarnpkg.com/m3u8stream/-/m3u8stream-0.8.6.tgz#0d6de4ce8ee69731734e6b616e7b05dd9d9a55b1"
   dependencies:
-    miniget "^4.0.0"
+    miniget "^4.2.2"
     sax "^1.2.4"
 
 make-dir@^3.0.0, make-dir@^3.1.0:
@@ -1838,9 +1838,9 @@ min-document@^2.19.0:
   dependencies:
     dom-walk "^0.1.0"
 
-miniget@^4.0.0:
-  version "4.2.1"
-  resolved "https://registry.npmjs.org/miniget/-/miniget-4.2.1.tgz"
+miniget@^4.0.0, miniget@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/miniget/-/miniget-4.2.2.tgz#db20320f265efdc4c1826a0be431d56753074475"
 
 minimatch@^3.0.4:
   version "3.0.4"
@@ -2721,11 +2721,11 @@ youtube-sr@^4.1.13:
   version "4.1.13"
   resolved "https://registry.yarnpkg.com/youtube-sr/-/youtube-sr-4.1.13.tgz#dee8a22306607c688ee186129534c7dfc08966a7"
 
-ytdl-core@^4.10.0:
-  version "4.10.0"
-  resolved "https://registry.npmjs.org/ytdl-core/-/ytdl-core-4.10.0.tgz"
+ytdl-core@^4.10.0, ytdl-core@^4.10.1:
+  version "4.10.1"
+  resolved "https://registry.yarnpkg.com/ytdl-core/-/ytdl-core-4.10.1.tgz#6648d65faca787919181b2cee1be470b2ef9fdcb"
   dependencies:
-    m3u8stream "^0.8.4"
+    m3u8stream "^0.8.6"
     miniget "^4.0.0"
     sax "^1.1.3"
 
