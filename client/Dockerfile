@@ -1,4 +1,4 @@
-FROM ubuntu:impish-20211102
+FROM ubuntu:rolling
 ENV TZ=Asia/Kolkata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update && apt-get install -y curl
