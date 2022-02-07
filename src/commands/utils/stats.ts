@@ -19,7 +19,11 @@ module.exports = {
             new MessageButton()
                 .setStyle("LINK")
                 .setURL("https://top.gg/bot/838686966387965992")
-                .setLabel("Invite Me")
+                .setLabel("Invite Me"),
+            new MessageButton()
+                .setStyle("LINK")
+                .setLabel("Github")
+                .setURL("https://github.com/PhantomKnight287/PhantomKnight")
         );
         const embed = new MessageEmbed()
             .setTitle("Stats")
