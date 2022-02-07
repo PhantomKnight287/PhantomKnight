@@ -1,4 +1,9 @@
-import { CommandInteraction, MessageEmbed } from "discord.js";
+import {
+    CommandInteraction,
+    MessageEmbed,
+    MessageActionRow,
+    MessageButton,
+} from "discord.js";
 import { hyperlink, SlashCommandBuilder } from "@discordjs/builders";
 import { player } from "../..";
 module.exports = {
@@ -26,6 +31,12 @@ module.exports = {
                 `
             )
             .setColor("RANDOM");
-        return interaction.editReply({ embeds: [embed] });
+        const row = new MessageActionRow().addComponents(
+            new MessageButton()
+                .setStyle("LINK")
+                .setLabel("Github")
+                .setURL("https://github.com/PhantomKnight287/PhantomKnight")
+        );
+        return interaction.editReply({ embeds: [embed], components: [row] });
     },
 };
