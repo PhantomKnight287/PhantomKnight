@@ -1216,7 +1216,7 @@ discord-canvas@^1.4.1:
     fortnite-9812 "^1.0.4"
     fs "^0.0.1-security"
 
-discord-image-generation@^1.4.9:
+discord-image-generation@^1.4.12:
   version "1.4.12"
   resolved "https://registry.yarnpkg.com/discord-image-generation/-/discord-image-generation-1.4.12.tgz#f39a1156984879435b5c0ea2bbf3fa56dacfff33"
   integrity sha512-qSQZlAPPgPD3Pz41j3Z6r8fJUo/EnPxTEqlA/7JZzT8aMhqoFYqT+NOpOW3IG1sKbVV1tJCDir7lvrzyrJYQ7g==
