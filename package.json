@@ -51,7 +51,7 @@
         "reflect-metadata": "^0.1.13",
         "socket.io": "^4.4.1",
         "topgg-autoposter": "^2.0.1",
-        "typeorm": "^0.2.41",
+        "typeorm": "^0.2.42",
         "usetube": "^2.1.4",
         "ytdl-core": "^4.10.1"
     },
