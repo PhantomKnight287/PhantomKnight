@@ -2,7 +2,7 @@
 
 # PhantomKnight - A Discord Bot
 
-_few commands will be available soon to be used_
+_This bot will not recieve any new updates._
 
 [![GNU Licence](https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
