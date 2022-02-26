@@ -24,7 +24,7 @@ module.exports = {
                 channel: interaction.channel,
             },
             ytdlOptions: {
-                filter: "audio",
+                filter: "audioonly",
                 dlChunkSize: 0,
                 highWaterMark: 1 << 25,
             },

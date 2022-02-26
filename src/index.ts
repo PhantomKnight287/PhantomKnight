@@ -4,6 +4,7 @@ import { Player } from "discord-player"; // player for discord-player
 import { vcCheck } from "./checks"; // checks for music based commands
 import { join } from "path"; // idk what this is for
 import { PhantomKnight } from "./construct"; // custom class to remove typescript errors
+import "reflect-metadata"; // for class decorators
 import {
     CommandInteraction,
     GuildMember,
@@ -20,7 +21,7 @@ import { prisma } from "./prisma"; // prisma config
 import { singleMessageDelete } from "./events";
 import { promisify } from "util";
 import { messageUpdateHandler } from "./events/messageUpdate";
-import {Economy} from "./economy/Economy"
+import { Connect } from "./db";
 const wait = promisify(setTimeout);
 const MusicCommand: string[] = [
     "disconnect",
@@ -78,7 +79,7 @@ player.on("connectionError", (_, error) => {
 registerSlashCommands(commands, false);
 client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}! at ${new Date()}`);
-    new Economy();
+    await Connect();
     const activities: ActivitiesOptions[] = [
         {
             name: "Screams of Lonely Developer",
@@ -245,7 +246,7 @@ client.on("messageUpdate", async (oldMessage, newMessage) => {
     if (!oldMessage.guildId) return;
     await messageUpdateHandler(oldMessage, newMessage);
 });
-const betcoin = "<:betcoin:943448977196593202>";
+const betcoin = "<:betcoin:896012051946803251>";
 client.login(process.env.token as string);
 
 export { player, client, betcoin };

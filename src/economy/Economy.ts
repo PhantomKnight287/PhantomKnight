@@ -1,53 +1,70 @@
-import { Knex } from "knex";
-import { Connect } from "../db";
-
+import { User } from "../entities";
+import { Connection, getConnection } from "typeorm";
 export class Economy {
     userId: string;
-    connection: Knex;
-    constructor(userId?: string) {
-        Connect().then((con) => {
-            this.connection = con;
-        });
+    connection: Connection;
+    constructor(userId: string) {
         this.userId = userId;
     }
     async connectToDb() {
-        await Connect().then((con) => {
-            this.connection = con;
-        });
+        this.connection = getConnection();
     }
     async createAccount() {
         if (!this.connection) await this.connectToDb();
-        const user = await this.connection.raw(
-            `INSERT INTO user (userId,bank,lastworked,wallet) VALUES ('${
-                this.userId
-            }','2000','${new Date().getTime() - 3600000}','2000')`
-        );
+        const user = await this.connection
+            .createQueryBuilder()
+            .insert()
+            .into(User)
+            .values([
+                {
+                    userId: this.userId,
+                    bank: "2000",
+                    lastworked: `${new Date().getTime() - 3600000}`,
+                    wallet: "2000",
+                },
+            ])
+            .execute();
         return user;
     }
     async isAccountPresent() {
         if (!this.connection) await this.connectToDb();
-        const user = await this.connection.raw(
-            `SELECT * FROM user WHERE userId='${this.userId}'`
-        );
+
+        const user = await this.connection
+            .getRepository(User)
+            .createQueryBuilder("user")
+            .where("user.userId=:id", { id: this.userId })
+            .getOne();
         return user;
     }
     async setAmountInWallet(money: string) {
         if (!this.connection) await this.connectToDb();
-        await this.connection.raw(
-            `UPDATE user SET wallet='${money}' WHERE userId='${this.userId}'`
-        );
+
+        await this.connection
+            .createQueryBuilder()
+            .update(User)
+            .set({ wallet: money })
+            .where("userId=:id", { id: this.userId })
+            .execute();
     }
     async setAmountInBank(money: string) {
         if (!this.connection) await this.connectToDb();
-        await this.connection.raw(
-            `UPDATE user SET bank='${money}' WHERE userId='${this.userId}'`
-        );
+
+        await this.connection
+            .createQueryBuilder()
+            .update(User)
+            .set({ bank: money })
+            .where("userId=:id", { id: this.userId })
+            .execute();
     }
     async getBalance() {
         if (!this.connection) await this.connectToDb();
-        const user = await this.connection.raw(
-            `SELECT * FROM user WHERE userId='${this.userId}'`
-        );
+
+        const user = await this.connection
+            .getRepository(User)
+            .createQueryBuilder("user")
+            .where("user.userId=:id", { id: this.userId })
+            .getOne();
         return user;
     }
+    
 }

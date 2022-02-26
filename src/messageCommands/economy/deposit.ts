@@ -44,12 +44,8 @@ export const execute = async (message: Message) => {
                     value: `\`4000\` ${betcoin} `,
                     inline: true,
                 },
-            ])
-            .setColor("RANDOM");
+            ]);
         return await message.channel.send({ embeds: [embed] });
-    }
-    if (money == "all") {
-        money = accountDetails.wallet;
     }
     try {
         money = BigInt(money).toString();
@@ -87,7 +83,6 @@ export const execute = async (message: Message) => {
                 value: `\`${bankMoney}\` ${betcoin} `,
                 inline: true,
             },
-        ])
-        .setColor("RANDOM");
+        ]);
     return await message.channel.send({ embeds: [embed] });
 };
