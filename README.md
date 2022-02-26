@@ -2,8 +2,6 @@
 
 # PhantomKnight - A Discord Bot
 
-_few commands will be available soon to be used_
-
 [![GNU Licence](https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 <br/>
@@ -53,6 +51,7 @@ _few commands will be available soon to be used_
 ```bash
     docker-compose up -d
 ```
+
 
 ![separator](https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif)
 
