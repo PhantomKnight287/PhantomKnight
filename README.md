@@ -1,4 +1,4 @@
-<div>
+<div align="center" >
 
 # PhantomKnight - A Discord Bot
 
@@ -14,45 +14,32 @@
 
 [![Discord Bots](https://top.gg/api/widget/838686966387965992.svg)](https://top.gg/bot/838686966387965992)
 
-# Instruction
+# How to Start The Bot
 
--   [Installation](#installation)
--   [Running Locally](#running-locally)
--   [Running in Docker Container](#running-in-docker-container)
+[Git](https://git-scm.com/downloads), [Nodejs](https://nodejs.org) and FFmpeg must be installed on your system
 
-# Installation
-
-1.  Install [Nodejs](https://nodejs.org) v16.6+
-2.  Install FFmpeg (mandatory)
-3.  Install [Git](https://git-scm.com/downloads)
-
-# Running Locally
-
-```bash
-    git clone https://github.com/PhantomKnight287/PhantomKnight
+```
+1. git clone https://github.com/PhantomKnight287/discordbot
+2. cd discordbot
+3. npm i
+4. Rename .env_example to .env and fill appropriate values
+5. npm run build:prod
+6. npm run start:prod
 ```
 
-```bash
-    cd PhantomKnight
-    npm install
+Run The bot Using Docker
+
 ```
-
-**Rename .env.example to .env and fill details**
-
-```bash
-    npm run build:prod
-    npm run start:prod
+docker-compose up --build --detach
 ```
-
-# Running in Docker Container
-
-**Copy docker-comose.yml from root of this repository**
-
-```bash
-    docker-compose up -d
-```
-
 
 ![separator](https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif)
 
+<details>
+<summary>Reference</summary>
+<br/>
+<a href="https://github.com/hackarmour/discord-assistant-js">Command Handler</a><br/>
+<a href="https://github.com/tatupesonen/formatbot">Idea to Use Typescript and Docker</a><br/>
+<a href="https://github.com/Androz2091/discord-music-bot">Music Commands </a>
+</details>
 </div>
