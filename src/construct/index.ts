@@ -2,7 +2,6 @@ import { Client, Collection, Intents } from "discord.js";
 
 export class PhantomKnight extends Client {
     commands = new Collection();
-    messageCommands = new Collection();
     constructor() {
         super({
             intents: [
