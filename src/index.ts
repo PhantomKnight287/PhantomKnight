@@ -9,6 +9,7 @@ import {
     CommandInteraction,
     GuildMember,
     Message,
+    Collection,
     MessageEmbed,
     ActivitiesOptions,
     MessageActionRow,
@@ -21,7 +22,6 @@ import { prisma } from "./prisma"; // prisma config
 import { singleMessageDelete } from "./events";
 import { promisify } from "util";
 import { messageUpdateHandler } from "./events/messageUpdate";
-import { Connect } from "./db";
 const wait = promisify(setTimeout);
 const MusicCommand: string[] = [
     "disconnect",
@@ -34,6 +34,14 @@ const MusicCommand: string[] = [
     "skip",
     "play-playlist",
 ];
+const economyCommands = [
+    "balance",
+    "deposit",
+    "give",
+    "rob",
+    "withdraw",
+    "work",
+];
 const client = new PhantomKnight();
 if (process.env.topggtoken) {
     const ap = AutoPoster(process.env.topggtoken as string, client);
@@ -41,6 +49,7 @@ if (process.env.topggtoken) {
         console.log("posted Stats to Top.gg");
     });
 }
+client.commands = new Collection();
 const commands = [];
 
 const commandFiles = getJSFiles(join(__dirname, "commands"));
@@ -51,16 +60,6 @@ commandFiles.forEach((file) => {
     commands.push(command.command.toJSON());
     client.commands.set(command.command.name, command);
 });
-
-const messageCommandsFiles = getJSFiles(join(__dirname, "messageCommands"));
-messageCommandsFiles.forEach((file) => {
-    const command = require(file);
-    command.alias.forEach((alias) => {
-        client.messageCommands.set(alias, file);
-    });
-    client.messageCommands.set(command.name, file);
-});
-
 const player = new Player(client, {
     ytdlOptions: {
         filter: "audioonly",
@@ -79,14 +78,13 @@ player.on("connectionError", (_, error) => {
 registerSlashCommands(commands, false);
 client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}! at ${new Date()}`);
-    await Connect();
     const activities: ActivitiesOptions[] = [
         {
-            name: "Screams of Lonely Developer",
+            name: "Screams of Developers",
             type: "LISTENING",
         },
         {
-            name: "Made By 'PHANTOM KNIGHT#4209'",
+            name: "Made By 'PHANTOM KNIGHT#9254'",
             type: "LISTENING",
         },
         {
@@ -126,6 +124,11 @@ client.on("interactionCreate", async (interaction: CommandInteraction) => {
         return void (await interaction.reply({
             content: "You can't use these commands in DM's!",
         }));
+    if (economyCommands.includes(interaction.commandName)) {
+        return void (await interaction.reply({
+            content: "These Commands Are Deprecated!",
+        }));
+    }
     if (MusicCommand.includes(interaction.commandName)) {
         const { checkFailed, message } = vcCheck(interaction);
         if (checkFailed) {
@@ -190,20 +193,11 @@ client.on("messageCreate", async (message: Message) => {
             .setColor("RANDOM")
             .setTimestamp()
             .setDescription(
-                "The Bot uses `Slash Commands` as well as `Message Commands`!\n To Use a command type `/` and wait for a menu to appear."
+                "The Bot uses `Slash Commands` instead of `Message Commands`!\n To Use a command type `/` and wait for a menu to appear."
             );
         await message.channel.send({ embeds: [embed], components: [row] });
     }
     if (message.author.bot) return;
-    if (message.content.startsWith(".")) {
-        const commandFile = client.messageCommands.get(
-            message.content.split(" ")[0].slice(1)
-        );
-        if (commandFile) {
-            const command = require(commandFile as string)
-            command.execute(message)
-        }
-    }
     await autoMod(message);
     await levelling(message);
 });
