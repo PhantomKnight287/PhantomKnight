@@ -1,9 +1,9 @@
 import { Message, MessageEmbed } from "discord.js";
 import { betcoin } from "../..";
 import { Economy } from "../../economy/Economy";
-export const alias = ["dep"];
-export const name = "deposit";
-export const description = "Deposit your money to your bank";
+export const alias = ["with"];
+export const name = "withdraw";
+export const description = "Withdraw your money from your bank";
 
 export const execute = async (message: Message) => {
     let money = message.content.split(" ")[1];
@@ -49,22 +49,19 @@ export const execute = async (message: Message) => {
         return await message.channel.send({ embeds: [embed] });
     }
     if (money == "all") {
-        money = accountDetails.wallet;
+        money = accountDetails.bank;
     }
     try {
         money = BigInt(money).toString();
     } catch {
         return message.channel.send({ content: "Invalid Amount" });
     }
-    if (BigInt(money) > BigInt(accountDetails.wallet)) {
+    if (BigInt(money) > BigInt(accountDetails.bank)) {
         return message.channel.send({ content: "You don't have enough money" });
     }
-    const walletMoney = (
-        BigInt(accountDetails.wallet) - BigInt(money)
-    ).toString();
-    const bankMoney = (BigInt(accountDetails.bank) + BigInt(money)).toString();
-    await eco.setAmountInWallet(walletMoney);
+    const bankMoney = (BigInt(accountDetails.bank) - BigInt(money)).toString();
     await eco.setAmountInBank(bankMoney);
+    await eco.setAmountInWallet(money);
     const embed = new MessageEmbed()
         .setAuthor({
             name: message.author.tag,
@@ -73,13 +70,13 @@ export const execute = async (message: Message) => {
         .setTimestamp()
         .addFields([
             {
-                name: "Deposited",
+                name: "Withdrew",
                 value: `\`${money}\` ${betcoin} `,
                 inline: false,
             },
             {
                 name: "Current Wallet Balance",
-                value: `\`${walletMoney}\` ${betcoin} `,
+                value: `\`${money}\` ${betcoin} `,
                 inline: true,
             },
             {
