@@ -41,7 +41,7 @@
         "discord-image-generation": "^1.4.9",
         "discord-player": "^5.2.2",
         "discord.js": "^13.6.0",
-        "express": "^4.17.2",
+        "express": "^4.17.3",
         "ffmpeg-static": "^4.4.1",
         "jimp": "^0.16.1",
         "libsodium-wrappers": "^0.7.9",
