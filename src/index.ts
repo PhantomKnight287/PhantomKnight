@@ -4,7 +4,6 @@ import { Player } from "discord-player"; // player for discord-player
 import { vcCheck } from "./checks"; // checks for music based commands
 import { join } from "path"; // idk what this is for
 import { PhantomKnight } from "./construct"; // custom class to remove typescript errors
-import "reflect-metadata"; // for class decorators
 import {
     CommandInteraction,
     GuildMember,
@@ -78,37 +77,37 @@ player.on("connectionError", (_, error) => {
 registerSlashCommands(commands, false);
 client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}! at ${new Date()}`);
-    const activities: ActivitiesOptions[] = [
-        {
-            name: "Screams of Developers",
-            type: "LISTENING",
-        },
-        {
-            name: "Made By 'PHANTOM KNIGHT#9254'",
-            type: "LISTENING",
-        },
-        {
-            name: "Living in the shadow of the sun",
-            type: "PLAYING",
-        },
-        {
-            name: "Living Alone in an EC2",
-            type: "PLAYING",
-        },
-        {
-            name: "Not as Easy as You Think",
-            type: "PLAYING",
-        },
-        {
-            name: `${client.users.cache.size} Members`,
-            type: "WATCHING",
-        },
-        {
-            name: `${client.guilds.cache.size} Servers`,
-            type: "WATCHING",
-        },
-    ];
     setInterval(() => {
+        const activities: ActivitiesOptions[] = [
+            {
+                name: "Screams of Developers",
+                type: "LISTENING",
+            },
+            {
+                name: "Made By 'PHANTOM KNIGHT#9254'",
+                type: "LISTENING",
+            },
+            {
+                name: "Living in the shadow of the sun",
+                type: "PLAYING",
+            },
+            {
+                name: "Living Alone in an EC2",
+                type: "PLAYING",
+            },
+            {
+                name: "Not as Easy as You Think",
+                type: "PLAYING",
+            },
+            {
+                name: `${client.users.cache.size} Members`,
+                type: "WATCHING",
+            },
+            {
+                name: `${client.guilds.cache.size} Servers`,
+                type: "WATCHING",
+            },
+        ];
         client.user.setPresence({
             activities: [
                 activities[Math.floor(Math.random() * activities.length)],
