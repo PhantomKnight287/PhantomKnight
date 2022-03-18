@@ -6,6 +6,8 @@ import { BotStats } from "types";
 import styles from "styles/scss/pages/Stats.module.scss";
 import { SiMaterialui } from "react-icons/si";
 import { GiNetworkBars } from "react-icons/gi";
+import { IoMdTime } from "react-icons/io";
+import prettyms from "pretty-ms";
 export default function StatsPage() {
     const [stats, setStats] = useState<BotStats>({} as BotStats);
     const [color, setColor] = useState("green");
@@ -73,6 +75,10 @@ export default function StatsPage() {
                             <GiNetworkBars size={50} color={color} /> Ping -{" "}
                             {"\n"}
                             {stats.Ping} ms
+                        </div>
+                        <div>
+                            <IoMdTime size={50} color={"grey"} /> Uptime -{" "}
+                            {"\n"} {prettyms(stats.Uptime)}
                         </div>
                         <div>
                             <img
