@@ -1,4 +1,5 @@
-<div align="center" >
+<div align="center" > 
+_This bot will not recieve any updates, you can still fork the repo and create a pull request_
 
 # PhantomKnight - A Discord Bot
 
