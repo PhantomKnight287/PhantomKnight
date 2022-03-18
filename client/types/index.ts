@@ -118,4 +118,5 @@ export type BotStats = {
     Ping: number;
     DJS:number;
     Typescript:number;
+    Uptime:number;
 };
