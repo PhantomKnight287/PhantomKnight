@@ -11,6 +11,7 @@ router.get("/stats", async (_, res) => {
     stats["Ping"] = client.ws.ping;
     stats["DJS"] = DJSVersion;
     stats["Typescript"] = TsVersion;
+    stats["Uptime"] = client.uptime;
     res.status(200).send({ stats });
 });
 
