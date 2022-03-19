@@ -11,7 +11,9 @@
     "dependencies": {
         "@emotion/react": "^11.8.1",
         "@emotion/styled": "^11.8.1",
+        "@mdx-js/loader": "^2.1.0",
         "@mui/material": "^5.4.4",
+        "@next/mdx": "^12.1.0",
         "axios": "^0.26.0",
         "emoji-mart": "^3.0.1",
         "next": "^12.1.0",
