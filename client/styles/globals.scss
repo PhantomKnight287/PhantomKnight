@@ -9,6 +9,7 @@ body {
     color: white;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    scroll-behavior: smooth;
 }
 body::-webkit-scrollbar {
     display: none;
@@ -39,4 +40,9 @@ input[type="number"] {
 
 .MuiSwitch-track {
     background-color: #ffffff !important;
+}
+
+
+.docs{
+    padding:2rem;
 }
