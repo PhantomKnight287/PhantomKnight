@@ -15,6 +15,8 @@ This bot will not recieve any updates, you can still fork the repo and create a 
 
 [![Discord Bots](https://top.gg/api/widget/838686966387965992.svg)](https://top.gg/bot/838686966387965992)
 
+Click [here](https://bot.phantomknight.tk/docs) to see list of commands.
+
 # How to Start The Bot
 
 [Git](https://git-scm.com/downloads), [Nodejs](https://nodejs.org) and FFmpeg must be installed on your system
