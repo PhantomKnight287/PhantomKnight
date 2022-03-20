@@ -84,7 +84,7 @@ client.on("ready", async () => {
                 type: "LISTENING",
             },
             {
-                name: "Made By 'PHANTOM KNIGHT#9254'",
+                name: "Made By 'PHANTOM KNIGHT#4209'",
                 type: "LISTENING",
             },
             {
