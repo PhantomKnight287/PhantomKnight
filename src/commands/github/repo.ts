@@ -60,37 +60,37 @@ export const run = async (interaction: CommandInteraction) => {
             {
                 name: "Repo Name",
                 value: response.data.name,
-                inline: true,
+                inline:false,
             },
             {
                 name: "Description",
                 value: response.data.description || "No Description",
-                inline: true,
+                inline:false,
             },
             {
                 name: "Language",
                 value: response.data.language || "No Language",
-                inline: true,
+                inline:false,
             },
             {
                 name: "Star Count",
                 value: `${response.data.stargazers_count}`,
-                inline: true,
+                inline:false,
             },
             {
                 name: "Fork Count",
                 value: `${response.data.forks_count}`,
-                inline: true,
+                inline:false,
             },
             {
                 name: "Watchers",
                 value: `${response.data.watchers_count}`,
-                inline: true,
+                inline:false,
             },
             {
                 name: "Open Issues",
                 value: `${response.data.open_issues_count}`,
-                inline: true,
+                inline:false,
             },
             {
                 name: "Created On",
@@ -100,7 +100,7 @@ export const run = async (interaction: CommandInteraction) => {
                     ),
                     "R"
                 )}`,
-                inline: true,
+                inline:false,
             },
             {
                 name: "Updated On",
@@ -110,7 +110,7 @@ export const run = async (interaction: CommandInteraction) => {
                     ),
                     "R"
                 )}`,
-                inline: true,
+                inline:false,
             },
             {
                 name: "Pushed On",
@@ -120,12 +120,12 @@ export const run = async (interaction: CommandInteraction) => {
                     ),
                     "R"
                 )}`,
-                inline: true,
+                inline:false,
             },
             {
                 name: "Owner",
                 value: response.data.owner.login,
-                inline: true,
+                inline:false,
             },
         ])
         .setColor("RANDOM")
