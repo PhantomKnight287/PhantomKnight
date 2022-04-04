@@ -4,7 +4,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN \
     apk update && \
     apk add --no-cache --virtual .gyp && \
-    apk add --no-cache --update g++ make ffmpeg python3 py3-pip  build-base cairo-dev jpeg-dev pango-dev giflib-dev && \
+    apk add --no-cache --update g++ make ffmpeg librsvg-dev python3 py3-pip  build-base cairo-dev jpeg-dev pango-dev giflib-dev && \
     pip install --upgrade pip
 WORKDIR /app
 COPY . /app/
