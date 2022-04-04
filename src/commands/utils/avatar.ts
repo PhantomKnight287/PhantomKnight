@@ -12,7 +12,7 @@ module.exports = {
         const user = interaction.options.getUser("member")
             ? interaction.options.getUser("member")
             : interaction.user;
-        const avatarUrl = user.displayAvatarURL({ size: 1024 });
+        const avatarUrl = user.displayAvatarURL({ size: 1024, dynamic: true });
         if (avatarUrl) {
             const embed = new MessageEmbed()
                 .setTitle(`Avatar of ${user.username}`)
