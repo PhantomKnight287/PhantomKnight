@@ -9,7 +9,7 @@ datasource db {
 }
 
 model automods {
-  id      String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
   v       Int      @default(0) @map("__v")
   enabled Boolean
   guildId String   @unique
@@ -17,7 +17,7 @@ model automods {
 }
 
 model emojis {
-  id         String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
   v          Int    @default(0) @map("__v")
   customName String
   emoji      String @unique
@@ -25,14 +25,14 @@ model emojis {
 }
 
 model playlists {
-  id       String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
   v        Int    @default(0) @map("__v")
   playList Json[]
   userId   String @unique
 }
 
 model welcomers {
-  id              String  @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
   v               Int     @default(0) @map("__v")
   channelId       String
   guildId         String  @unique
@@ -41,7 +41,7 @@ model welcomers {
 }
 
 model leveling {
-  id        String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
   exp       Int
   level     Int
   nextLevel Int
@@ -53,7 +53,7 @@ model leveling {
 
 model logsConfig {
   channelId String
-  id        String  @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
   enabled   Boolean
   guildId   String  @unique
   v         Int     @default(0) @map("__v")
@@ -61,7 +61,7 @@ model logsConfig {
 }
 
 model warn {
-  id       String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
   v        Int    @default(0) @map("__v")
   guildId  String @unique
   warnings Json[]
