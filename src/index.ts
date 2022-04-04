@@ -13,6 +13,7 @@ import {
     ActivitiesOptions,
     MessageActionRow,
     MessageButton,
+    PresenceStatusData,
 } from "discord.js"; // importing types
 import { AutoPoster } from "topgg-autoposter"; // autoposter to post topgg stats
 import { sendWelcomeMessage, autoMod, levelling, deleteEmojis } from "./events"; // events config
@@ -61,9 +62,10 @@ commandFiles.forEach((file) => {
 });
 const player = new Player(client, {
     ytdlOptions: {
-        filter: "audioonly",
+        filter: "audio",
         dlChunkSize: 0,
         highWaterMark: 1 << 25,
+        quality: "highestaudio",
     },
 });
 
@@ -74,13 +76,21 @@ player.on("connectionError", (_, error) => {
     console.log(error);
 });
 
+const startingMilliseconds = new Date().getTime();
+
 registerSlashCommands(commands, true);
 client.on("ready", async () => {
+    const presences: PresenceStatusData[] = [
+        "dnd",
+        "online",
+        "idle",
+        "invisible",
+    ];
     console.log(`Logged in as ${client.user.tag}! at ${new Date()}`);
     setInterval(() => {
         const activities: ActivitiesOptions[] = [
             {
-                name: "Screams of Developers",
+                name: "Screams of Developer",
                 type: "LISTENING",
             },
             {
@@ -107,12 +117,24 @@ client.on("ready", async () => {
                 name: `${client.guilds.cache.size} Servers`,
                 type: "WATCHING",
             },
+            {
+                name: `${client.channels.cache.size} Channels`,
+                type: "WATCHING",
+            },
+            {
+                name: `from Docker Container`,
+                type: "PLAYING",
+            },
+            {
+                name: `bot.phantomknight.tk`,
+                type: "WATCHING",
+            },
         ];
         client.user.setPresence({
             activities: [
                 activities[Math.floor(Math.random() * activities.length)],
             ],
-            status: "online",
+            status: presences[Math.floor(Math.random() * presences.length)],
             afk: true,
         });
     }, 10000);
@@ -186,6 +208,7 @@ client.on("messageCreate", async (message: Message) => {
             new MessageButton()
                 .setStyle("LINK")
                 .setLabel("Github")
+                .setEmoji("<:github:954782695882358906>")
                 .setURL("https://github.com/PhantomKnight287/PhantomKnight")
         );
         const embed = new MessageEmbed()
@@ -242,4 +265,4 @@ client.on("messageUpdate", async (oldMessage, newMessage) => {
 const betcoin = "<:betcoin:896012051946803251>";
 client.login(process.env.token as string);
 
-export { player, client, betcoin };
+export { player, client, betcoin, startingMilliseconds };
