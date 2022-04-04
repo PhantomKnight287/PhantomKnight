@@ -23,8 +23,7 @@ module.exports = {
             .setTimestamp()
             .setTitle("Thank you for using the bot!")
             .setDescription(
-                `The bot has been disconnected from the voice channel!
-                If You like our service, please consider giving us a star on ${hyperlink(
+                `The bot has been disconnected from the voice channel!\nIf You like our service, please consider giving us a star on ${hyperlink(
                     "Github",
                     "https://github.com/PhantomKnight287/PhantomKnight"
                 )}
@@ -35,6 +34,7 @@ module.exports = {
             new MessageButton()
                 .setStyle("LINK")
                 .setLabel("Github")
+                .setEmoji("<:github:954782695882358906>")
                 .setURL("https://github.com/PhantomKnight287/PhantomKnight")
         );
         return interaction.editReply({ embeds: [embed], components: [row] });
