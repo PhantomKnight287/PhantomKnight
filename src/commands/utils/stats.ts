@@ -1,13 +1,13 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder, time } from "@discordjs/builders";
 import {
     MessageEmbed,
     MessageActionRow,
     MessageButton,
     version,
 } from "discord.js";
-const prettyMs = require("pretty-ms");
+// const prettyMs = require("pretty-ms");
 import type { CommandInteraction } from "discord.js";
-import { client } from "../..";
+import { client, startingMilliseconds } from "../..";
 import { version as tsVersion } from "typescript";
 module.exports = {
     command: new SlashCommandBuilder()
@@ -23,6 +23,7 @@ module.exports = {
             new MessageButton()
                 .setStyle("LINK")
                 .setLabel("Github")
+                .setEmoji("<:github:954782695882358906>")
                 .setURL("https://github.com/PhantomKnight287/PhantomKnight")
         );
         const embed = new MessageEmbed()
@@ -33,8 +34,11 @@ module.exports = {
             )
             .addFields([
                 {
-                    name: ":arrow_up: Uptime",
-                    value: `\`\`\`${prettyMs(client.uptime)}\`\`\``,
+                    name: ":arrow_up: Active From",
+                    value: `${time(
+                        Math.floor(startingMilliseconds / 1000),
+                        "F"
+                    )}`,
                     inline: false,
                 },
                 {
