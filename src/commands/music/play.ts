@@ -27,7 +27,9 @@ module.exports = {
                 filter: "audioonly",
                 dlChunkSize: 0,
                 highWaterMark: 1 << 25,
+                quality: "highest",
             },
+            leaveOnEmptyCooldown: 180,
         });
         try {
             if (!queue.connection)
