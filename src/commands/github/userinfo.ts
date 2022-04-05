@@ -56,37 +56,37 @@ export const run = async (interaction: CommandInteraction) => {
                 {
                     name: "Username",
                     value: response.data.login,
-                    inline:false,
+                    inline: false,
                 },
                 {
                     name: "Name",
                     value: `${response.data.name || "No Name"}`,
-                    inline:false,
+                    inline: false,
                 },
                 {
                     name: "Bio",
                     value: `${response.data.bio || "No Bio"}`,
-                    inline:false,
+                    inline: false,
                 },
                 {
                     name: "Followers",
                     value: `${response.data.followers}`,
-                    inline:false,
+                    inline: false,
                 },
                 {
                     name: "Following",
                     value: `${response.data.following}`,
-                    inline:false,
+                    inline: false,
                 },
                 {
                     name: "Public Repos",
                     value: `${response.data.public_repos}`,
-                    inline:false,
+                    inline: false,
                 },
                 {
                     name: "Public Gists",
                     value: `${response.data.public_gists}`,
-                    inline:false,
+                    inline: false,
                 },
                 {
                     name: "Account Created At",
@@ -96,14 +96,11 @@ export const run = async (interaction: CommandInteraction) => {
                         ),
                         "R"
                     )}`,
-                    inline:false,
+                    inline: false,
                 },
             ])
             .setColor("RANDOM")
             .setThumbnail(response.data.avatar_url);
-        if (response.data.type !== "Organization") {
-            emb.setImage(`attachment://topLanguages.png`);
-        }
         const attachment = new MessageAttachment(
             canvas.toBuffer(),
             "topLanguages.png"
@@ -111,7 +108,11 @@ export const run = async (interaction: CommandInteraction) => {
         await interaction.editReply({
             embeds: [emb],
             components: [row],
-            files: response.data.type !== "Organization" ? [attachment] : [],
         });
+        if (response.data.type !== "Organization") {
+            await interaction.channel.send({
+                files: [attachment],
+            });
+        }
     });
 };
