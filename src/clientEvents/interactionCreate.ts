@@ -5,9 +5,7 @@ import { client, economyCommands, MusicCommand } from "..";
 class InteractionCreate {
     name: string = "interactionCreate";
     execute: Function = this.action;
-    constructor() {
-        console.log("Loaded Interaction Create event.");
-    }
+    constructor() {}
     async action(interaction: CommandInteraction) {
         if (!interaction.guild)
             return void (await interaction.reply({

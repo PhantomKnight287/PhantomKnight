@@ -3,9 +3,7 @@ import { client } from "..";
 class Ready {
     name: string = "ready";
     action: Function = this.execute;
-    constructor() {
-        console.log("Loaded Ready event.");
-    }
+    constructor() {}
     async execute() {
         const presences: PresenceStatusData[] = ["dnd", "online", "idle"];
         console.log(`Logged in as ${client.user.tag}! at ${new Date()}`);

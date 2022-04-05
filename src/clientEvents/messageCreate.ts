@@ -6,9 +6,7 @@ class MessageCreate {
     name: string = "messageCreate";
     execute: Function = this.action;
 
-    constructor() {
-        console.log("Loaded Message Create event.");
-    }
+    constructor() {}
     async action(message: Message) {
         if (
             message.content.includes(`<@!${client.user.id}>`) ||
