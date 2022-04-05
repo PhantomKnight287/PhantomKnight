@@ -5,7 +5,6 @@ import {
     MessageButton,
     version,
 } from "discord.js";
-// const prettyMs = require("pretty-ms");
 import type { CommandInteraction } from "discord.js";
 import { client, startingMilliseconds } from "../..";
 import { version as tsVersion } from "typescript";
@@ -34,10 +33,10 @@ module.exports = {
             )
             .addFields([
                 {
-                    name: ":arrow_up: Active From",
+                    name: ":arrow_up: Started",
                     value: `${time(
                         Math.floor(startingMilliseconds / 1000),
-                        "F"
+                        "R"
                     )}`,
                     inline: false,
                 },
