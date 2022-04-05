@@ -1,6 +1,5 @@
-<div align="center" > 
-This bot will not recieve any updates, you can still fork the repo and create a pull request
-
+<div > 
+<div align="center">
 # PhantomKnight - A Discord Bot
 
 [![GNU Licence](https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0.en.html)
@@ -16,23 +15,42 @@ This bot will not recieve any updates, you can still fork the repo and create a 
 [![Discord Bots](https://top.gg/api/widget/838686966387965992.svg)](https://top.gg/bot/838686966387965992)
 
 Click [here](https://bot.phantomknight.tk/docs) to see list of commands.
+</div>
 
-# How to Start The Bot
+# Instructions
 
 [Git](https://git-scm.com/downloads), [Nodejs](https://nodejs.org) and FFmpeg must be installed on your system
 
+1. Clone the Repo
 ```
-1. git clone https://github.com/PhantomKnight287/discordbot
-2. cd discordbot
-3. npm i
-4. Rename .env_example to .env and fill appropriate values
-5. npm run build:prod
-6. npm run start:prod
+git clone https://github.com/PhantomKnight287/Phantomknight
+```
+2. Install dependencies
+```bash
+npm i 
+ or
+yarn
+```
+3. Setting up Environment Variables
+    Create .env in root of the folder and follow `.env.example` for variables.
+4. Compile Ts
+```
+yarn build:prod
+or 
+npm run build:prod
+```
+5. Start the bot
+```
+npm run start:prod
+or
+yarn start:prod
 ```
 
-Run The bot Using Docker
+- Run The bot Using Docker
+<br/>
+Get `docker-compose.yml` from root of the project. Follow Step 3 from above and run
 
-```
+```bash
 docker-compose up --build --detach
 ```
 
