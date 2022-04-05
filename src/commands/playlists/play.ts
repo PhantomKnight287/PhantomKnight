@@ -1,10 +1,11 @@
-import { CommandInteraction, MessageEmbed } from "discord.js";
-import { player } from "../..";
 import {
-    hyperlink,
-    SlashCommandBuilder,
-    userMention,
-} from "@discordjs/builders";
+    CommandInteraction,
+    MessageActionRow,
+    MessageButton,
+    MessageEmbed,
+} from "discord.js";
+import { player } from "../..";
+import { SlashCommandBuilder, userMention } from "@discordjs/builders";
 const wait = require("util").promisify(setTimeout);
 import { QueryType } from "discord-player";
 import { prisma } from "../../prisma";
@@ -26,6 +27,14 @@ module.exports = {
                 userId: mentionedUser ? mentionedUser.id : interaction.user.id,
             },
         });
+        const row = new MessageActionRow().addComponents(
+            new MessageButton()
+                .setStyle("LINK")
+                .setLabel("Open Playlist")
+                .setURL(
+                    `https://bot.phantomknight.tk/user/playlist/${interaction.user.id}`
+                )
+        );
         if (!user || !user.playList || !user.playList.length) {
             return await interaction.editReply({
                 content: !mentionedUser
@@ -91,20 +100,12 @@ module.exports = {
                         `**${track.duration}**`,
                         true
                     )
-                    .addField(
-                        "Url",
-                        `${hyperlink("Click Here", `${track.url}`)}`,
-                        true
-                    )
-                    .setColor("RANDOM")
-                    .setDescription(
-                        `To View Your Playlist Click ${hyperlink(
-                            "Here",
-                            `https://bot.phantomknight.tk/user/playlist/${interaction.user.id}`
-                        )}`
-                    );
+
+                    .setColor("RANDOM");
+
                 await interaction.followUp({
                     embeds: [emb],
+                    components: [row],
                 });
                 await wait(3000);
             } else if (queue.playing && track) {
