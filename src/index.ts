@@ -73,7 +73,7 @@ player.on("connectionError", (_, error) => {
 });
 
 const startingMilliseconds = new Date().getTime();
-
+console.log(commands)
 registerSlashCommands(commands, true);
 
 client.on("guildMemberAdd", async (userJoined: GuildMember) => {

@@ -103,7 +103,7 @@ module.exports = {
         }
         const row = new MessageActionRow().addComponents(
             new MessageButton()
-                .setLabel("Open Playlist")
+                .setLabel("Open Song")
                 .setStyle("LINK")
                 .setURL(track.url)
         );
