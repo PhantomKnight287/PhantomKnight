@@ -29,7 +29,7 @@
     "dependencies": {
         "@discordjs/builders": "^0.13.0",
         "@discordjs/opus": "^0.7.0",
-        "@discordjs/rest": "^0.4.1",
+        "@discordjs/rest": "^0.5.0",
         "@discordjs/voice": "^0.9.0",
         "@prisma/client": "^3.12.0",
         "@types/express": "^4.17.13",
@@ -40,7 +40,7 @@
         "discord-canvas": "^1.4.1",
         "discord-image-generation": "^1.4.9",
         "discord-player": "^5.2.2",
-        "discord.js": "^13.6.0",
+        "discord.js": "^14.0.0",
         "express": "^4.17.3",
         "ffmpeg-static": "^5.0.0",
         "jimp": "^0.16.1",
