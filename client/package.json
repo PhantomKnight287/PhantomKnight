@@ -9,7 +9,7 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@emotion/react": "^11.9.0",
+        "@emotion/react": "^11.10.0",
         "@emotion/styled": "^11.8.1",
         "@mdx-js/loader": "^2.1.1",
         "@mui/material": "^5.10.0",
