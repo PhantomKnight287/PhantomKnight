@@ -27,7 +27,7 @@
     "author": "PhantomKnight287",
     "license": "GPL-3.0",
     "dependencies": {
-        "@discordjs/builders": "^0.13.0",
+        "@discordjs/builders": "^1.1.0",
         "@discordjs/opus": "^0.8.0",
         "@discordjs/rest": "^0.4.1",
         "@discordjs/voice": "^0.9.0",
