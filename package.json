@@ -46,7 +46,7 @@
         "jimp": "^0.16.1",
         "libsodium-wrappers": "^0.7.9",
         "opusscript": "^0.0.8",
-        "pretty-ms": "^7.0.1",
+        "pretty-ms": "^8.0.0",
         "reflect-metadata": "^0.1.13",
         "socket.io": "^4.5.1",
         "topgg-autoposter": "^2.0.1",
