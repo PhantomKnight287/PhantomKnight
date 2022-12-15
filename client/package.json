@@ -13,7 +13,7 @@
         "@emotion/styled": "^11.8.1",
         "@mdx-js/loader": "^2.1.1",
         "@mui/material": "^5.10.0",
-        "@next/mdx": "^12.1.5",
+        "@next/mdx": "^13.0.7",
         "axios": "^0.27.2",
         "emoji-mart": "^3.0.1",
         "next": "^12.1.5",
